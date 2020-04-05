@@ -21,7 +21,7 @@ for km in visual viopp; do
 done
 
 # Make vi-mode more responsive
-KEYTIMEOUT=1
+export KEYTIMEOUT=1
 
 # zsh-history-substring-search bindings
 bindkey -M vicmd 'k' history-substring-search-up
@@ -34,9 +34,14 @@ source ~/.config/aliases/aliasrc
 
 
 
+autoload -U compinit
+
 # Fix ls colors
 LS_COLORS="ow=01;36;40" && export LS_COLORS
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
 
 # Initialize starship
 eval "$(starship init zsh)"
