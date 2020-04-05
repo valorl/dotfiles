@@ -13,7 +13,7 @@ prompt_order = [
 [directory]
 style = "bold cyan"
 truncation_length = 3
-truncate_to_repo = true
+truncate_to_repo = false
 
 [git_branch]
 symbol=""
