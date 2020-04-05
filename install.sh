@@ -1,4 +1,22 @@
 #!/bin/sh
+nocolor=$1
+
+fmt_color() {
+  if [ "$nocolor" = "--no-color" ]
+  then
+    printf "${1}"
+  else
+    color='\033[0;32m'
+    nc='\033[0m'
+    printf "${color}${1}${nc}"
+  fi
+}
+
+log() {
+  prefix="[$1]"
+  text=$2
+  echo "$(fmt_color $prefix) $2"
+}
 
 smart_link() {
   src=$1
@@ -20,15 +38,14 @@ config_init() {
 config_add() {
   src=$(pwd)/config/$1
   dst=$HOME/.config/$1
-  echo "[~/.config] $src -> $dst"
   smart_link $src $dst
+  log "~/.config" "$src -> $dst"
 }
 
 root_add() {
   src=$(pwd)/$1
   dst=$HOME/$1
-  echo "[~] $src -> $dst"
-  ln -sf $src $dst
+  ln -sf $src $dst && log "~" "$src -> $dst"
 }
 
 scripts_init() {
@@ -36,7 +53,14 @@ scripts_init() {
   # (all scripts should be source controlled)
   src=$(pwd)/scripts
   dst=$HOME/.scripts
-  smart_link $src $dst
+  smart_link $src $dst && log "~/.scripts" "$src -> $dst"
+}
+
+bin_init() {
+  src=$(pwd)/bin/*
+  dst=$HOME/.local/bin
+  [ ! -d $dst ] && mkdir -p $dst
+  ln -sf $src $dst && log "~/.local/bin" "$src -> $dst"
 }
 
 # Home root
@@ -54,13 +78,16 @@ config_add nvim/init.vim
 config_add nvim/coc-settings.json
 config_add polybar
 config_add sxhkd
-config_add zsh
+config_add zsh/plugins.txt
+config_add zsh/.zshrc
 config_add Xresources
 config_add starship.toml
 
 # ~/.scripts
 scripts_init
 
+# ~/.local/bin
+bin_init
 
 
 
