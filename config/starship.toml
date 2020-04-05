@@ -15,6 +15,13 @@ style = "bold cyan"
 truncation_length = 3
 truncate_to_repo = true
 
+[git_branch]
+symbol=""
+
+[git_status]
+prefix=""
+suffix=" "
+
 [aws]
 displayed_items = "profile"
 
