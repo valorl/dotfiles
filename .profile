@@ -11,3 +11,20 @@ export TERMINAL="st"
 export BROWSER="/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe"
 
 
+# Dev stuff
+export GOPATH=$HOME/go
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOCKER_HOST=tcp://localhost:2375
+
+# PATH
+typeset -U PATH path
+path=(
+  "$HOME/.scripts"
+  "$GOPATH"
+  "$HOME/.krew/bin"
+
+  $path
+)
+export PATH
+
+
