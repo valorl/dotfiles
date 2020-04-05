@@ -1,12 +1,14 @@
 #!/bin/sh
 
 smart_link() {
-  $src=$1
-  $dst=$2
-  case [ -d $dst] in
-    true) rm -r $dst ;;
-    false) mkdir -p $(dirname $dst) ;;
-  esac
+  src=$1
+  dst=$2
+  if [ -d $dst ]
+  then
+    rm -r $dst
+  else
+    mkdir -p $(dirname $dst)
+  fi
   ln -sf $src $dst
 }
 
@@ -41,7 +43,7 @@ scripts_init() {
 root_add .profile
 root_add .zshenv
 root_add .gitconfig
-輰
+
 # ~/.config
 config_init
 
