@@ -1,0 +1,27 @@
+prompt_order = [
+  "directory",
+  "git_branch",
+  "git_status",
+  "git_state",
+  "kubernetes",
+  "aws",
+  "cmd_duration",
+  "line_break",
+  "character"
+]
+
+[directory]
+style = "bold cyan"
+truncation_length = 3
+truncate_to_repo = true
+
+[aws]
+displayed_items = "profile"
+
+[cmd_duration]
+style = "bold red"
+min_time = 1000
+prefix = "~ "
+
+[character]
+vicmd_symbol = ""

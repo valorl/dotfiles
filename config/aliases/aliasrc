@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Neovim
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+# Verbosity
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -v"
+alias mkd="mkdir -pv"
+
+# Colors
+alias ls="ls -hN --color=auto --group-directories-first"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+
+# Abbreviations
+alias p="sudo pacman"

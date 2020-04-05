@@ -1,0 +1,7 @@
+#!/bin/sh
+
+bspc rule -r "*"
+xrdb ~/.config/Xresources
+launchpolybar &
+sxhkd &
+st &
