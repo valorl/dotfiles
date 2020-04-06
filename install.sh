@@ -78,7 +78,7 @@ config_add nvim/init.vim
 config_add nvim/coc-settings.json
 config_add polybar
 config_add sxhkd
-config_add zsh/plugins.txt
+config_add zsh/zsh_plugins.txt
 config_add zsh/.zshrc
 config_add Xresources
 config_add starship.toml

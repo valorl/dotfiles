@@ -16,7 +16,7 @@ function _git_log_prettily(){
     git log --pretty=$1
   fi
 }
-compdef _git _git_log_prettily=git-log
+#compdef _git _git_log_prettily=git-log
 
 
 

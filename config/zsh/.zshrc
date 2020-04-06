@@ -2,8 +2,7 @@
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-source <(antibody init)
-antibody bundle < ~/.config/zsh/plugins.txt
+source ~/.config/zsh/.zsh_plugins.sh
 
 # Fix i/a commands in vi-mode
 autoload -U select-bracketed
@@ -34,14 +33,13 @@ source ~/.config/aliases/aliasrc
 
 
 
-autoload -U compinit
 
 # Fix ls colors
 LS_COLORS="ow=01;36;40" && export LS_COLORS
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+autoload -U compinit && compinit
 
 # Initialize starship
 eval "$(starship init zsh)"
