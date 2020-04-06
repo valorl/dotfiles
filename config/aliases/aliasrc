@@ -1,4 +1,13 @@
-#!/bin/sh
+#!/bin/zsh
+
+# -----------------------------------------------------------------------
+# functions
+function source_mdl() {
+  aliasdir=$HOME/.config/aliases
+  source $aliasdir/$1.zsh
+}
+
+# -----------------------------------------------------------------------
 
 # Neovim
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
@@ -17,12 +26,22 @@ alias diff="diff --color=auto"
 # Abbreviations
 alias p="sudo pacman"
 
+# Utils
+alias vs="find-and-open-vs-sln"
 
-function source_mdl() {
-  aliasdir=$HOME/.config/aliases
-  source $aliasdir/$1.zsh
-
+function repos() {
+  local dir=$(find-repo)
+  if [ -z "$1" ]
+  then
+    cd $dir
+  else
+    setopt aliases
+    $1 $dir
+    unsetopt aliases
+  fi
 }
+
+
 # Modules
 source_mdl git
 source_mdl kubectl

@@ -1,3 +1,15 @@
+[core]
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
-	email = valer.orlovsky@gmail.com
 	name = valorl
+	email = valer.orlovsky@gmail.com
+  #signingkey = ...
+[credential]
+  helper = store
+#[commit]
+# gpgsign = true
+#[gpg]
+# program = gpg
+#[merge]
+# tool = nvim -d
+# confictstyle = diff3

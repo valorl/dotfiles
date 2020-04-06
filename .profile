@@ -12,19 +12,19 @@ export BROWSER="/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Applicati
 
 
 # Dev stuff
+export REPOS=$HOME/repos
 export GOPATH=$HOME/go
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export DOCKER_HOST=tcp://localhost:2375
+export DOCKER_HOST=tcp://localhost:2375super
+export VISUAL_STUDIO="/mnt/c/Program\ Files\(x86\)/Microsoft\ Visual\ Studio/2019/Professional/Common7/IDE/devenv.exe"
 
 # PATH
 typeset -U PATH path
 path=(
-  "$HOME/.scripts"
+  "$HOME/.local/bin"
   "$GOPATH"
   "$HOME/.krew/bin"
 
   $path
 )
 export PATH
-
-

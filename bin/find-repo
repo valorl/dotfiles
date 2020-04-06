@@ -1,0 +1,10 @@
+#!/bin/sh
+function fdir() {
+  local dir
+  dirlist=($(ls -d $1/*/* | sed "1 i $/." | sort ))
+  idx=$(ls -d $1/*/* | sed "1 i $/." | sort | sed "s|.*/||" | awk '{print tolower($0)}' | cat -n | fzf +m --with-nth 2.. | awk '{print $1}')
+  echo "${dirlist[$idx-1]}"
+}
+
+dir=$(fdir $REPOS)
+echo $dir
