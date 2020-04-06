@@ -16,3 +16,14 @@ alias diff="diff --color=auto"
 
 # Abbreviations
 alias p="sudo pacman"
+
+
+function source_mdl() {
+  aliasdir=$HOME/.config/aliases
+  source $aliasdir/$1.zsh
+
+}
+# Modules
+source_mdl git
+source_mdl kubectl
+

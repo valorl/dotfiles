@@ -2,8 +2,8 @@
 export ZDOTDIR="$HOME/.config/zsh"
 export LESSHISTFILE="-"
 export WGETRC="$HOME/.config/inputrc"
-export AWS_CONFIG_FILE="$HOME/.config/aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
+#export AWS_CONFIG_FILE="$HOME/.config/aws/config"
+#export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 
 # Defaults
 export EDITOR="nvim"

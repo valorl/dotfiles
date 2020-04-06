@@ -29,7 +29,7 @@ alt + control + {h,j,k,l}
 
 # Toggle fullscreen on and off
 alt + f
-  bspfullscreen
+  bspc node -t \~fullscreen
 
 # Toggle floating on and off
 alt + o
@@ -79,8 +79,8 @@ ctrl + alt + {Left,Right,Up,Down}
 
 #---System Control---#
 # Restart hotkey damon
-#alt + shift + x
-#  killandnotify "sxhkd" "Config reloaded" && sxhkd &
+alt + shift + x
+  killall sxhkd && sxhkd &
 
 #alt + shift + o
 #  reloadpolybar

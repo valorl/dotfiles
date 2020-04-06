@@ -11,7 +11,7 @@ prompt_order = [
 ]
 
 [directory]
-style = "bold cyan"
+style = "bold dimmed green"
 truncation_length = 3
 truncate_to_repo = false
 
@@ -22,8 +22,14 @@ symbol=""
 prefix=""
 suffix=" "
 
+[kubernetes]
+disabled = false
+style = "bold #03a9f4"
+
 [aws]
+symbol = " "
 displayed_items = "profile"
+disabled = false
 
 [cmd_duration]
 style = "bold red"
