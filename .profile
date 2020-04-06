@@ -15,7 +15,7 @@ export BROWSER="/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Applicati
 export REPOS=$HOME/repos
 export GOPATH=$HOME/go
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export DOCKER_HOST=tcp://localhost:2375super
+export DOCKER_HOST=tcp://localhost:2375
 export VISUAL_STUDIO="/mnt/c/Program\ Files\(x86\)/Microsoft\ Visual\ Studio/2019/Professional/Common7/IDE/devenv.exe"
 
 # PATH
