@@ -4,6 +4,17 @@ source /usr/share/fzf/completion.zsh
 
 source ~/.config/zsh/.zsh_plugins.sh
 
+# Setup history
+export HISTSIZE=1000000
+export SAVEHIST=$HISTSIZE
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_verify
+setopt appendhistory
+setopt inc_append_history
+setopt share_history
+
 # Fix i/a commands in vi-mode
 autoload -U select-bracketed
 autoload -U select-quoted
@@ -28,11 +39,13 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# Ctrl+x e to edit command line content
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+
 # Aliases
 source ~/.config/aliases/aliasrc
-
-
-
 
 # Fix ls colors
 LS_COLORS="ow=01;36;40" && export LS_COLORS
@@ -41,5 +54,9 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 autoload -U compinit && compinit
 
+function set_win_title(){
+  echo -ne "\033]0; $(pwd) \007"
+}
+precmd_functions+=(set_win_title)
 # Initialize starship
 eval "$(starship init zsh)"

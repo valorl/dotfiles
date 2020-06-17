@@ -17,7 +17,7 @@ alt + ctrl + {0-9}
 
 # Send window to desktop and swap to desktop
 alt + shift + {0-9}
-  bspc node -d {0-9} && bspunhide && bspc desktop -f {0-9}
+  bspc node -d {0-9} && bspc desktop -f {0-9}
 
 # Rotate the tree from the current nodes parent
 alt + control + {f, b}
@@ -30,6 +30,18 @@ alt + control + {h,j,k,l}
 # Toggle fullscreen on and off
 alt + f
   bspc node -t \~fullscreen
+
+# Balance ratios
+alt + equal
+  bspc node @/ --balance
+
+# Set next split horizontal
+ alt + shift + minus
+   bspc rule -a "*" -o split_dir=south
+
+# Set next split vertical
+ alt + shift + backslash
+   bspc rule -a "*" -o split_dir=east
 
 # Toggle floating on and off
 alt + o
@@ -45,7 +57,7 @@ alt + {0-9}
 
 # Cycle through desktops
 alt + shift + {p, n}
-  bspc desktop -f {prev, next}
+  bspc desktop -f {p rev, next}
 
 # Expand a window by moving one of its side outward
 ctrl + shift + {h,j,k,l}
@@ -148,7 +160,7 @@ alt + shift + x
 
 #---Application Launchers---#
 alt + d
-  dmenu_run
+  dmenu_run -fn "mono-14"
 
 alt + shift + Return
   $TERMINAL

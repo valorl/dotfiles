@@ -25,12 +25,15 @@ alias diff="diff --color=auto"
 
 # Abbreviations
 alias p="sudo pacman"
+alias tf="terraform"
 
 # Utils
 alias vs="find-and-open-vs-sln"
+alias awp="source ~/.scripts/source-aws-profile.sh"
 
 function repos() {
   local dir=$(find-repo)
+  echo $dir
   if [ -z "$1" ]
   then
     cd $dir

@@ -35,7 +35,7 @@ alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 
 alias gco='git checkout'
-alias gcb='git checkout -b'
+alias gcob='git checkout -b'
 
 alias gd='git diff'
 alias gds='git diff --staged'

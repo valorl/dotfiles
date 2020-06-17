@@ -3,6 +3,7 @@ prompt_order = [
   "git_branch",
   "git_status",
   "git_state",
+  "custom.foo",
   "kubernetes",
   "aws",
   "cmd_duration",
@@ -22,9 +23,19 @@ symbol=""
 prefix=""
 suffix=" "
 
+[custom.foo]
+command = "echo foo"
+files = ["foo"]
+when = "true"
+prefix = " transcending "
+
 [kubernetes]
 disabled = false
 style = "bold #03a9f4"
+[kubernetes.context_aliases]
+"arn:aws:eks:eu-central-1:454730462044:cluster/our_eks_cluster" = "our_eks_cluster"
+"k3s-default" = "our_eks_cluster"
+
 
 [aws]
 symbol = " "

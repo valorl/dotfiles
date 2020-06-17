@@ -60,7 +60,7 @@ alias kgcma='kgcm --all-namespaces'
 alias kgcmw='kgcm --watch'
 alias kgcmwa='kgcm --watch --all-namespaces'
 alias kgcmwide='kgcm -o wide'
-alias kdescm='k describe confimaps'
+alias kdescm='k describe configmaps'
 alias kdelcm='k delete configmaps'
 
 # Secrets
