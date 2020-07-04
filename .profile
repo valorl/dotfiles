@@ -29,6 +29,7 @@ path=(
   "$GOPATH/bin"
   "$HOME/.krew/bin"
   "$HOME/.dotnet/tools"
+  "$HOME/.cargo/bin"
 
   $path
 )
