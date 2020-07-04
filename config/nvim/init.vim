@@ -56,6 +56,7 @@ Plug 'tweekmonster/gofmt.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
 
 call plug#end()

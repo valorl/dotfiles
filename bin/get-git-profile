@@ -1,0 +1,15 @@
+#!/bin/sh
+name=$(git config --global user.name)
+email=$(git config --global user.email)
+
+case $name:$email in
+    "valorl:valer.orlovsky@gmail.com")
+        echo "P"
+        ;;
+    "vao:valer.orlovsky@centrica.com")
+        echo "W"
+        ;;
+    *)
+        echo "UNKNOWN"
+        ;;
+esac

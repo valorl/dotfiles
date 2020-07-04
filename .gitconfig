@@ -1,8 +1,8 @@
 [core]
   pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
-  name = valorl
-  email = valer.orlovsky@gmail.com
+	name = vao
+	email = valer.orlovsky@centrica.com
   ; name = vao
   ; email = valer.orlovsky@centrica.com
   #signingkey = ...

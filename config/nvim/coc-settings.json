@@ -5,6 +5,7 @@
       "filetypes": ["terraform"],
       "initializationOptions": {}
     }
-  }
+  },
+  "python.jediEnabled": false
 }
 
