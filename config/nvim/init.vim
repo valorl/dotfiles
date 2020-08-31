@@ -62,10 +62,16 @@ Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 call plug#end()
 
 let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_selector_ui = 'fzf'
+
 
 let g:airline_theme = 'codedark'
 " let g:gruvbox_contrast_dark = "hard"
 colorscheme codedark
+
+" FZF window
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
 
 
 " --- vim go (polyglot) settings.
@@ -155,6 +161,9 @@ nnoremap <Leader>- :vertical resize -5<CR>
 " nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+" b64 decode selection
+vnoremap <leader>64e y:let @"=system('base64', @")<cr>gvP
+vnoremap <leader>64d y:let @"=system('base64 --decode', @")<cr>gvP
 
 " CoC stuff
 function! s:check_back_space() abort
@@ -185,7 +194,8 @@ endfunction
 
 " Remap keys for gotos
 nnoremap <silent> <leader>gh :call <SID>show_documentation()<CR>
-nmap <leader>gd <Plug>(coc-definition)
+" nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
 nmap <leader>gy <Plug>(coc-type-definition)
 nmap <leader>gi <Plug>(coc-implementation)
 nmap <leader>gr <Plug>(coc-references)
