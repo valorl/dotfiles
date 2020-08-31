@@ -1,6 +1,6 @@
 #!/bin/sh
-name=$(git config --global user.name)
-email=$(git config --global user.email)
+name=$(git config user.name)
+email=$(git config user.email)
 
 case $name:$email in
     "valorl:valer.orlovsky@gmail.com")

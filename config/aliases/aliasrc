@@ -65,7 +65,7 @@ function kubeunseal {
 alias vs="find-and-open-vs-sln"
 alias awp="source ~/.scripts/source-aws-profile.sh"
 
-function repos() {
+function reposx() {
   local dir=$(find-repo)
   echo $dir
   if [ -z "$1" ]
@@ -78,20 +78,24 @@ function repos() {
   fi
 }
 
-function repos2() {
+function repos() {
   formatted=()
   original=()
   dir_count=0
-  for d in $(find-repo-v2 $REPOS); do
+  dest=$( [[ $1 = "-s" ]] && echo "$REPOS/shared" || echo "$REPOS/local" )
+  formatted+=("$dir_count .")
+  original+=("$dest")
+  for d in $(find-repo-v2 $dest); do
+      ((dir_count++))
       original+=($d)
-      line=$(echo $d | sed "s,$REPOS/local/,,g" \
+      line=$(echo $d | sed "s,$dest/,,g" \
           | sed 's,^gitlab\.neasenergy\.com/,,g' \
           | sed 's,^github\.com/,,g')
 
       num_line=("$dir_count $line")
       formatted+=($num_line)
-      ((dir_count++))
   done
+
 
 
   ## echo "${formatted[@]}"
