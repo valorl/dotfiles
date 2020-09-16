@@ -14,5 +14,5 @@ fi
 path=$(echo -n $1 | sed "s https://\(.*\)\.git \1 ")
 echo "Creating $path.."
 mkdir -p $path
-git clone $1 $REPOS/local/$path
+git clone $1 $path
 
