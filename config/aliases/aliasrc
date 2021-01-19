@@ -27,11 +27,64 @@ alias diff="diff --color=auto"
 alias p="sudo pacman"
 alias tf="terraform"
 
+# Tools
+function kudeman() {
+    docker run \
+        -v $(pwd):/workdir \
+        -u $(id -u ${USER}):$(id -g ${USER}) kudeman kudeman $@
+}
+function kudemani() {
+    docker run -it \
+        -v $(pwd):/workdir \
+        -u $(id -u ${USER}):$(id -g ${USER}) kudeman bash
+}
+
+function gcilint() {
+    url="https://gitlab.neasenergy.com"
+    token=$GITLAB_API_KEY
+    gitlab-ci-linter -v --gitlab-url $url --personal-access-token $token
+}
+
+
+function tfci() {
+    image="cetaalaws-dkr.jfrog.io/cet-terraform:0.12.13-awscli"
+    docker run \
+        -v $(pwd):/workdir \
+        -w /workdir \
+        -v $HOME/.aws:/root/.aws \
+        --env="AWS_PROFILE=$AWS_PROFILE" \
+        $image \
+        $@
+}
+
+function kubeunseal {
+    tmpmem="$HOME/.kubeunseal/$(cat /dev/urandom | tr -dc a-z0-9 | head -c 6)"
+    mkdir -p $tmpmem
+
+    if ! grep -qs "$tmpmem" /proc/mounts;
+    then
+        sudo mount tmpfs $tmpmem -t tmpfs -o size=1G
+    fi
+
+    keySecrets=$(kubectl get secret -n kube-system --no-headers=true | awk '/sealed-secrets-key.*/{print $1}')
+    keyFiles=""
+    for s in $keySecrets
+    do
+        kubectl get secret $s -n kube-system -o yaml > "$tmpmem/$s.yaml"
+        keyFiles+="$tmpmem/$s.yaml,"
+    done
+    keyFiles=$(echo "${keyFiles%?}")
+    unsealed=$(kubeseal --recovery-unseal --recovery-private-key $keyFiles < $1)
+    echo $unsealed | jq -r ".data.\"$2\"" | base64 -d ; echo ''
+
+    sudo umount $tmpmem
+}
+
 # Utils
 alias vs="find-and-open-vs-sln"
 alias awp="source ~/.scripts/source-aws-profile.sh"
 
-function repos() {
+function reposx() {
   local dir=$(find-repo)
   echo $dir
   if [ -z "$1" ]
@@ -44,8 +97,39 @@ function repos() {
   fi
 }
 
+alias rp=repos
+function repos() {
+  formatted=()
+  original=()
+  dir_count=0
+  dest=$( [[ $1 = "-s" ]] && echo "$REPOS/shared" || echo "$REPOS/local" )
+  formatted+=("$dir_count .")
+  original+=("$dest")
+  for d in $(find-repo-v2 $dest); do
+      ((dir_count++))
+      original+=($d)
+      line=$(echo $d | sed "s,$dest/,,g" \
+          | sed 's,^gitlab\.neasenergy\.com/,,g' \
+          | sed 's,^github\.com/,,g')
+
+      num_line=("$dir_count $line")
+      formatted+=($num_line)
+  done
+
+
+
+  ## echo "${formatted[@]}"
+  selected=$(printf '%s\n' "${formatted[@]}" | fzf +m --with-nth 2..)
+  selected_idx=$(echo $selected | awk '{print $1}')
+
+  # not sure why but [0] is empty in both arrays?
+  cd "${original[(($selected_idx+1))]}"
+}
+
 
 # Modules
 source_mdl git
 source_mdl kubectl
+source_mdl editconfig
+source_mdl dotnet
 

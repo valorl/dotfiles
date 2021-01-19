@@ -19,8 +19,14 @@ function _git_log_prettily(){
 #compdef _git _git_log_prettily=git-log
 
 
+alias gclone="sh $HOME/.scripts/git-clone-full-path.sh"
 
 
+# Fugitive
+function :G() {
+    nvim -c ":Ge :"
+    git status -s
+}
 alias g='git'
 
 alias gaa='git add --all'
@@ -36,6 +42,7 @@ alias gcam='git commit -a -m'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
+alias gcom='git checkout master'
 
 alias gd='git diff'
 alias gds='git diff --staged'
@@ -43,7 +50,18 @@ alias gds='git diff --staged'
 
 alias gpsu='git push --set-upstream origin $(git_current_branch)'
 
-alias glog="git log --pretty='%C(bold yellow)%h%Creset %<(11)%Cgreen%ad %<(15,trunc)%Cblue%al%Creset %s %C(auto)%d%Creset' --date=short"
+function _git_log_default() {
+    esc=$(printf '\033')
+    light_purple='[1;35m'
+    git log \
+        --pretty='%C(bold yellow)%h%Creset %<(11)%Cgreen%ad %<(15,trunc)%Cblue%al%Creset %s %C(auto)%d%Creset' \
+        --date=short \
+        --color=always \
+        $@ \
+        | nl -v0 | sed "s,^ \+,${esc}${light_purple}," | bat --plain
+}
+alias glogx="git log --pretty='%C(bold yellow)%h%Creset %<(11)%Cgreen%ad %<(15,trunc)%Cblue%al%Creset %s %C(auto)%d%Creset' --date=short"
+alias glog="_git_log_default"
 
 alias gst='git status -s'
 

@@ -6,6 +6,8 @@
       "initializationOptions": {}
     }
   },
-  "python.jediEnabled": false
+  "python.jediEnabled": false,
+  "omnisharp.version": "v1.37.1",
+  "omnisharp.path": "/home/vao/.cache/omnisharp-vim/omnisharp-roslyn/run"
 }
 
