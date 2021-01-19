@@ -36,6 +36,7 @@ style = "bold #03a9f4"
 [kubernetes.context_aliases]
 "arn:aws:eks:eu-central-1:454730462044:cluster/eks_test" = "test"
 "arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev"  = "dev"
+"arn:aws:eks:eu-central-1:403980573539:cluster/eks_shrd" = "shrd"
 
 
 [aws]

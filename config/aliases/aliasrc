@@ -25,7 +25,26 @@ alias diff="diff --color=auto"
 
 # Abbreviations
 alias p="sudo pacman"
- alias tf="terraform"
+alias tf="terraform"
+
+# Tools
+function kudeman() {
+    docker run \
+        -v $(pwd):/workdir \
+        -u $(id -u ${USER}):$(id -g ${USER}) kudeman kudeman $@
+}
+function kudemani() {
+    docker run -it \
+        -v $(pwd):/workdir \
+        -u $(id -u ${USER}):$(id -g ${USER}) kudeman bash
+}
+
+function gcilint() {
+    url="https://gitlab.neasenergy.com"
+    token=$GITLAB_API_KEY
+    gitlab-ci-linter -v --gitlab-url $url --personal-access-token $token
+}
+
 
 function tfci() {
     image="cetaalaws-dkr.jfrog.io/cet-terraform:0.12.13-awscli"
@@ -78,6 +97,7 @@ function reposx() {
   fi
 }
 
+alias rp=repos
 function repos() {
   formatted=()
   original=()
@@ -101,23 +121,15 @@ function repos() {
   ## echo "${formatted[@]}"
   selected=$(printf '%s\n' "${formatted[@]}" | fzf +m --with-nth 2..)
   selected_idx=$(echo $selected | awk '{print $1}')
-  # #
-  # # not sure why but [0] is empty in both arrays?
+
+  # not sure why but [0] is empty in both arrays?
   cd "${original[(($selected_idx+1))]}"
-
-
-  # if [ -z "$1" ]
-  # then
-  #   cd $dir
-  # else
-  #   setopt aliases
-  #   $1 $dir
-  #   unsetopt aliases
-  # fi
 }
 
 
 # Modules
 source_mdl git
 source_mdl kubectl
+source_mdl editconfig
+source_mdl dotnet
 

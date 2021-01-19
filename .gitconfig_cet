@@ -1,3 +1,7 @@
 [user]
   name = vao
   email = valer.orlovsky@centrica.com
+  signingkey = 35B1CC7A990E8366
+[commit]
+  gpgsign = true
+

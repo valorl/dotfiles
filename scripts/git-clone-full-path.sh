@@ -5,7 +5,9 @@ then
     exit 1
 fi
 
-if ! $(echo $1 | grep -Eq '^https://(.*)\.git$')
+regexHTTPS='^https://(.*)\.git$'
+regexSSH='^git@(.*)\.git$'
+if ! $(echo $1 | grep -Eq "($regexHTTPS|$regexSSH)")
 then
     echo "Not a valid repository URL."
     exit 1

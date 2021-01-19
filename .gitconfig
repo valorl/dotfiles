@@ -1,9 +1,8 @@
 [core]
     pager = diff-so-fancy | less --tabs=4 -RFX
+    autocrlf = input
 [user]
-  name = vao
-  email = valer.orlovsky@centrica.com
-  #signingkey = ...
+    useConfigOnly = true
 [credential]
     helper = store
 #[commit]
@@ -17,7 +16,11 @@
 	rebase = true
 
 [includeIf "gitdir:~/repos/*/gitlab.neasenergy.com/"]
-    path = ~/repos/local/dotfiles/.gitconfig_cet
+    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_cet
+[includeIf "gitdir:~/repos/local/work.local/"]
+    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_cet
 
 [includeIf "gitdir:~/repos/*/github.com/"]
-    path = ~/repos/local/dotfiles/.gitconfig_gh
+    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_gh
+[includeIf "gitdir:~/repos/local/personal.local/"]
+    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_gh

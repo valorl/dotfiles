@@ -13,8 +13,10 @@
 *.color256:     #ABB2BF
 
 ! black
-*.color0:       #5C6370
-*.color8:       #4B5263
+!*.color0:       #5C6370
+*.color0:       #121315
+*.color8:       #121315
+!*.color8:       #4B5263
 
 ! red
 *.color1:       #E06C75
@@ -42,7 +44,8 @@
 
 ! white
 *.color7:       #ABB2BF
-*.color15:      #3E4452
+!*.color15:      #3E4452
+*.color15:      #ABB2BF
 
 
 base00: "#1E1E1E"

@@ -10,7 +10,9 @@ export AWS_DEFAULT_REGION=eu-central-1
 # Defaults
 export EDITOR="nvim"
 export TERMINAL="st"
-#export BROWSER='/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe'
+export GPG_TTY=$(tty)
+export BROWSER='/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe'
+
 
 
 # Dev stuff
@@ -18,9 +20,12 @@ export REPOS=$HOME/repos
 export GOPATH=$HOME/go
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 #export VISUAL_STUDIO="/mnt/c/Program\ Files\(x86\)/Microsoft\ Visual\ Studio/2019/Professional/Common7/IDE/devenv.exe"
+export DOCKER_BUILDKIT=1
 
 # Sensitive stuf
 [ -f ~/.secretprofile ] && source ~/.secretprofile
+
+cDriveBase="/mnt/c-drive/c"
 
 # PATH
 typeset -U PATH path
@@ -30,6 +35,8 @@ path=(
   "$HOME/.krew/bin"
   "$HOME/.dotnet/tools"
 
+  "$cDriveBase/Program Files/Microsoft Vs Code/bin"
+  "$cDriveBase/Program Files (x86)/BraveSoftware/Brave-Browser/Application"
   $path
 )
 export PATH
