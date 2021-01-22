@@ -87,7 +87,16 @@ function kubeunseal {
 
 # Utils
 alias vs="find-and-open-vs-sln"
-alias awp="source ~/.scripts/source-aws-profile.sh"
+function awp() {
+  if [[ "$1" == "--resume" || "$1" == "-r" ]]
+  then
+    export VALORL_AWS_PROFILE_HOOK_SUSPEND=0
+  else
+    echo "suspending"
+    export VALORL_AWS_PROFILE_HOOK_SUSPEND=1
+    source ~/.scripts/source-aws-profile.sh
+  fi
+}
 
 function reposx() {
   local dir=$(find-repo)

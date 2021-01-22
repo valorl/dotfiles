@@ -67,7 +67,7 @@ function chpwd() {
 #precmd hook
 function precmd() {
     emulate -L zsh
-#    source $HOME/.scripts/precmd-aws-profile-hook.sh
+    source $HOME/.scripts/precmd-aws-profile-hook.sh
 }
 
 # Initialize starship

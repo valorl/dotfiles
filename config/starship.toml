@@ -1,15 +1,27 @@
-prompt_order = [
-  "directory",
-  "git_branch",
-  "custom.git_profile",
-  "git_status",
-  "git_state",
-  "kubernetes",
-  "aws",
-  "cmd_duration",
-  "line_break",
-  "character"
-]
+format = """\
+  ${custom.git_profile}\
+  $directory\
+  $git_branch\
+  $git_status\
+  $git_state\
+  ${custom.aws}\
+  $kubernetes\
+  $cmd_duration\
+  $line_break\
+  $character"""
+
+# prompt_order = [
+#   "directory",
+#   "git_branch",
+#   "custom.git_profile",
+#   "git_status",
+#   "git_state",
+#   "kubernetes",
+#   "aws",
+#   "cmd_duration",
+#   "line_break",
+#   "character"
+# ]
 
 [directory]
 style = "bold dimmed green"
@@ -18,36 +30,39 @@ truncate_to_repo = false
 
 [git_branch]
 symbol=""
+format= "(| [$symbol$branch]($style) )"
 
 [git_status]
-prefix=""
-suffix=" "
+format = "([[$all_status$ahead_behind](bold red)](bold white) )"
+# prefix=""
+# suffix=" "
 
 [custom.git_profile]
-style = "bold purple"
 command = "get-git-profile"
 when="git status"
-prefix = "["
-suffix = "] "
+format="([\\[[$output](bold purple)\\]](bold white) )"
+# prefix = "["
+# suffix = "] "
+
+[custom.aws]
+command = '[[ "$VALORL_AWS_PROFILE_HOOK_SUSPEND" == "1" ]] && echo "$AWS_PROFILE!" || echo $AWS_PROFILE'
+when='[ "\\$AWS_PROFILE" ] && exit 0 || exit 1'
+format = "(| [$output](bold yellow) )"
 
 [kubernetes]
 disabled = false
 style = "bold #03a9f4"
+format = "[$context( \\($namespace\\))]($style) "
 [kubernetes.context_aliases]
 "arn:aws:eks:eu-central-1:454730462044:cluster/eks_test" = "test"
 "arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev"  = "dev"
 "arn:aws:eks:eu-central-1:403980573539:cluster/eks_shrd" = "shrd"
-
-
-[aws]
-symbol = " "
-displayed_items = "profile"
-disabled = false
+"arn:aws:eks:eu-central-1:461308380791:cluster/eks_prod" = "prod"
 
 [cmd_duration]
 style = "bold red"
 min_time = 1000
-prefix = "~ "
+format = "~ [$duration]($style) "
 
 [character]
-vicmd_symbol = ""
+vicmd_symbol = "[](bold blue) "
