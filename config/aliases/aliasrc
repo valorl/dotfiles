@@ -74,9 +74,14 @@ function kubeunseal {
         keyFiles+="$tmpmem/$s.yaml,"
     done
     keyFiles=$(echo "${keyFiles%?}")
-    unsealed=$(kubeseal --recovery-unseal --recovery-private-key $keyFiles < $1)
-    echo $unsealed | jq -r ".data.\"$2\"" | base64 -d ; echo ''
-
+    if [ -z "$2" ]
+    then
+      unsealed=$(kubeseal --recovery-unseal --recovery-private-key $keyFiles -o yaml < $1)
+      echo $unsealed
+    else
+      unsealed=$(kubeseal --recovery-unseal --recovery-private-key $keyFiles < $1)
+      echo $unsealed | jq -r ".data.\"$2\"" | base64 -d ; echo ''
+    fi
     sudo umount $tmpmem
 }
 
