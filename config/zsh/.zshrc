@@ -58,5 +58,17 @@ function set_win_title(){
   echo -ne "\033]0; $(pwd) \007"
 }
 precmd_functions+=(set_win_title)
+# cd hook
+function chpwd() {
+    emulate -L zsh
+    source $HOME/.scripts/chpwd-aws-profile-hook.sh
+}
+
+#precmd hook
+function precmd() {
+    emulate -L zsh
+#    source $HOME/.scripts/precmd-aws-profile-hook.sh
+}
+
 # Initialize starship
 eval "$(starship init zsh)"

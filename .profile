@@ -13,8 +13,6 @@ export TERMINAL="st"
 export GPG_TTY=$(tty)
 export BROWSER='/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe'
 
-
-
 # Dev stuff
 export REPOS=$HOME/repos
 export GOPATH=$HOME/go
