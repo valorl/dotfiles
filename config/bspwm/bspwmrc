@@ -2,7 +2,7 @@
 
 bspc rule -r "*"
 xrdb ~/.config/Xresources
-launchpolybar &
+#launchpolybar &
 sxhkd &
 st &
 

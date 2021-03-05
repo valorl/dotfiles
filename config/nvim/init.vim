@@ -32,7 +32,7 @@ call plug#begin('~/local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasiser/vim-code-dark'
-" Plug 'gruvbox-community/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 " Code Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy find files
@@ -60,6 +60,7 @@ Plug 'mbbill/undotree'
 " Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'qpkorr/vim-renamer'
 Plug 'tpope/vim-markdown'
+Plug 'aserebryakov/vim-todo-lists'
 
 
 
@@ -74,8 +75,8 @@ let g:gitlab_api_keys = $GITLAB_API_KEY
 
 
 let g:airline_theme = 'codedark'
-" let g:gruvbox_contrast_dark = "hard"
-colorscheme codedark
+let g:gruvbox_contrast_dark = "hard"
+colorscheme gruvbox
 
 " Markdown
 let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'hcl', 'yaml', 'csharp', 'go']
@@ -156,6 +157,18 @@ set shortmess+=c
 
 " always show signcolumns
 set signcolumn=yes
+
+" Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  +yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P"
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -280,3 +293,40 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
+
+" semver (e.g. in Terraform)
+function! Bump(level) abort
+    let line=getline('.')
+    let regex='\v(0|[1-9]\d*)\.(0|[1-9]\d*)(\.(0|[1-9]\d*))?' "v2.0
+    let versions=matchlist(line,regex)
+    if len(versions) == 0
+        return
+    endif
+    let major=str2nr(versions[1])
+    let minor=str2nr(versions[2])
+    let patch= strlen(versions[4]) > 0 ? str2nr(versions[4]) : 0
+
+    if a:level == 'major'
+        let major += 1
+        let minor = 0
+        let patch = 0
+    elseif a:level == 'minor'
+        let minor += 1
+        let patch = 0
+    elseif a:level == 'patch'
+        let patch += 1
+    endif
+
+    let patchOrNot = patch > 0 ? '.' . string(patch) : ''
+    let newVersion = 'v' + major . '.' . minor . patchOrNot
+    call setline(line('.'), substitute(line, regex, newVersion, ''))
+endfunction
+command! Bumpa call Bump('major')
+command! Bumpi call Bump('minor')
+command! Bumpp call Bump('patch')
+
+
+
+
+
+

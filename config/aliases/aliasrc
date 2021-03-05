@@ -28,6 +28,8 @@ alias p="sudo pacman"
 alias tf="terraform"
 
 # Tools
+alias todo="vim ~/TODO.md"
+
 function kudeman() {
     docker run \
         -v $(pwd):/workdir \
@@ -47,14 +49,22 @@ function gcilint() {
 
 
 function tfci() {
-    image="cetaalaws-dkr.jfrog.io/cet-terraform:0.12.13-awscli"
+    image="cetaalaws-dkr.jfrog.io/cet-terraform:0.13.2-awscli"
     docker run \
+        -it \
         -v $(pwd):/workdir \
         -w /workdir \
         -v $HOME/.aws:/root/.aws \
         --env="AWS_PROFILE=$AWS_PROFILE" \
-        $image \
-        $@
+        --env="MONGODB_ATLAS_PUBLIC_KEY=$MONGODB_ATLAS_PUBLIC_KEY" \
+        --env="MONGODB_ATLAS_PRIVATE_KEY=$MONGODB_ATLAS_PRIVATE_KEY" \
+        --env="GITLAB_TOKEN=$GITLAB_TOKEN" \
+        --env="GITLAB_HOST=$GITLAB_HOST" \
+        --env="ARTIFACTORY_URL=$ARTIFACTORY_URL" \
+        --env="ARTIFACTORY_API_KEY=$ARTIFACTORY_API_KEY" \
+        --entrypoint="sh" \
+        $image #\
+        # $@
 }
 
 function kubeunseal {

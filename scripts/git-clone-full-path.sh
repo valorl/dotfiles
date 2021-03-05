@@ -13,7 +13,9 @@ then
     exit 1
 fi
 
-path=$(echo -n $1 | sed "s https://\(.*\)\.git \1 ")
+path=$(echo -n $1 \
+    | sed -r "s (git@|https://)(.*)\.git \2 " \
+    | sed "s : / ")
 echo "Creating $path.."
 mkdir -p $path
 git clone $1 $path

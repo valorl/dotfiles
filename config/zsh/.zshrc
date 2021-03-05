@@ -5,7 +5,7 @@ source /usr/share/fzf/completion.zsh
 source ~/.config/zsh/.zsh_plugins.sh
 
 # Setup history
-export HISTSIZE=1000000
+export HISTSIZE=9999999999
 export SAVEHIST=$HISTSIZE
 setopt extended_history
 setopt hist_expire_dups_first
@@ -69,6 +69,12 @@ function precmd() {
     emulate -L zsh
     source $HOME/.scripts/precmd-aws-profile-hook.sh
 }
+
+# Start tmux session
+if [ -z "$TMUX" ]
+then
+    tmux -f ~/.config/tmux/tmux.conf attach -t base || tmux -f ~/.config/tmux/tmux.conf new -s base
+fi
 
 # Initialize starship
 eval "$(starship init zsh)"

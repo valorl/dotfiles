@@ -51,8 +51,7 @@ format = "(| [$output](bold yellow) )"
 
 [kubernetes]
 disabled = false
-style = "bold #03a9f4"
-format = "[$context( \\($namespace\\))]($style) "
+format = "[$context(\\([$namespace](bold white)\\))](bold #03a9f4) "
 [kubernetes.context_aliases]
 "arn:aws:eks:eu-central-1:454730462044:cluster/eks_test" = "test"
 "arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev"  = "dev"
