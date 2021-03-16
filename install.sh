@@ -74,7 +74,7 @@ config_init
 config_add aliases
 config_add bspwm
 config_add fontconfig
-config_add nvim/init.vim
+config_add nvim
 config_add nvim/coc-settings.json
 config_add polybar
 config_add sxhkd
