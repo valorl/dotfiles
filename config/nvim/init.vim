@@ -33,17 +33,27 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasiser/vim-code-dark'
 Plug 'gruvbox-community/gruvbox'
-" Code Completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Fuzzy find files
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
-" Plug 'junegunn/fzf.vim'
+
+" Not yet ?
+" https://github.com/tjdevries/astronauta.nvim/issues/1
+Plug 'tjdevries/astronauta.nvim'
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'tjdevries/lsp_extensions.nvim'
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'hrsh7th/nvim-compe'
+" Plug 'tjdevries/nlua.nvim'
+
+" Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-treesitter/nvim-treesitter'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 " This objectively makes vim better
 " Plug 'terryma/vim-multiple-cursors'
@@ -233,18 +243,18 @@ function! s:show_documentation()
 endfunction
 
 " Remap keys for gotos
-nnoremap <silent> <leader>gh :call <SID>show_documentation()<CR>
-nmap <leader>gd <Plug>(coc-definition)
-" nmap <leader>gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
-nnoremap <leader>cr :CocRestart
+" nnoremap <silent> <leader>gh :call <SID>show_documentation()<CR>
+" nmap <leader>gd <Plug>(coc-definition)
+" " nmap <leader>gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
+" nmap <leader>gy <Plug>(coc-type-definition)
+" nmap <leader>gi <Plug>(coc-implementation)
+" nmap <leader>gr <Plug>(coc-references)
+" nmap <leader>rr <Plug>(coc-rename)
+" nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+" nmap <leader>g] <Plug>(coc-diagnostic-next)
+" nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
+" nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
+" nnoremap <leader>cr :CocRestart
 
 " OmniSharp and C#
 augroup omnisharp_commands
