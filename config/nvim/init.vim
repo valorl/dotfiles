@@ -36,8 +36,15 @@ Plug 'gruvbox-community/gruvbox'
 " Code Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy find files
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
+" Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
 " This objectively makes vim better
 " Plug 'terryma/vim-multiple-cursors'
 " Working with tags
@@ -76,6 +83,7 @@ let g:gitlab_api_keys = $GITLAB_API_KEY
 
 let g:airline_theme = 'codedark'
 let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_invert_selection = "0"
 colorscheme gruvbox
 
 " Markdown
@@ -177,7 +185,15 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
-nnoremap <C-p> :GFiles<CR>
+
+" Telescope
+" nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 nnoremap <leader>pf :Files<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>+ :vertical resize +5<CR>
@@ -278,6 +294,8 @@ augroup END
 " Fugitive
 nmap <leader>gs :G<CR>
 
+"Lua stuff
+lua require('init')
 
 " Shortcutting split navigation
 " map <C-h> <C-w>h
@@ -324,8 +342,6 @@ endfunction
 command! Bumpa call Bump('major')
 command! Bumpi call Bump('minor')
 command! Bumpp call Bump('patch')
-
-
 
 
 
