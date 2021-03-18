@@ -8,8 +8,8 @@ case $ctx  in
     *"stag"*)
         export AWS_PROFILE=stag
         ;;
-    *"stag"*)
-        export AWS_PROFILE=stag
+    *"shrd"*)
+        export AWS_PROFILE=shrd
         ;;
     *"prod"*)
         export AWS_PROFILE=prod
