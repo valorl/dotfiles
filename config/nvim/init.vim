@@ -23,6 +23,8 @@ set scrolloff=8
 
 set cmdheight=2
 
+set wildoptions+=pum
+
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -38,12 +40,12 @@ Plug 'gruvbox-community/gruvbox'
 " https://github.com/tjdevries/astronauta.nvim/issues/1
 Plug 'tjdevries/astronauta.nvim'
 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'tjdevries/lsp_extensions.nvim'
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 " Plug 'tjdevries/nlua.nvim'
 
 " Telescope
@@ -68,7 +70,7 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'hashivim/vim-terraform'
 Plug 'OmniSharp/omnisharp-vim'
 " Plug 'nickspoons/vim-sharpenup'
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+" Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'tweekmonster/gofmt.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -79,9 +81,13 @@ Plug 'qpkorr/vim-renamer'
 Plug 'tpope/vim-markdown'
 Plug 'aserebryakov/vim-todo-lists'
 
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'tjdevries/gruvbuddy.nvim'
+
 
 
 call plug#end()
+
 
 let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_selector_ui = 'fzf'
@@ -95,6 +101,7 @@ let g:airline_theme = 'codedark'
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_invert_selection = "0"
 colorscheme gruvbox
+" lua require('colorbuddy').colorscheme('gruvbuddy')
 
 " Markdown
 let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'hcl', 'yaml', 'csharp', 'go']
@@ -123,22 +130,7 @@ let g:go_auto_sameids = 1
 " Basic settings
 
 " Autocompletion
-set wildmode=longest,list,full
-
-" Fix splitting
-" set splitbelow splitright
-
-" Vim Quickscope
-" Trigger a highlight in the appropriate direction when pressing these keys:
-" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-" highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-" highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-
-" " ctrlp
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-"
-"
-
+set wildmode=longest,full
 " Vim Hexokinase
 let g:Hexokinase_optInPatterns = [
 \     'full_hex',
@@ -215,46 +207,14 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap <leader>64e y:let @"=system('base64', @")<cr>gvp
 vnoremap <leader>64d y:let @"=system('base64 --decode', @")<cr>gvp
 
-" CoC stuff
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-inoremap <silent><expr> <C-j>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <C-space> coc#refresh()
-
-nnoremap <silent> <leader>gh :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Remap keys for gotos
-" nnoremap <silent> <leader>gh :call <SID>show_documentation()<CR>
-" nmap <leader>gd <Plug>(coc-definition)
-" " nmap <leader>gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
-" nmap <leader>gy <Plug>(coc-type-definition)
-" nmap <leader>gi <Plug>(coc-implementation)
-" nmap <leader>gr <Plug>(coc-references)
-" nmap <leader>rr <Plug>(coc-rename)
-" nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-" nmap <leader>g] <Plug>(coc-diagnostic-next)
-" nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
-" nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
-" nnoremap <leader>cr :CocRestart
+inoremap <expr> <c-n> compe#complete()
+inoremap <expr> <cr>      compe#confirm('<cr>')
+inoremap <expr> <c-e>     compe#close('<c-e>')
+inoremap <expr> <c-f>     compe#scroll({ 'delta': +4 })
+inoremap <expr> <c-d>     compe#scroll({ 'delta': -4 })
 
 " OmniSharp and C#
 augroup omnisharp_commands
@@ -352,7 +312,4 @@ endfunction
 command! Bumpa call Bump('major')
 command! Bumpi call Bump('minor')
 command! Bumpp call Bump('patch')
-
-
-
 
