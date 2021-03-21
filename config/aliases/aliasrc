@@ -157,4 +157,5 @@ source_mdl kubectl
 source_mdl editconfig
 source_mdl dotnet
 source_mdl tmux
+source_mdl k9s
 

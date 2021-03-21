@@ -53,10 +53,17 @@ format = "(| [$output](bold yellow) )"
 disabled = false
 format = "[$context(\\([$namespace](bold white)\\))](bold #03a9f4) "
 [kubernetes.context_aliases]
-"arn:aws:eks:eu-central-1:454730462044:cluster/eks_test" = "test"
 "arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev"  = "dev"
+"arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev_sun"  = "dev(🌞)"
+"arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev_moon"  = "dev(🌚)"
+
 "arn:aws:eks:eu-central-1:403980573539:cluster/eks_shrd" = "shrd"
+"arn:aws:eks:eu-central-1:403980573539:cluster/eks_shrd_sun" = "shrd(🌞)"
+"arn:aws:eks:eu-central-1:403980573539:cluster/eks_shrd_moon" = "shrd(🌚)"
+
 "arn:aws:eks:eu-central-1:461308380791:cluster/eks_prod" = "prod"
+"arn:aws:eks:eu-central-1:461308380791:cluster/eks_prod_sun" = "prod(🌞)"
+"arn:aws:eks:eu-central-1:461308380791:cluster/eks_prod_moon" = "prod(🌚)"
 
 [cmd_duration]
 style = "bold red"
