@@ -130,6 +130,7 @@ function repos() {
   formatted+=("$dir_count .")
   original+=("$dest")
   for d in $(find-repo-v2 $dest); do
+      # echo $d
       ((dir_count++))
       original+=($d)
       line=$(echo $d | sed "s,$dest/,,g" \
@@ -139,8 +140,6 @@ function repos() {
       num_line=("$dir_count $line")
       formatted+=($num_line)
   done
-
-
 
   ## echo "${formatted[@]}"
   selected=$(printf '%s\n' "${formatted[@]}" | fzf +m --with-nth 2..)
