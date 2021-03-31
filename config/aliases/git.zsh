@@ -47,8 +47,12 @@ alias gcom='git checkout master'
 alias gd='git diff'
 alias gds='git diff --staged'
 
+alias gs='git stash'
+alias gsp='git stash pop'
 
 alias gpsu='git push --set-upstream origin $(git_current_branch)'
+
+alias grim='git rebase -i master'
 
 function _git_log_default() {
     esc=$(printf '\033')
