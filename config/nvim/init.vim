@@ -70,7 +70,7 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'hashivim/vim-terraform'
 Plug 'OmniSharp/omnisharp-vim'
 " Plug 'nickspoons/vim-sharpenup'
-" Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'tweekmonster/gofmt.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -187,6 +187,9 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
+
+nnoremap <C-j> :cnext<CR>
+nnoremap <C-k> :cprev<CR>
 
 " Telescope
 " nnoremap <C-p> :GFiles<CR>
