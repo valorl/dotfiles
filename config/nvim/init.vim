@@ -112,39 +112,10 @@ let $FZF_DEFAULT_OPTS='--reverse'
 
 
 " --- vim go (polyglot) settings.
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
-
-" Basic settings
-
+let g:go_fmt_command='gofmt'
+"
 " Autocompletion
 set wildmode=longest,full
-" Vim Hexokinase
-let g:Hexokinase_optInPatterns = [
-\     'full_hex',
-\     'triple_hex',
-\     'rgb',
-\     'rgba',
-\     'hsl',
-\     'hsla',
-\     'colour_names'
-\ ]
-let g:Hexokinase_highlighters = ['backgroundfull']
-
-" Reenable hexokinase on enter
-autocmd VimEnter * HexokinaseTurnOn
 
 " Netrw
 let g:netrw_banner = 0
