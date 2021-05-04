@@ -5,13 +5,20 @@
     useConfigOnly = true
 [credential]
     helper = store
-#[commit]
-# gpgsign = true
-#[gpg]
-# program = gpg
-#[merge]
-# tool = nvim -d
-# confictstyle = diff3
+
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool "codediff"]
+    cmd = "code -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+ tool = nvim -d
+ confictstyle = diff3
+
 [pull]
 	rebase = true
 
