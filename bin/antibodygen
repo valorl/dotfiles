@@ -1,2 +1,2 @@
 #!/bin/zsh
-antibody bundle < ~/.config/zsh/zsh_plugins.txt > ~/.config/zsh/.zsh_plugins.sh
+antibody bundle < $ANTIBODY_PLUGINS_TXT > $ANTIBODY_PLUGINS_SH
