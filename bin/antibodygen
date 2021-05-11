@@ -1,2 +1,5 @@
 #!/bin/zsh
-antibody bundle < $ANTIBODY_PLUGINS_TXT > $ANTIBODY_PLUGINS_SH
+antibody bundle > ~/.config/zsh/zsh_plugins.sh  <<EOF
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+EOF

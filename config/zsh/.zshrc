@@ -2,10 +2,7 @@
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-export ANTIBODY_PLUGINS_SH="$(pwd)/zsh_plugins.sh"
-export ANTIBODY_PLUGINS_TXT="$(pwd)/zsh_plugins.txt"
-[[ ! -f ./zsh_plugins.sh ]] && antibody bundle < $ANTIBODY_PLUGINS_TXT > $ANTIBODY_PLUGINS_SH
-source $ANTIBODY_PLUGINS_SH
+source "$HOME/.config/zsh/zsh_plugins.sh"
 
 # Setup history
 export HISTSIZE=9999999999
