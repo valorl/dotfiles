@@ -12,7 +12,7 @@ export EDITOR="nvim"
 export TERM="screen-256color"
 export TERMINAL="st"
 export GPG_TTY=$(tty)
-export BROWSER='/mnt/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe'
+export BROWSER='eval "/mnt/c-drive/c/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe"'
 
 # Dev stuff
 export REPOS=$HOME/repos
