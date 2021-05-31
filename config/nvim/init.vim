@@ -48,6 +48,9 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 " Plug 'tjdevries/nlua.nvim'
 
+" DAP
+Plug 'mfussenegger/nvim-dap'
+
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
