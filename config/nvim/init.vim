@@ -70,10 +70,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 " Syntax highlighting
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'hashivim/vim-terraform'
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'hashivim/vim-terraform'
+" Plug 'OmniSharp/omnisharp-vim'
 " Plug 'nickspoons/vim-sharpenup'
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+" Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'tweekmonster/gofmt.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -82,7 +82,7 @@ Plug 'mbbill/undotree'
 " Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'qpkorr/vim-renamer'
 Plug 'tpope/vim-markdown'
-Plug 'aserebryakov/vim-todo-lists'
+" Plug 'aserebryakov/vim-todo-lists'
 
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
@@ -194,49 +194,49 @@ inoremap <expr> <c-f>     compe#scroll({ 'delta': +4 })
 inoremap <expr> <c-d>     compe#scroll({ 'delta': -4 })
 
 " OmniSharp and C#
-augroup omnisharp_commands
-  autocmd!
+" augroup omnisharp_commands
+"   autocmd!
 
-  " autocmd FileType cs setlocal commentstring="// %s"
+"   " autocmd FileType cs setlocal commentstring="// %s"
 
-  " Show type information automatically when the cursor stops moving.
-  " Note that the type is echoed to the Vim command line, and will overwrite
-  " any other messages in this space including e.g. ALE linting messages.
-  autocmd CursorHold *.cs OmniSharpTypeLookup
+"   " Show type information automatically when the cursor stops moving.
+"   " Note that the type is echoed to the Vim command line, and will overwrite
+"   " any other messages in this space including e.g. ALE linting messages.
+"   autocmd CursorHold *.cs OmniSharpTypeLookup
 
-  " CoC overrides
-  autocmd FileType cs nmap <buffer><Leader>gd <Plug>(omnisharp_go_to_definition)
-  autocmd FileType cs nmap <buffer><leader>gi <Plug>(omnisharp_find_implementations)
-  autocmd FileType cs nmap <buffer><leader>gr <Plug>(omnisharp_find_usages)
+"   " CoC overrides
+"   autocmd FileType cs nmap <buffer><Leader>gd <Plug>(omnisharp_go_to_definition)
+"   autocmd FileType cs nmap <buffer><leader>gi <Plug>(omnisharp_find_implementations)
+"   autocmd FileType cs nmap <buffer><leader>gr <Plug>(omnisharp_find_usages)
 
-  " The following commands are contextual, based on the cursor position.
-  autocmd FileType cs nmap <buffer> <leader>opd <Plug>(omnisharp_preview_definition)
-  autocmd FileType cs nmap <buffer> <leader>opi <Plug>(omnisharp_preview_implementations)
-  autocmd FileType cs nmap <buffer> <leader>ofx <Plug>(omnisharp_fix_usings)
-  " autocmd FileType cs nmap <silent> <buffer> <Leader>osfs <Plug>(omnisharp_find_symbol)
-  autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
-  autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+"   " The following commands are contextual, based on the cursor position.
+"   autocmd FileType cs nmap <buffer> <leader>opd <Plug>(omnisharp_preview_definition)
+"   autocmd FileType cs nmap <buffer> <leader>opi <Plug>(omnisharp_preview_implementations)
+"   autocmd FileType cs nmap <buffer> <leader>ofx <Plug>(omnisharp_fix_usings)
+"   " autocmd FileType cs nmap <silent> <buffer> <Leader>osfs <Plug>(omnisharp_find_symbol)
+"   autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+"   autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 
-  " Navigate up and down by method/property/field
-  " autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
-  " autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
-  " Find all code errors/warnings for the current solution and populate the quickfix window
-  autocmd FileType cs nmap <buffer> <leader>ogcc <Plug>(omnisharp_global_code_check)
-  " Contextual code actions (uses fzf, vim-clap, CtrlP or unite.vim selector when available)
-  autocmd FileType cs nmap <buffer> <leader>oo <Plug>(omnisharp_code_actions)
-  " autocmd FileType cs xmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
-  " Repeat the last code action performed (does not use a selector)
-  " autocmd FileType cs nmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
-  " autocmd FileType cs xmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+"   " Navigate up and down by method/property/field
+"   " autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+"   " autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+"   " Find all code errors/warnings for the current solution and populate the quickfix window
+"   autocmd FileType cs nmap <buffer> <leader>ogcc <Plug>(omnisharp_global_code_check)
+"   " Contextual code actions (uses fzf, vim-clap, CtrlP or unite.vim selector when available)
+"   autocmd FileType cs nmap <buffer> <leader>oo <Plug>(omnisharp_code_actions)
+"   " autocmd FileType cs xmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
+"   " Repeat the last code action performed (does not use a selector)
+"   " autocmd FileType cs nmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+"   " autocmd FileType cs xmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
 
-  autocmd FileType cs nmap <buffer> <leader>o= <Plug>(omnisharp_code_format)
+"   autocmd FileType cs nmap <buffer> <leader>o= <Plug>(omnisharp_code_format)
 
-  autocmd FileType cs nmap <buffer> <leader>onm <Plug>(omnisharp_rename)
+"   autocmd FileType cs nmap <buffer> <leader>onm <Plug>(omnisharp_rename)
 
-  autocmd FileType cs nmap <buffer> <leader>ore <Plug>(omnisharp_restart_server)
-  autocmd FileType cs nmap <buffer> <leader>ost <Plug>(omnisharp_start_server)
-  autocmd FileType cs nmap <buffer> <leader>osp <Plug>(omnisharp_stop_server)
-augroup END
+"   autocmd FileType cs nmap <buffer> <leader>ore <Plug>(omnisharp_restart_server)
+"   autocmd FileType cs nmap <buffer> <leader>ost <Plug>(omnisharp_start_server)
+"   autocmd FileType cs nmap <buffer> <leader>osp <Plug>(omnisharp_stop_server)
+" augroup END
 
 " Fugitive
 nmap <leader>gs :G<CR>
@@ -252,41 +252,3 @@ lua require('init')
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
-
-" Ripgrep + FZF
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-
-" semver (e.g. in Terraform)
-function! Bump(level) abort
-    let line=getline('.')
-    let regex='\v(0|[1-9]\d*)\.(0|[1-9]\d*)(\.(0|[1-9]\d*))?' "v2.0
-    let versions=matchlist(line,regex)
-    if len(versions) == 0
-        return
-    endif
-    let major=str2nr(versions[1])
-    let minor=str2nr(versions[2])
-    let patch= strlen(versions[4]) > 0 ? str2nr(versions[4]) : 0
-
-    if a:level == 'major'
-        let major += 1
-        let minor = 0
-        let patch = 0
-    elseif a:level == 'minor'
-        let minor += 1
-        let patch = 0
-    elseif a:level == 'patch'
-        let patch += 1
-    endif
-
-    let patchOrNot = patch > 0 ? '.' . string(patch) : ''
-    let newVersion = 'v' + major . '.' . minor . patchOrNot
-    call setline(line('.'), substitute(line, regex, newVersion, ''))
-endfunction
-command! Bumpa call Bump('major')
-command! Bumpi call Bump('minor')
-command! Bumpp call Bump('patch')
-
