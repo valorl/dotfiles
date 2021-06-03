@@ -7,3 +7,5 @@ require'lspconfig'.bashls.setup{}
 require'lspconfig'.omnisharp.setup{
     cmd = { "/opt/omnisharp/run", "--languageserver" , "--hostPID", tostring(vim.fn.getpid()) };
 }
+
+require('nlua.lsp.nvim').setup(require('lspconfig'), {})

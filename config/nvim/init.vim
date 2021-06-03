@@ -46,7 +46,10 @@ Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-" Plug 'tjdevries/nlua.nvim'
+
+" Lua
+Plug 'tjdevries/nlua.nvim'
+Plug 'euclidianAce/BetterLua.vim'
 
 " DAP
 Plug 'mfussenegger/nvim-dap'
@@ -55,7 +58,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'kyazdani42/nvim-web-devicons'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -65,7 +68,7 @@ Plug 'nvim-treesitter/playground'
 " Working with tags
 " Plug 'alvan/vim-closetag'
 " Plug 'tpope/vim-surround'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " Commenting
 Plug 'tpope/vim-commentary'
 " Syntax highlighting
@@ -165,13 +168,6 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <C-j> :cnext<CR>
 nnoremap <C-k> :cprev<CR>
 
-" Telescope
-" nnoremap <C-p> :GFiles<CR>
-nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 nnoremap <leader>pf :Files<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
