@@ -9,3 +9,15 @@ require'lspconfig'.omnisharp.setup{
 }
 
 require('nlua.lsp.nvim').setup(require('lspconfig'), {})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    require("lspsaga.hover").handler,
+    -- vim.lsp.handlers.hover,
+    { border = "single" }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    -- require("lspsaga.hover").handler,
+    vim.lsp.handlers.signature_help,
+    { border = "single" }
+)

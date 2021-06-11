@@ -92,3 +92,14 @@ lua require('init')
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
+
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" Not really necessary due to lspsaga
+highlight link NormalFloat Normal
