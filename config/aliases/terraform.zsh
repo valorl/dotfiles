@@ -9,7 +9,7 @@ function _terraform() {
 
   if command -v tfswitch &> /dev/null
   then
-    tfswitch -b "$binPath" # > /dev/null
+    tfswitch -b "$binPath" > /dev/null
     eval "$binPath $@"
   else
     terraform $@
