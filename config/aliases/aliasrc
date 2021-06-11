@@ -149,6 +149,35 @@ function repos() {
   cd "${original[(($selected_idx+1))]}"
 }
 
+function get_sops_key() {
+    local start_dir="$(pwd)"
+    local envs_base="$REPOS/local/gitlab.neasenergy.com/infrastructure/terraform/envs"
+    local env=$1
+
+    local cache="$HOME/.cache/valorl/sops_key_$env"
+    if [ -f "$cache" ]; then
+        cat $cache
+        return 0
+    fi
+
+    if [ "$start_dir" = "$envs_base/$env" ]; then
+        pushd "${envs_base}/$env" > /dev/null
+    fi
+
+    local query='.resources[] | select(.type=="aws_kms_key") | select(.name=="sops") | .instances[].attributes.arn'
+    local arn=$(AWS_PROFILE=$env tf state pull | jq -r "$query")
+
+    if [[ ! -z "$arn" ]]; then
+        echo $arn > "$HOME/.cache/valorl/sops_key_$env"
+        echo $arn
+    else
+        echo "SOPS key ARN not found for '$env'"
+    fi
+
+    if [ "$start_dir" = "$envs_base/$env" ]; then
+        popd > /dev/null
+    fi
+}
 
 # Modules
 source_mdl git
