@@ -28,72 +28,7 @@ set wildoptions+=pum
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-call plug#begin('~/local/share/nvim/plugged')
-
-" Themes
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tomasiser/vim-code-dark'
-Plug 'gruvbox-community/gruvbox'
-
-" Not yet ?
-" https://github.com/tjdevries/astronauta.nvim/issues/1
-Plug 'tjdevries/astronauta.nvim'
-
-" LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'tjdevries/lsp_extensions.nvim'
-Plug 'hrsh7th/nvim-compe'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-
-" Lua
-Plug 'tjdevries/nlua.nvim'
-Plug 'euclidianAce/BetterLua.vim'
-
-" DAP
-Plug 'mfussenegger/nvim-dap'
-
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'kyazdani42/nvim-web-devicons'
-
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
-" This objectively makes vim better
-" Plug 'terryma/vim-multiple-cursors'
-" Working with tags
-" Plug 'alvan/vim-closetag'
-" Plug 'tpope/vim-surround'
-" Plug 'sheerun/vim-polyglot'
-" Commenting
-Plug 'tpope/vim-commentary'
-" Syntax highlighting
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-" Plug 'hashivim/vim-terraform'
-" Plug 'OmniSharp/omnisharp-vim'
-" Plug 'nickspoons/vim-sharpenup'
-" Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'tweekmonster/gofmt.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'tpope/vim-fugitive'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'mbbill/undotree'
-" Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
-Plug 'qpkorr/vim-renamer'
-Plug 'tpope/vim-markdown'
-" Plug 'aserebryakov/vim-todo-lists'
-
-Plug 'tjdevries/colorbuddy.vim'
-Plug 'tjdevries/gruvbuddy.nvim'
-
-
-
-call plug#end()
-
+lua require('valorl.plugins')
 
 let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_selector_ui = 'fzf'
