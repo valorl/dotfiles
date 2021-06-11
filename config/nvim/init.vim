@@ -110,15 +110,16 @@ colorscheme gruvbox
 " lua require('colorbuddy').colorscheme('gruvbuddy')
 
 " Markdown
-let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'hcl', 'yaml', 'csharp', 'go']
+let g:markdown_fenced_languages = []
 
 " FZF window
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 
 
-" --- vim go (polyglot) settings.
-let g:go_fmt_command='gofmt'
+" gofmt.vim
+let g:gofmt_exe = 'goimports'
+
 "
 " Autocompletion
 set wildmode=longest,full
