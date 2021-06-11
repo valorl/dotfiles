@@ -1,5 +1,4 @@
 local nnoremap = vim.keymap.nnoremap
-local inoremap = vim.keymap.inoremap
 local dap = require('dap')
 
 nnoremap { "<leader>dc", dap.continue }
