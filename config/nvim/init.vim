@@ -32,9 +32,15 @@ lua require('valorl.plugins')
 
 let g:airline_theme = 'codedark'
 
+
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_invert_selection = "0"
 colorscheme gruvbox
+
+
+
+" let g:gruvbox_flat_style = "hard"
+" colorscheme gruvbox-flat
 
 " Markdown
 let g:markdown_fenced_languages = []
@@ -44,6 +50,7 @@ let g:gofmt_exe = 'goimports'
 
 "
 " Autocompletion
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 set wildmode=longest,full
 
 " Netrw
@@ -78,14 +85,8 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap <leader>64e y:let @"=system('base64', @")<cr>gvp
 vnoremap <leader>64d y:let @"=system('base64 --decode', @")<cr>gvp
 
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-inoremap <expr> <c-n> compe#complete()
-inoremap <expr> <cr>      compe#confirm('<cr>')
-inoremap <expr> <c-e>     compe#close('<c-e>')
-inoremap <expr> <c-f>     compe#scroll({ 'delta': +4 })
-inoremap <expr> <c-d>     compe#scroll({ 'delta': -4 })
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "Lua stuff
 lua require('init')
@@ -101,5 +102,4 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" Not really necessary due to lspsaga
 highlight link NormalFloat Normal

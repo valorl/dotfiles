@@ -1,6 +1,8 @@
 alias k=kubectl
 alias ka='_ka(){ kubectl "$@" --all-namespaces; unset -f _ka}; _ka'
 
+alias ky='_ky(){ kubectl "$@" --dry-run=client -o=yaml" }'
+
 alias kaf='kubectl apply -f'
 alias kdelf='kubeclt delete -f'
 

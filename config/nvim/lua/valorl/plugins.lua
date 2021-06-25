@@ -6,6 +6,7 @@ return require("packer").startup(function(use)
   use 'vim-airline/vim-airline-themes'
   use 'tomasiser/vim-code-dark'
   use 'gruvbox-community/gruvbox'
+  use 'eddyekofo94/gruvbox-flat.nvim'
 
   -- Not yet ?
   -- https://github.com/tjdevries/astronauta.nvim/issues/1
@@ -46,7 +47,7 @@ return require("packer").startup(function(use)
 
   -- Color preview
   use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
-  -- use 'hashivim/vim-terraform'
+  use 'hashivim/vim-terraform'
   -- use 'OmniSharp/omnisharp-vim'
   use 'tweekmonster/gofmt.vim'
   use 'jremmen/vim-ripgrep'
@@ -58,4 +59,7 @@ return require("packer").startup(function(use)
 
   use 'tjdevries/colorbuddy.vim'
   use 'tjdevries/gruvbuddy.nvim'
+
+  use 'pprovost/vim-ps1'
+  use "rhysd/git-messenger.vim"
 end)

@@ -16,3 +16,16 @@ ftpane() {
     tmux select-window -t $target_window
   fi
 }
+
+alias ts=_tmux_switch_session
+
+function _tmux_switch_session() {
+    local sessions=$( tmux list-sessions | sed 's/:.*//')
+    echo $sessions
+    local sel=$(echo $sessions | fzf  --select-1 \
+        --bind 'ctrl-d:execute(tmux kill-session -t {})' \
+        --query "$1")
+    echo $sel
+
+    [ ! -z "$sel" ] && tmux switch -t $sel
+}
