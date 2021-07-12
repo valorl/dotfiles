@@ -3,7 +3,7 @@ name=$(git config user.name)
 email=$(git config user.email)
 
 case $name:$email in
-    "valorl:valer.orlovsky@gmail.com")
+    "valorl:11498571+valorl@users.noreply.github.com")
         echo "P"
         ;;
     "vao:valer.orlovsky@centrica.com")
