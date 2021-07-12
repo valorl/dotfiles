@@ -103,3 +103,6 @@ function! <SID>SynStack()
 endfunc
 
 highlight link NormalFloat Normal
+" GitMessenger. TODO: move this somewhere else
+highlight link gitmessengerPopupNormal NormalFloat
+let g:git_messenger_floating_win_opts = { 'border': 'single' }

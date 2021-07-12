@@ -192,6 +192,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vao/.local/share/nvim/site/pack/packer/start/vim-hexokinase"
   },
+  ["vim-jsonnet"] = {
+    loaded = true,
+    path = "/home/vao/.local/share/nvim/site/pack/packer/start/vim-jsonnet"
+  },
   ["vim-markdown"] = {
     loaded = true,
     path = "/home/vao/.local/share/nvim/site/pack/packer/start/vim-markdown"

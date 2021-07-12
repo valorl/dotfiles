@@ -62,4 +62,6 @@ return require("packer").startup(function(use)
 
   use 'pprovost/vim-ps1'
   use "rhysd/git-messenger.vim"
+
+  use 'google/vim-jsonnet'
 end)
