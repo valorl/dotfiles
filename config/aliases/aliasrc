@@ -122,32 +122,17 @@ function reposx() {
 }
 
 alias rp=repos
+
 function repos() {
-  formatted=()
-  original=()
   dir_count=0
   dest=$( [[ $1 = "-s" ]] && echo "$REPOS/shared" || echo "$REPOS/local" )
-  formatted+=("$dir_count .")
-  original+=("$dest")
-  for d in $(find-repo-v2 $dest); do
-      # echo $d
-      ((dir_count++))
-      original+=($d)
-      line=$(echo $d | sed "s,$dest/,,g" \
-          | sed 's,^gitlab\.neasenergy\.com/,,g' \
-          | sed 's,^github\.com/,,g')
-
-      num_line=("$dir_count $line")
-      formatted+=($num_line)
-  done
-
-  ## echo "${formatted[@]}"
-  selected=$(printf '%s\n' "${formatted[@]}" | fzf +m --with-nth 2..)
-  selected_idx=$(echo $selected | awk '{print $1}')
-
-  # not sure why but [0] is empty in both arrays?
-  cd "${original[(($selected_idx+1))]}"
+  selected=$(for d in $(find-repo-v2 $dest); do
+      pretty=$(echo $d | cut -d'/' -f7-)
+      echo "$d $pretty"
+  done | fzf +m --with-nth 2.. --select-1 --query "$1")
+  echo $selected | { read first _; cd $first; }
 }
+
 
 function get_sops_key() {
     local start_dir="$(pwd)"

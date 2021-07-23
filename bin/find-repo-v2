@@ -1,14 +1,12 @@
 #!/bin/bash
 shopt -s dotglob
 
-root=$(realpath $1)
-repos=()
 find_repo() {
     for d in "$@"; do
         test -d "$d" -a \! -L "$d" || continue
         cd "$d"
         if [ -d ".git" ]; then
-            repos+=($PWD)
+            echo $PWD
         else
             find_repo *
         fi
@@ -16,7 +14,3 @@ find_repo() {
     done
 }
 find_repo $1/*
-
-for r in "${repos[@]}"; do
-    echo $r
-done
