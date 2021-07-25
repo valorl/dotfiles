@@ -36,9 +36,12 @@ return require("packer").startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
   use {
     'nvim-treesitter/playground',
+    requires = {'nvim-treesitter/nvim-treesitter'}
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
     requires = {'nvim-treesitter/nvim-treesitter'}
   }
 
@@ -64,4 +67,5 @@ return require("packer").startup(function(use)
   use "rhysd/git-messenger.vim"
 
   use 'google/vim-jsonnet'
+  use 'towolf/vim-helm'
 end)

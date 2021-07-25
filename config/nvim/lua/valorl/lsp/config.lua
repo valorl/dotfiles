@@ -3,9 +3,10 @@ require'lspconfig'.terraformls.setup{}
 require'lspconfig'.yamlls.setup{}
 require'lspconfig'.bashls.setup{}
 
-
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/vao/.local/omnisharp/run"
 require'lspconfig'.omnisharp.setup{
-    cmd = { "/opt/omnisharp/run", "--languageserver" , "--hostPID", tostring(vim.fn.getpid()) };
+    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
 }
 
 require('nlua.lsp.nvim').setup(require('lspconfig'), {})

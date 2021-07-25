@@ -29,6 +29,7 @@ alias tf="terraform"
 
 # Tools
 alias todo="vim ~/TODO.md"
+alias ckt="/home/vao/repos/local/gitlab.neasenergy.com/infrastructure/ckt/dist/ckt"
 
 function kudeman() {
     docker run \
