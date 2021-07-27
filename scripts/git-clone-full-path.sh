@@ -13,10 +13,11 @@ then
     exit 1
 fi
 
-path=$(echo -n $1 \
+repo_path=$(echo -n $1 \
     | sed -r "s (git@|https://)(.*)\.git \2 " \
     | sed "s : / ")
-echo "Creating $path.."
-mkdir -p $path
-git clone $1 $path
+full_path="~/repos/local/$repo_path"
+echo "Creating $full_path.."
+mkdir -p $full_path
+git clone $1 $full_path
 

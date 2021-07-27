@@ -109,28 +109,19 @@ function awp() {
   fi
 }
 
-function reposx() {
-  local dir=$(find-repo)
-  echo $dir
-  if [ -z "$1" ]
-  then
-    cd $dir
-  else
-    setopt aliases
-    $1 $dir
-    unsetopt aliases
-  fi
-}
-
 alias rp=repos
-
 function repos() {
   dir_count=0
   dest=$( [[ $1 = "-s" ]] && echo "$REPOS/shared" || echo "$REPOS/local" )
   selected=$(for d in $(find-repo-v2 $dest); do
       pretty=$(echo $d | cut -d'/' -f7-)
       echo "$d $pretty"
-  done | fzf +m --with-nth 2.. --select-1 --query "$1")
+  done | fzf +m \
+      --with-nth 2.. \
+      --layout=reverse \
+      --height 10 \
+      --select-1 \
+      --query "$1")
   echo $selected | { read first _; cd $first; }
 }
 
