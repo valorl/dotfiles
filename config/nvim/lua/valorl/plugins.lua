@@ -68,4 +68,5 @@ return require("packer").startup(function(use)
 
   use 'google/vim-jsonnet'
   use 'towolf/vim-helm'
+  use "lukas-reineke/indent-blankline.nvim"
 end)

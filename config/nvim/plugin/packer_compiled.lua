@@ -89,10 +89,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vao/.local/share/nvim/site/pack/packer/start/git-messenger.vim"
   },
-  ["gofmt.vim"] = {
-    loaded = true,
-    path = "/home/vao/.local/share/nvim/site/pack/packer/start/gofmt.vim"
-  },
   gruvbox = {
     loaded = true,
     path = "/home/vao/.local/share/nvim/site/pack/packer/start/gruvbox"
@@ -104,6 +100,10 @@ _G.packer_plugins = {
   ["gruvbuddy.nvim"] = {
     loaded = true,
     path = "/home/vao/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
+  },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/vao/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
   ["lsp_extensions.nvim"] = {
     loaded = true,
@@ -212,10 +212,6 @@ _G.packer_plugins = {
   ["vim-renamer"] = {
     loaded = true,
     path = "/home/vao/.local/share/nvim/site/pack/packer/start/vim-renamer"
-  },
-  ["vim-ripgrep"] = {
-    loaded = true,
-    path = "/home/vao/.local/share/nvim/site/pack/packer/start/vim-ripgrep"
   },
   ["vim-terraform"] = {
     loaded = true,

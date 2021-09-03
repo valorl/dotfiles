@@ -4,6 +4,7 @@ vim.schedule(function()
     require("valorl.compe")
     require("valorl.telescope")
     require("valorl.treesitter")
+    require("valorl.indent-blankline")
 end)
 
 
