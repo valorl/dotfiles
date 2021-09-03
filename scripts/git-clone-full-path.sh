@@ -16,7 +16,7 @@ fi
 repo_path=$(echo -n $1 \
     | sed -r "s (git@|https://)(.*)\.git \2 " \
     | sed "s : / ")
-full_path="~/repos/local/$repo_path"
+full_path="$HOME/repos/local/$repo_path"
 echo "Creating $full_path.."
 mkdir -p $full_path
 git clone $1 $full_path
