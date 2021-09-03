@@ -34,6 +34,7 @@ path=(
   "$HOME/.krew/bin"
   "$HOME/.dotnet/tools"
   "$HOME/.cargo/bin"
+  "./node_modules/.bin"
 
   "$cDriveBase/Program Files/Microsoft Vs Code/bin"
   "$cDriveBase/Program Files (x86)/BraveSoftware/Brave-Browser/Application"
