@@ -1,0 +1,15 @@
+#!/bin/zsh
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+
+# AWS CLI
+complete -C '/usr/local/bin/aws_completer' aws
+
+# kubectl
+source <(kubectl completion zsh)
+echo 'alias k=kubectl' >>~/.zshrc
+echo 'complete -F __start_kubectl k' >>~/.zshrc
+
+# argo
+source <(argo completion zsh)
+

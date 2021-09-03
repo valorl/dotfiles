@@ -72,6 +72,7 @@ root_add .gitconfig
 config_init
 
 config_add aliases
+config_add completion
 config_add bspwm
 config_add fontconfig
 config_add nvim

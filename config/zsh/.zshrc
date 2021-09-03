@@ -79,3 +79,6 @@ fi
 
 # Initialize starship
 eval "$(starship init zsh)"
+
+# Completion
+source ~/.config/completion/completionrc
