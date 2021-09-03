@@ -31,6 +31,13 @@ alias tf="terraform"
 alias todo="vim ~/TODO.md"
 alias ckt="/home/vao/repos/local/gitlab.neasenergy.com/infrastructure/ckt/dist/ckt"
 
+function octo() {
+    docker run \
+        -e OCTOPUS_APIKEY=$OCTOPUS_APIKEY \
+        -v $(pwd):/workdir -w /workdir \
+        octopusdeploy/octo:latest $@
+}
+
 function kudeman() {
     docker run \
         -v $(pwd):/workdir \
