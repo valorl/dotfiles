@@ -53,7 +53,7 @@ return require("packer").startup(function(use)
   use 'hashivim/vim-terraform'
   -- use 'OmniSharp/omnisharp-vim'
   -- use 'tweekmonster/gofmt.vim'
-  use 'jremmen/vim-ripgrep'
+  -- use 'jremmen/vim-ripgrep'
   use 'tpope/vim-fugitive'
   use 'shumphrey/fugitive-gitlab.vim'
   use 'mbbill/undotree'
