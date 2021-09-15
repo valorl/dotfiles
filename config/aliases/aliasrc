@@ -33,7 +33,8 @@ alias ckt="/home/vao/repos/local/gitlab.neasenergy.com/infrastructure/ckt/dist/c
 
 function octo() {
     docker run \
-        -e OCTOPUS_APIKEY=$OCTOPUS_APIKEY \
+        -e OCTOPUS_CLI_API_KEY=$OCTOPUS_APIKEY \
+        -e OCTOPUS_CLI_SERVER=https://octopus.neasenergy.com \
         -v $(pwd):/workdir -w /workdir \
         octopusdeploy/octo:latest $@
 }
