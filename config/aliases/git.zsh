@@ -19,7 +19,8 @@ function _git_log_prettily(){
 #compdef _git _git_log_prettily=git-log
 
 
-alias gclone="sh $HOME/.scripts/git-clone-full-path.sh"
+# source because I want to 'cd' there at the end
+alias gclone="source $HOME/.scripts/git-clone-full-path.sh"
 
 
 # Fugitive

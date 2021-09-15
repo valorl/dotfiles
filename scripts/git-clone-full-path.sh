@@ -20,4 +20,4 @@ full_path="$HOME/repos/local/$repo_path"
 echo "Creating $full_path.."
 mkdir -p $full_path
 git clone $1 $full_path
-
+cd $full_path
