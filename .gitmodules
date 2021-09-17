@@ -1,0 +1,6 @@
+[submodule "personal"]
+	path = personal
+	url = git@github.com:valorl/dotpersonal.git
+[submodule "work"]
+	path = work
+	url = git@gitlab.neasenergy.com:vao/dotwork.git
