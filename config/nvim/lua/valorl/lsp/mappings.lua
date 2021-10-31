@@ -2,7 +2,7 @@ local nnoremap = vim.keymap.nnoremap
 local inoremap = vim.keymap.inoremap
 
 nnoremap { "<leader>gg", vim.lsp.buf.definition }
-nnoremap { "<leader>gi", vim.lsp.buf.definition }
+nnoremap { "<leader>gi", vim.lsp.buf.implementation }
 nnoremap { "<leader>gD", vim.lsp.buf.declaration }
 
 -- nnoremap { "<leader>gsh", vim.lsp.buf.signature_help }
