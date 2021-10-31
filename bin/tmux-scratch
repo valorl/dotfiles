@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+result=$(find ~/scratch/* -maxdepth 1 -type d -exec basename {} \; | fzf --print-query)
+ecode="$?"
+
+function attach_or_new() {
+    tmux attach -t scratch || tmux new -s scratch
+}
+
+# if match, first line is query, second is the result
+if [[ "$ecode" == "0" ]]; then
+    result="$(echo $result | sed -n '2 p')"
+fi
+
