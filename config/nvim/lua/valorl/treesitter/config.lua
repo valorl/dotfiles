@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "query", "go", "c_sharp", "yaml", "lua", "hcl", "javascript" },
+  ensure_installed = "all",
   highlight = {
     enable = true,              -- false will disable the whole extension
   },

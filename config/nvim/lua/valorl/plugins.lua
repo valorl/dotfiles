@@ -58,7 +58,8 @@ return require("packer").startup(function(use)
   use 'shumphrey/fugitive-gitlab.vim'
   use 'mbbill/undotree'
   use 'qpkorr/vim-renamer'
-  use 'tpope/vim-markdown'
+  -- use 'tpope/vim-markdown'
+  use 'flw-cn/vim-markdown'
 
   use 'tjdevries/colorbuddy.vim'
   use 'tjdevries/gruvbuddy.nvim'

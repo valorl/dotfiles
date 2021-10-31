@@ -10,6 +10,7 @@ source <(kubectl completion zsh)
 echo 'alias k=kubectl' >>~/.zshrc
 echo 'complete -F __start_kubectl k' >>~/.zshrc
 
-# argo
 source <(argo completion zsh)
+source <(flux completion zsh)
+
 

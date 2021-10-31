@@ -110,4 +110,3 @@ let g:git_messenger_floating_win_opts = { 'border': 'single' }
 " TODO: move this somewhere else
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
-autocmd FileType yaml setlocal indentkeys-=0# indentkeys-=<:>
