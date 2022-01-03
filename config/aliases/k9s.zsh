@@ -12,7 +12,7 @@ function k9s() {
   then
     /usr/local/bin/k9s $@
   else
-    context=$(kubectl config get-contexts --no-headers -o name | fzf +m)
+    context=$(kubectl config get-contexts --no-headers -o name | fzf -1 +m)
     cmd=( /usr/local/bin/k9s --context $context --command node)
     profile=""
 

@@ -1,6 +1,12 @@
 [[ "${PWD}" == *"terraform/envs"* ]] && return 0;
 [[ "$VALORL_AWS_PROFILE_HOOK_SUSPEND" == "1" ]] && return 0
-ctx=$(sed -n "s/current-context: \(.*\)/\1/p" ~/.kube/config)
+if [ -n "$KUBECONFIG" ]; then
+    config="$KUBECONFIG"
+else
+    config="$HOME/.kube/config"
+fi
+
+ctx=$(sed -n "s/current-context: \(.*\)/\1/p" "$config")
 case $ctx  in
     *"dev"*)
         export AWS_PROFILE=dev
