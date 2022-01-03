@@ -25,7 +25,7 @@ export DOCKER_BUILDKIT=1
 # Sensitive stuf
 [ -f ~/.secretprofile ] && source ~/.secretprofile
 
-cDriveBase="/mnt/c-drive/c"
+cDriveBase="/mnt/c/c"
 
 # PATH
 typeset -U PATH path
