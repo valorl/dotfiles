@@ -69,6 +69,9 @@ function chpwd() {
 function precmd() {
     emulate -L zsh
     source $HOME/.scripts/precmd-aws-profile-hook.sh
+
+    # keep prompt higher up
+    declare -i L; declare -i M; L=`tput lines`/2; M=$L-1; for (( c=1; c<=$L; c++ )); do echo; done; tput cup $M
 }
 
 # Start tmux session
@@ -76,6 +79,7 @@ if [ -z "$TMUX" ]
 then
     tmux -f ~/.config/tmux/tmux.conf attach -t base || tmux -f ~/.config/tmux/tmux.conf new -s base
 fi
+
 
 # Initialize starship
 eval "$(starship init zsh)"
