@@ -130,7 +130,16 @@ function repos() {
       --height 10 \
       --select-1 \
       --query "$1")
-  echo $selected | { read first _; cd $first; }
+  echo $selected | {
+      read first _
+      [[ "$first" == "" ]] && return 1
+      cd $first
+      if [ -n "$TMUX" ]; then
+          current_window="$(tmux display-message -p '#I')"
+          name="$(echo "$first" | rev | cut -d / -f1,2 | rev)"
+          tmux rename-window -t "$current_window" "$name"
+      fi
+  }
 }
 
 
