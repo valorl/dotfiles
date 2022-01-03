@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+git push --set-upstream origin "$(git branch --show-current)"
+lab mr create -d
+mr="$(glab api "projects/:fullpath/merge_requests?source_branch=:branch" | jq '.[] | select(.state == "opened")')"
+{
+    echo "$mr" | jq -r '.title'
+    echo "$mr" | jq -r '.web_url'
+} | vipe | xclip
