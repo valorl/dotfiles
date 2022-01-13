@@ -71,7 +71,7 @@ function precmd() {
     source $HOME/.scripts/precmd-aws-profile-hook.sh
 
     # keep prompt higher up
-    declare -i L; declare -i M; L=`tput lines`/2; M=$L-1; for (( c=1; c<=$L; c++ )); do echo; done; tput cup $M
+    # declare -i L; declare -i M; L=`tput lines`/2; M=$L-1; for (( c=1; c<=$L; c++ )); do echo; done; tput cup $M
 }
 
 # Start tmux session
