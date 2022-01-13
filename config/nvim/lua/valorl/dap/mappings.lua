@@ -1,10 +1,9 @@
-local nnoremap = vim.keymap.nnoremap
 local dap = require('dap')
 
-nnoremap { "<leader>dc", dap.continue }
-nnoremap { "<leader>do", dap.step_over }
-nnoremap { "<leader>di", dap.step_into }
-nnoremap { "<leader>dO", dap.step_out }
-nnoremap { "<leader>db", dap.toggle_breakpoint }
-nnoremap { "<leader>dB", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end}
-nnoremap { "<leader>dr", dap.repl.open }
+vim.keymap.set("n", "<leader>dc", dap.continue, { noremap = true })
+vim.keymap.set("n", "<leader>do", dap.step_over, { noremap = true })
+vim.keymap.set("n", "<leader>di", dap.step_into, { noremap = true })
+vim.keymap.set("n", "<leader>dO", dap.step_out, { noremap = true })
+vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { noremap = true })
+vim.keymap.set("n", "<leader>dB", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { noremap = true })
+vim.keymap.set("n", "<leader>dr", dap.repl.open, { noremap = true })

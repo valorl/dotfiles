@@ -8,10 +8,6 @@ return require("packer").startup(function(use)
   use 'gruvbox-community/gruvbox'
   use 'eddyekofo94/gruvbox-flat.nvim'
 
-  -- Not yet ?
-  -- https://github.com/tjdevries/astronauta.nvim/issues/1
-  use 'tjdevries/astronauta.nvim'
-
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'tjdevries/lsp_extensions.nvim'
@@ -34,6 +30,7 @@ return require("packer").startup(function(use)
   use 'nvim-telescope/telescope.nvim'
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'kyazdani42/nvim-web-devicons'
+  use 'nvim-telescope/telescope-file-browser.nvim'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {

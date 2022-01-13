@@ -1,19 +1,16 @@
-local nnoremap = vim.keymap.nnoremap
-local inoremap = vim.keymap.inoremap
-
-nnoremap { "<leader>gg", vim.lsp.buf.definition }
-nnoremap { "<leader>gi", vim.lsp.buf.implementation }
-nnoremap { "<leader>gD", vim.lsp.buf.declaration }
+vim.keymap.set("n", "<leader>gg", vim.lsp.buf.definition, { noremap = true })
+vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, { noremap = true })
+vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, { noremap = true })
 
 -- nnoremap { "<leader>gsh", vim.lsp.buf.signature_help }
 -- inoremap { "<c-\\>", vim.lsp.buf.signature_help }
-nnoremap { "<leader>gsh", require('lspsaga.signaturehelp').signature_help }
-inoremap { "<c-\\>", require('lspsaga.signaturehelp').signature_help }
+vim.keymap.set("n", "<leader>gsh", require('lspsaga.signaturehelp').signature_help, { noremap = true })
+vim.keymap.set("i", "<c-\\>", require('lspsaga.signaturehelp').signature_help, { noremap = true })
 
-nnoremap { "<leader>grr", vim.lsp.buf.references }
-nnoremap { "<leader>grn", vim.lsp.buf.rename }
-nnoremap { "<leader>gh", vim.lsp.buf.hover }
-nnoremap { "<leader>gca", vim.lsp.buf.code_action }
-nnoremap { "<leader>gdp", vim.lsp.diagnostic.goto_prev }
-nnoremap { "<leader>gdn", vim.lsp.diagnostic.goto_next }
+vim.keymap.set("n", "<leader>grr", vim.lsp.buf.references, { noremap = true })
+vim.keymap.set("n", "<leader>grn", vim.lsp.buf.rename, { noremap = true })
+vim.keymap.set("n", "<leader>gh", vim.lsp.buf.hover, { noremap = true })
+vim.keymap.set("n", "<leader>gca", vim.lsp.buf.code_action, { noremap = true })
+vim.keymap.set("n", "<leader>gdp", vim.lsp.diagnostic.goto_prev, { noremap = true })
+vim.keymap.set("n", "<leader>gdn", vim.lsp.diagnostic.goto_next, { noremap = true })
 -- TODO: set_loclist ?
