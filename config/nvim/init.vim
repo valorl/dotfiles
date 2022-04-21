@@ -82,8 +82,8 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " b64 decode selection
-vnoremap <leader>64e y:let @"=system('base64', @")<cr>gvp
-vnoremap <leader>64d y:let @"=system('base64 --decode', @")<cr>gvp
+vnoremap <leader>be y:let @"=system('base64 -w 0', @")<cr>gvp
+vnoremap <leader>bd y:let @"=system('base64 --decode', @")<cr>gvp
 
 " inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
