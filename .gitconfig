@@ -28,13 +28,13 @@
     autoStash = true
 
 [includeIf "gitdir:~/repos/*/gitlab.neasenergy.com/"]
-    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_cet
+    path = ~/.gitconfig_cet
 [includeIf "gitdir:~/repos/local/work.local/"]
-    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_cet
+    path = ~/.gitconfig_cet
 
 [includeIf "gitdir:~/repos/*/github.com/"]
-    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_gh
+    path = ~/.gitconfig_gh
 [includeIf "gitdir:~/go/src/github.com/"]
-    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_gh
+    path = ~/.gitconfig_gh
 [includeIf "gitdir:~/repos/local/personal.local/"]
-    path = ~/repos/local/github.com/valorl/dotfiles/.gitconfig_gh
+    path = ~/.gitconfig_gh

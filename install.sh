@@ -67,6 +67,8 @@ bin_init() {
 root_add .profile
 root_add .zshenv
 root_add .gitconfig
+root_add .gitconfig_cet
+root_add .gitconfig_gh
 
 # ~/.config
 config_init
