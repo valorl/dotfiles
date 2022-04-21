@@ -20,16 +20,16 @@ function k9s() {
     then
       case $context in
         *"dev"*)
-          profile=dev
+          profile=kube-dev
           ;;
         *"stag"*)
-          profile=stag
+          profile=kube-stag
           ;;
         *"shrd"*)
-          profile=shrd
+          profile=kube-shrd
           ;;
         *"prod"*)
-          profile=prod
+          profile=kube-prod
           ;;
       esac
       cmd=("AWS_PROFILE=$profile" "$cmd[@]")
