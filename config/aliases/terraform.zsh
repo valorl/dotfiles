@@ -2,7 +2,9 @@ alias tf=_terraform
 alias tfi="tf init"
 alias tfp=_terraform_plan
 
-alias tfip="tf init && tf plan"
+function tfip() {
+    tf init && tf plan $@
+}
 
 function _terraform() {
   binPath="$HOME/.local/bin/terraform"
