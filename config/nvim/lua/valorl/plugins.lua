@@ -70,4 +70,5 @@ return require("packer").startup(function(use)
 
   use 'psliwka/vim-smoothie'
 
+  use 'L3MON4D3/LuaSnip'
 end)
