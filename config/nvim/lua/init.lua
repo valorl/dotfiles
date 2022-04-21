@@ -11,3 +11,4 @@ require("valorl.indent-blankline")
 
 
 
+require("valorl.formatter")
