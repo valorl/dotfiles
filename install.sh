@@ -85,6 +85,7 @@ config_add Xresources
 config_add starship.toml
 config_add tmux
 config_add i3
+config_add picom
 
 # ~/.scripts
 scripts_init
