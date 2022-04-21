@@ -15,4 +15,4 @@ mr="$(glab api "projects/:fullpath/merge_requests?source_branch=:branch" | jq '.
 {
     echo "$mr" | jq -r '.title'
     echo "$mr" | jq -r '.web_url'
-} | vipe | xclip
+} | vipe | xclip -selection clipboard
