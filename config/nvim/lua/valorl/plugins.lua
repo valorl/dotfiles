@@ -17,6 +17,15 @@ return require("packer").startup(function(use)
   use { 'glepnir/lspsaga.nvim', requires = {'neovim/nvim-lspconfig'} }
   use { "ray-x/lsp_signature.nvim" }
 
+  use {
+    "cuducos/yaml.nvim",
+    ft = {"yaml"},
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim"
+    },
+    config = function () require("yaml_nvim").init() end,
+  }
 
   -- Lua
   use 'tjdevries/nlua.nvim'
@@ -72,5 +81,7 @@ return require("packer").startup(function(use)
   use 'psliwka/vim-smoothie'
 
   use 'mhartington/formatter.nvim'
+  use 'jjo/vim-cue'
+
   use 'L3MON4D3/LuaSnip'
 end)
