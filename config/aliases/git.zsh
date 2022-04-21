@@ -64,7 +64,9 @@ alias gri8='git rebase -i HEAD~8'
 alias gri9='git rebase -i HEAD~9'
 alias gri10='git rebase -i HEAD~10'
 
-alias groot="cd $(git rev-parse --show-toplevel)"
+function groot() {
+    cd $(git rev-parse --show-toplevel)
+}
 
 function _git_log_default() {
     esc=$(printf '\033')
