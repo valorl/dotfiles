@@ -88,6 +88,7 @@ config_add starship.toml
 config_add tmux
 config_add i3
 config_add picom
+config_add kitty
 
 # ~/.scripts
 scripts_init
