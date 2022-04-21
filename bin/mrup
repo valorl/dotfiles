@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-git push --set-upstream origin "$(git branch --show-current)"
-lab mr create -d
+current_branch="$(git branch --show-current)"
+branch="${1:-}" # avoid set -u error
+if [ -z "$branch" ]; then
+    target="master"
+else
+    target="$branch"
+fi
+
+git push --set-upstream origin "$current_branch"
+lab mr create -d origin "$target"
 mr="$(glab api "projects/:fullpath/merge_requests?source_branch=:branch" | jq '.[] | select(.state == "opened")')"
 {
     echo "$mr" | jq -r '.title'
