@@ -84,6 +84,7 @@ config_add zsh/.zshrc
 config_add Xresources
 config_add starship.toml
 config_add tmux
+config_add i3
 
 # ~/.scripts
 scripts_init
