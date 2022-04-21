@@ -15,6 +15,7 @@ return require("packer").startup(function(use)
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use { 'glepnir/lspsaga.nvim', requires = {'neovim/nvim-lspconfig'} }
+  use { "ray-x/lsp_signature.nvim" }
 
 
   -- Lua
