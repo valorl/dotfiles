@@ -110,3 +110,6 @@ let g:git_messenger_floating_win_opts = { 'border': 'single' }
 " TODO: move this somewhere else
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
+"
+" vim-smoothie
+let g:smoothie_speed_linear_factor=50
