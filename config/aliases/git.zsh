@@ -54,6 +54,17 @@ alias gsp='git stash pop'
 alias gpsu='git push --set-upstream origin $(git_current_branch)'
 
 alias grim='git rebase -i master'
+alias gri2='git rebase -i HEAD~2'
+alias gri3='git rebase -i HEAD~3'
+alias gri4='git rebase -i HEAD~4'
+alias gri5='git rebase -i HEAD~5'
+alias gri6='git rebase -i HEAD~6'
+alias gri7='git rebase -i HEAD~7'
+alias gri8='git rebase -i HEAD~8'
+alias gri9='git rebase -i HEAD~9'
+alias gri10='git rebase -i HEAD~10'
+
+alias groot="cd $(git rev-parse --show-toplevel)"
 
 function _git_log_default() {
     esc=$(printf '\033')
