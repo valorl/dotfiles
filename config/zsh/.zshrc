@@ -75,14 +75,14 @@ function precmd() {
 }
 
 # Start tmux session
-if [ -z "$TMUX" ]
+if (($+commands[tmux])) && [ -z "$TMUX" ]
 then
     tmux -f ~/.config/tmux/tmux.conf attach -t base || tmux -f ~/.config/tmux/tmux.conf new -s base
 fi
 
 
 # Initialize starship
-eval "$(starship init zsh)"
+(($+commands[starship])) && eval "$(starship init zsh)"
 
 # Completion
 source ~/.config/completion/completionrc
