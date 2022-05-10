@@ -20,7 +20,7 @@ function _git_log_prettily(){
 
 
 # source because I want to 'cd' there at the end
-alias gclone="source $HOME/.scripts/git-clone-full-path.sh"
+alias gclone="sh $HOME/.scripts/git-clone-full-path.sh | cd"
 
 
 # Fugitive
