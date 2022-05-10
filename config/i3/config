@@ -139,6 +139,9 @@ bindsym $mod+Ctrl+Left workspace prev
 # take screenshot with shutter
 bindsym $mod+Shift+s exec shutter --select
 
+# enable laptop screen only
+bindsym $mod+Shift+p exec ~/.screenlayout/edp1-only.sh
+
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
