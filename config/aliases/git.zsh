@@ -96,3 +96,11 @@ function grename() {
     git push --set-upstream origin "$2"
   fi
 }
+
+# xgit <dest> <command>
+# runs <command> in each git repo directly in <dest>
+function xgit() {
+    local dests="$1" && shift
+    if "$dests"
+    find . -name .git -type d -execdir $@ \; -prune
+}
