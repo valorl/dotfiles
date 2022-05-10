@@ -64,11 +64,12 @@ bin_init() {
 }
 
 # Home root
-root_add .profile
+# root_add .profile
 root_add .zshenv
 root_add .gitconfig
 root_add .gitconfig_cet
 root_add .gitconfig_gh
+ln -sf ~/.zshenv ~/.profile && log "~" "~/.zshenv -> ~/.profile"
 
 # ~/.config
 config_init
