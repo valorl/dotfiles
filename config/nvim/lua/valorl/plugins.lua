@@ -52,6 +52,14 @@ return require("packer").startup(function(use)
     requires = {'nvim-treesitter/nvim-treesitter'}
   }
 
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+    }
+  }
+
   -- Comments
   use 'tpope/vim-commentary'
 
