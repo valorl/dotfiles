@@ -96,4 +96,9 @@ return require("packer").startup(function(use)
   use 'jjo/vim-cue'
 
   use 'L3MON4D3/LuaSnip'
+
+  use {
+    "ThePrimeagen/harpoon",
+    requires = {{"nvim-lua/plenary.nvim"}}
+  }
 end)
