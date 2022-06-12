@@ -71,10 +71,7 @@ require'lspconfig'.omnisharp.setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
 }
 
-require('nlua.lsp.nvim').setup(require('lspconfig'), {
-  cmd = { 'lua-language-server' }
-})
-
+require('nlua.lsp.nvim').setup(require('lspconfig'), {})
 require "lsp_signature".setup()
 
 -- borders pls
