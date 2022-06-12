@@ -80,7 +80,6 @@ return require("packer").startup(function(use)
 
   use 'psliwka/vim-smoothie'
 
-  use 'mhartington/formatter.nvim'
   use 'jjo/vim-cue'
 
   use 'L3MON4D3/LuaSnip'
