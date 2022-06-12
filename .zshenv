@@ -25,8 +25,6 @@ export DOCKER_BUILDKIT=1
 # Sensitive stuf
 [ -f ~/.secretprofile ] && source ~/.secretprofile
 
-cDriveBase="/mnt/c/c"
-
 # PATH
 typeset -U PATH path
 path=(
@@ -37,7 +35,7 @@ path=(
   "$HOME/.cargo/bin"
   "./node_modules/.bin"
 
-  "$cDriveBase/Program Files/Microsoft Vs Code/bin"
   $path
 )
+
 export PATH
