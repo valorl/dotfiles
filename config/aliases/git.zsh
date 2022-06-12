@@ -18,10 +18,10 @@ function _git_log_prettily(){
 }
 #compdef _git _git_log_prettily=git-log
 
-
-# source because I want to 'cd' there at the end
-alias gclone="sh $HOME/.scripts/git-clone-full-path.sh | cd"
-
+function gclone() {
+    local dir="$(sh "$HOME/.scripts/git-clone-full-path.sh" $1)"
+    cd $dir
+}
 
 # Fugitive
 function :G() {
