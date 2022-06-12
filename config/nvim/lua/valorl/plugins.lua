@@ -53,6 +53,11 @@ return require("packer").startup(function(use)
   }
 
   use {
+    'romgrk/nvim-treesitter-context',
+    requires = {'nvim-treesitter/nvim-treesitter'}
+  }
+
+  use {
     "ThePrimeagen/refactoring.nvim",
     requires = {
         {"nvim-lua/plenary.nvim"},

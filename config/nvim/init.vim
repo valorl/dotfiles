@@ -107,6 +107,8 @@ highlight link NormalFloat Normal
 highlight link gitmessengerPopupNormal NormalFloat
 let g:git_messenger_floating_win_opts = { 'border': 'single' }
 
+highlight TreesitterContext guibg=#424242
+
 " TODO: move this somewhere else
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
