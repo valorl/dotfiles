@@ -68,6 +68,9 @@ return require("packer").startup(function(use)
   -- Comments
   use 'tpope/vim-commentary'
 
+  -- Surround
+  use 'tpope/vim-surround'
+
   -- Color preview
   use { 'rrethy/vim-hexokinase', run = 'make hexokinase' }
   use 'hashivim/vim-terraform'
