@@ -181,8 +181,10 @@ function get_sops_key() {
 # Modules
 source_mdl git
 source_mdl kubectl
+source_mdl kubie
 source_mdl editconfig
 source_mdl dotnet
 source_mdl tmux
 source_mdl k9s
 source_mdl terraform
+

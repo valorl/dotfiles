@@ -1,7 +1,8 @@
 alias k=kubectl
-alias ka='_ka(){ kubectl "$@" --all-namespaces; unset -f _ka}; _ka'
 
-alias ky='_ky(){ kubectl "$@" --dry-run=client -o=yaml }; _ky'
+function ka() { kubectl "$@" --all-namespaces}
+function ky() { kubectl "$@" -o=yaml }
+function kdy() { kubectl "$@" --dry-run=client -o=yaml }
 
 alias kaf='kubectl apply -f'
 alias kdelf='kubeclt delete -f'
@@ -9,7 +10,7 @@ alias kdelf='kubeclt delete -f'
 alias keti='kubeclt exec -ti'
 
 # Contexts
-alias kctx='k ctx'
+#alias kctx='k ctx'
 
 # Nodes
 alias kgn='k get nodes'
