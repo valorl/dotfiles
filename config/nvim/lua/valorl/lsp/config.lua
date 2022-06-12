@@ -2,6 +2,7 @@ require'lspconfig'.gopls.setup{}
 require'lspconfig'.terraformls.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.rust_analyzer.setup{}
 
 local yamlls_schemas = (function ()
   local schemas = {}
