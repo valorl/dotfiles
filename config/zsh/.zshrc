@@ -60,19 +60,19 @@ function set_win_title(){
 }
 precmd_functions+=(set_win_title)
 # cd hook
-function chpwd() {
-    emulate -L zsh
-    source $HOME/.scripts/chpwd-aws-profile-hook.sh
-}
+# function chpwd() {
+#     emulate -L zsh
+#     source $HOME/.scripts/chpwd-aws-profile-hook.sh
+# }
 
 #precmd hook
-function precmd() {
-    emulate -L zsh
-    source $HOME/.scripts/precmd-aws-profile-hook.sh
+# function precmd() {
+#     emulate -L zsh
+#     source $HOME/.scripts/precmd-aws-profile-hook.sh
 
-    # keep prompt higher up
-    # declare -i L; declare -i M; L=`tput lines`/2; M=$L-1; for (( c=1; c<=$L; c++ )); do echo; done; tput cup $M
-}
+#     # keep prompt higher up
+#     # declare -i L; declare -i M; L=`tput lines`/2; M=$L-1; for (( c=1; c<=$L; c++ )); do echo; done; tput cup $M
+# }
 
 # Start tmux session
 if (($+commands[tmux])) && [ -z "$TMUX" ]
