@@ -1,13 +1,10 @@
+vim.lsp.set_log_level("trace")
+
 require'lspconfig'.terraformls.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 
-local yamlls_schemas = (function ()
-  local schemas = {}
-  local mappings = {
-    ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = {
-      "kube/ci"
 require('lspconfig').gopls.setup({
   settings = {
     gopls = {
@@ -16,13 +13,6 @@ require('lspconfig').gopls.setup({
   }
 })
 
-  local cwd = vim.fn.getcwd()
-
-  for url, regexes in pairs(mappings) do
-    for _, r in ipairs(regexes) do
-      if vim.regex(r):match_str(cwd) then
-        if schemas[url] == nil then
-          schemas[url] = "/*.yaml"
 require'lspconfig'.golangci_lint_ls.setup{
   init_options = {
     command = { "golangci-lint", "run", "--out-format", "json",}
@@ -35,14 +25,7 @@ require'lspconfig'.golangci_lint_ls.setup{
           table.insert(filtered, d)
         end
       end
-    end
-  end
 
-  return schemas
-end)()
-
-
-vim.lsp.set_log_level("trace")
       result["diagnostics"] = filtered
       vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx, config)
     end
@@ -56,9 +39,6 @@ require'lspconfig'.yamlls.setup{
       trace = {
         server = "verbose"
       },
-      -- schemas = yamlls_schemas,
-      -- schemas = { kubernetes = "/*.yaml" },
-      -- schemaStore = { enable = true},
       schemaDownload = { enable = true },
       validate = true,
     }
@@ -80,10 +60,6 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     { border = "single" }
 )
 
--- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
---     vim.lsp.handlers.signature_help,
---     { border = "single" }
--- )
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.go" },
   callback = function()
