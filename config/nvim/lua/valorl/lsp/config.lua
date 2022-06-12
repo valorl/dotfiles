@@ -23,6 +23,16 @@ require('lspconfig').gopls.setup({
       if vim.regex(r):match_str(cwd) then
         if schemas[url] == nil then
           schemas[url] = "/*.yaml"
+require'lspconfig'.golangci_lint_ls.setup{
+  init_options = {
+    command = { "golangci-lint", "run", "--out-format", "json",}
+  },
+  handlers = {
+    ["textDocument/publishDiagnostics"] =  function(err, result, ctx, config)
+      local filtered = {}
+      for _, d in ipairs(result["diagnostics"]) do
+        if d["source"] ~= "typecheck" then
+          table.insert(filtered, d)
         end
       end
     end
@@ -33,6 +43,11 @@ end)()
 
 
 vim.lsp.set_log_level("trace")
+      result["diagnostics"] = filtered
+      vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx, config)
+    end
+  }
+}
 
 require'lspconfig'.yamlls.setup{
   autostart = true,
