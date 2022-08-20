@@ -1,6 +1,11 @@
 return require("packer").startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  -- LOCAL
+  use { '/home/vao/repos/local/github.com/valorl/vcslink.nvim',
+    requires = {"nvim-lua/plenary.nvim"}
+  }
+
   -- Themes
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
