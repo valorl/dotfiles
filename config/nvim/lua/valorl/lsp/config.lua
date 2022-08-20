@@ -49,6 +49,9 @@ local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/vao/.local/omnisharp/run"
 require'lspconfig'.omnisharp.setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+    handlers = {
+      ["textDocument/definition"] = require("omnisharp_extended").handler
+    }
 }
 
 require('nlua.lsp.nvim').setup(require('lspconfig'), {})

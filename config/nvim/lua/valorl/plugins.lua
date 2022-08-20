@@ -27,6 +27,8 @@ return require("packer").startup(function(use)
     config = function () require("yaml_nvim").init() end,
   }
 
+  use 'Hoffs/omnisharp-extended-lsp.nvim'
+
   -- Lua
   use 'tjdevries/nlua.nvim'
   use 'euclidianAce/BetterLua.vim'
