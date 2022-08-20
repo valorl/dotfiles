@@ -68,7 +68,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 )
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.go" },
+  pattern = { "*.go", "*.cs", "*.tf" },
   callback = function()
 	  vim.lsp.buf.formatting_sync(nil, 3000)
   end,
