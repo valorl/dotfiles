@@ -115,3 +115,15 @@ highlight TreesitterContext guibg=#424242
 "
 " vim-smoothie
 let g:smoothie_speed_linear_factor=50
+
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+
+if !exists('g:lasttab')
+  let g:lasttab = 1
+endif
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <leader>6 :exe "tabn ".g:lasttab<cr>
