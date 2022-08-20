@@ -15,6 +15,7 @@ parser_config.cue = {
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
+  ignore_install = { "vala" },
   highlight = {
     enable = true,              -- false will disable the whole extension
   },
@@ -38,10 +39,7 @@ require'nvim-treesitter.configs'.setup {
       goto_node = '<cr>',
       show_help = '?',
     },
-  }
-}
-
-require'nvim-treesitter.configs'.setup {
+  },
   textobjects = {
     select = {
       enable = true,
