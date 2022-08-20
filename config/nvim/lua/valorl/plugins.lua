@@ -100,8 +100,9 @@ return require("packer").startup(function(use)
 
   use 'L3MON4D3/LuaSnip'
 
-  use {
-    "ThePrimeagen/harpoon",
-    requires = {{"nvim-lua/plenary.nvim"}}
-  }
+  -- use {
+  --   "ThePrimeagen/harpoon",
+  --   requires = {{"nvim-lua/plenary.nvim"}}
+  -- }
+  --
 end)
