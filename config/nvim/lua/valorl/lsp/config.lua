@@ -4,6 +4,7 @@ require'lspconfig'.terraformls.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.jsonls.setup{}
 
 require('lspconfig').gopls.setup({
   settings = {
