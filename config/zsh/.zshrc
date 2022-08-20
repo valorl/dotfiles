@@ -74,11 +74,12 @@ precmd_functions+=(set_win_title)
 #     # declare -i L; declare -i M; L=`tput lines`/2; M=$L-1; for (( c=1; c<=$L; c++ )); do echo; done; tput cup $M
 # }
 
-# Start tmux session
-if (($+commands[tmux])) && [ -z "$TMUX" ]
-then
-    tmux -f ~/.config/tmux/tmux.conf attach -t base || tmux -f ~/.config/tmux/tmux.conf new -s base
-fi
+function t() {
+    if (($+commands[tmux])) && [ -z "$TMUX" ]
+    then
+        tmux -f ~/.config/tmux/tmux.conf attach -t base || tmux -f ~/.config/tmux/tmux.conf new -s base
+    fi
+}
 
 
 # Initialize starship
