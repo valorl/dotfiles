@@ -13,7 +13,7 @@ export EDITOR="nvim"
 export TERM="screen-256color"
 export TERMINAL="st"
 export GPG_TTY=$(tty)
-export BROWSER=wslview
+export BROWSER=brave
 
 # Dev stuff
 export REPOS=$HOME/repos
