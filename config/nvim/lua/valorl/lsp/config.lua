@@ -54,6 +54,9 @@ require'lspconfig'.omnisharp.setup{
     }
 }
 
+require'lspconfig'.pyright.setup({
+})
+
 require('nlua.lsp.nvim').setup(require('lspconfig'), {})
 require "lsp_signature".setup()
 
