@@ -137,7 +137,7 @@ bindsym $mod+Ctrl+Left workspace prev
 
 
 # take screenshot with shutter
-bindsym $mod+Shift+s exec shutter --select
+bindsym $mod+Shift+s exec ~/.local/bin/flameshot-refocus
 
 # enable laptop screen only
 bindsym $mod+Shift+p exec ~/.screenlayout/edp1-only.sh
