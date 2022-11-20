@@ -74,6 +74,8 @@ precmd_functions+=(set_win_title)
 #     # declare -i L; declare -i M; L=`tput lines`/2; M=$L-1; for (( c=1; c<=$L; c++ )); do echo; done; tput cup $M
 # }
 
+bindkey -s '^p' 'rp\n'
+
 function t() {
     if (($+commands[tmux])) && [ -z "$TMUX" ]
     then
