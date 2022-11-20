@@ -73,10 +73,12 @@ function _k9s_profile() {
 }
 
 function k9sr() {
-    _k9s_areyousure && _k9s_profile "read" $@
+    # _k9s_areyousure && _k9s_profile "read" $@
+    _k9s_profile "read" $@
 }
 function k9sa() {
-    _k9s_areyousure && _k9s_profile "admin" $@
+    # _k9s_areyousure && _k9s_profile "admin" $@
+    _k9s_profile "admin" $@
 }
 
 function _k9s_areyousure() {
