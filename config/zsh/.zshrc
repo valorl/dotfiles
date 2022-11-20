@@ -81,6 +81,8 @@ function t() {
     fi
 }
 
+# kubeswitch
+source /usr/bin/switch.sh
 
 # Initialize starship
 (($+commands[starship])) && eval "$(starship init zsh)"
