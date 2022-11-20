@@ -10,6 +10,7 @@ lspconfig.tsserver.setup{}
 lspconfig.rust_analyzer.setup{}
 lspconfig.jsonls.setup{}
 lspconfig.rnix.setup{}
+lspconfig.dagger.setup{}
 
 require('lspconfig').gopls.setup({
   settings = {
