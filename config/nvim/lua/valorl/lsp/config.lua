@@ -1,10 +1,15 @@
 vim.lsp.set_log_level("trace")
 
-require'lspconfig'.terraformls.setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-require'lspconfig'.jsonls.setup{}
+local lspconfig = require('lspconfig')
+local configs = require("lspconfig.configs")
+local util = require('lspconfig.util')
+
+lspconfig.terraformls.setup{}
+lspconfig.bashls.setup{}
+lspconfig.tsserver.setup{}
+lspconfig.rust_analyzer.setup{}
+lspconfig.jsonls.setup{}
+lspconfig.rnix.setup{}
 
 require('lspconfig').gopls.setup({
   settings = {
@@ -14,7 +19,7 @@ require('lspconfig').gopls.setup({
   }
 })
 
-require'lspconfig'.golangci_lint_ls.setup{
+lspconfig.golangci_lint_ls.setup{
   init_options = {
     command = { "golangci-lint", "run", "--out-format", "json",}
   },
@@ -33,7 +38,8 @@ require'lspconfig'.golangci_lint_ls.setup{
   }
 }
 
-require'lspconfig'.yamlls.setup{
+lspconfig.yamlls.setup{
+  filetypes = {"yaml"},
   autostart = true,
   settings = {
     yaml = {
@@ -48,18 +54,38 @@ require'lspconfig'.yamlls.setup{
 
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/vao/.local/omnisharp/run"
-require'lspconfig'.omnisharp.setup{
+lspconfig.omnisharp.setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
     handlers = {
       ["textDocument/definition"] = require("omnisharp_extended").handler
     }
 }
 
-require'lspconfig'.pyright.setup({
+lspconfig.pyright.setup({
 })
 
 require('nlua.lsp.nvim').setup(require('lspconfig'), {})
 require "lsp_signature".setup()
+
+if not configs.helm_ls then
+  configs.helm_ls = {
+    default_config = {
+      cmd = {"helm_ls", "serve"},
+      filetypes = {'helm'},
+      root_dir = function(fname)
+        return util.root_pattern('Chart.yaml')(fname)
+      end,
+    },
+  }
+end
+
+lspconfig.helm_ls.setup {
+  filetypes = {"helm"},
+  cmd = {"helm_ls", "serve"},
+  root_dir = function(fname)
+    return util.root_pattern('Chart.yaml')(fname)
+  end,
+}
 
 -- borders pls
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
