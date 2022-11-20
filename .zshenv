@@ -34,6 +34,7 @@ path=(
   "$HOME/.dotnet/tools"
   "$HOME/.cargo/bin"
   "./node_modules/.bin"
+  "~/.nix-profile/bin"
 
   $path
 )
