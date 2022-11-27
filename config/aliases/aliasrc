@@ -31,7 +31,6 @@ alias tf="terraform"
 alias todo="vim ~/TODO.md"
 alias ckt="$REPOS/local/gitlab.neasenergy.com/infrastructure/ckt/dist/ckt"
 alias cidev="$REPOS/local/gitlab.neasenergy.com/infrastructure/ci/cidev/dist/cidev"
-alias cetp="~/scratch/go/cetp/cetp"
 
 function octo() {
     docker run \

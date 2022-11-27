@@ -83,6 +83,9 @@ function t() {
     fi
 }
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # kubeswitch
 source /usr/bin/switch.sh
 
