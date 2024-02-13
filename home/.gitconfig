@@ -1,0 +1,48 @@
+[init]
+    defaultBranch = "main"
+[core]
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    autocrlf = input
+[interactive]
+    diffFilter=diff-so-fancy --patch
+[user]
+    useConfigOnly = true
+    signingKey = ~/.ssh/id_ed25519.pub
+    [credential]
+        helper = osxkeychain
+
+[gpg]
+    format = "ssh"
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
+
+[commit]
+    gpgSign = true
+
+
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool "codediff"]
+    cmd = "code -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+ tool = nvim -d
+ confictstyle = diff3
+
+[pull]
+	rebase = true
+[rebase]
+    autoStash = true
+
+[includeIf "gitdir:~/repos/gitlab.neasenergy.com/"]
+    path = ~/.gitconfig_ce
+
+[includeIf "gitdir:~/repos/github.com/"]
+    path = ~/.gitconfig_gh
+[includeIf "gitdir:~/go/src/github.com/"]
+    path = ~/.gitconfig_gh
+

@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+set -x
+
+args=()
+browse="false"
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -b|--browse)
+      browse="true"
+      shift
+      ;;
+    *)
+      args+=("$1")
+      shift
+      ;;
+  esac
+done
+
+if [ ${#args[@]} -gt  1 ]; then
+    echo "too many arguments"
+    exit 1
+fi
+
+function get_default_branch() {
+    glab api --paginate "projects/:fullpath/repository/branches" \
+        | jq -r '.[] | select(.default == true) | .name'
+}
+
+current_branch="$(git branch --show-current)"
+default_branch="$(get_default_branch)"
+
+if [ "$current_branch" = "$default_branch" ]; then
+    echo "error: current branch == default branch"
+    exit 1
+fi
+
+branch="${args[1]:-}" # avoid set -u error
+if [ -z "$branch" ]; then
+    target="$default_branch"
+else
+    target="$branch"
+fi
+
+git push --set-upstream origin "$(git branch --show-current)"
+lab mr create -d origin "$target"
+
+mr="$(glab api "projects/:fullpath/merge_requests?source_branch=:branch" | jq '.[] | select(.state == "opened")')"
+title="$(echo "$mr" | jq -r '.title')"
+url="$(echo "$mr" | jq -r '.web_url')"
+
+{
+    echo $title
+    echo $url
+} | pbcopy
+
+if [ "$browse" = "true" ]; then
+    open $url
+fi
