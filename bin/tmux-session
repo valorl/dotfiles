@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-format='#{session_last_attached} #{session_name}: #{session_windows} windows'
- tmux list-sessions -F "$format" | sort -r | cut -d ' ' -f2- | fzf | cut -d ':' -f1 | xargs -I{} tmux switch -t {}

@@ -1,1 +1,0 @@
-require('valorl.treesitter.config')
