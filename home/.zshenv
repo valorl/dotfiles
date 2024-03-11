@@ -1,3 +1,5 @@
+export EDITOR=nvim
+
 typeset -U PATH path
 
 # set_path prepends entries to PATH
