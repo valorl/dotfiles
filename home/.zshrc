@@ -72,12 +72,11 @@ trap kc_trap_exit EXIT
 source "/opt/homebrew/opt/fzf/shell/completion.zsh"
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
+# ~/.zshrc
+# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
 
 # prompt
 (($+commands[starship])) && eval "$(starship init zsh)"
-
-# ~/.zshrc
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
 
