@@ -6,6 +6,8 @@ alias mv="mv -iv"
 alias rm="rm -v"
 alias mkd="mkdir -pv"
 
+alias vimy="vim -c 'set ft=yaml'"
+
 # Colors
 # alias ls="ls -hN --color=auto --group-directories-first"
 alias grep="grep --color=auto"
