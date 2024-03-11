@@ -72,6 +72,26 @@ function gclone() {
     _cd_rename_window $dest
 }
 
+function gclone_gh() {
+    if [ -z "$1" ]; then
+        echo "error: missing query"
+        return 1
+    fi
+
+    local repo="$(gh search repos $@ --json fullName,description \
+        | jq -r '.[] | "\(.fullName) \(.description)"' \
+        | fzf --ansi --with-nth 1 --preview 'echo {} | cut -d" " -f2-' \
+        --preview-window=up:10% --layout reverse --height 15 \
+        | cut -d' ' -f1)"
+
+    if [ -z "$repo" ]; then
+        return 1
+    fi
+
+    local url="git@github.com:${repo}.git"
+    gclone $url
+}
+
 
 function _git_log_default() {
     esc=$(printf '\033')
