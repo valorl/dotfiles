@@ -15,12 +15,16 @@ brew "gawk"
 
 brew "awscli"
 brew "kubectl"
-brew "neovim"
+brew "k9s"
+brew "krew"
 brew "tmux"
 brew "fzf"
 brew "warrensbox/tap/tfswitch"
 brew "jq"
 brew "yq"
+
+tap "fluxcd/tap"
+brew "fluxcd/tap/flux"
 
 brew "gh"
 brew "glab"
@@ -35,6 +39,7 @@ brew "fd"
 brew "tree"
 
 brew "aripalo/tap/vegas-credentials"
+brew "ykman"
 
 brew "golang"
 brew "golangci-lint"
@@ -48,5 +53,6 @@ cask "microsoft-edge"
 cask "flameshot"
 cask "spaceid"
 cask "orbstack"
-
-
+cask "yubico-yubikey-manager"
+cask "scroll-reverser"
+cask "qmk-toolbox"
