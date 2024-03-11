@@ -51,6 +51,19 @@ function t() {
 
 source ~/.config/aliases/aliases.zsh
 source ~/.config/aliases/git.zsh
+# kc (see aliases)
+function kc_export() {
+    [ -e "/tmp/kc_$$" ] && export KUBECONFIG=/tmp/kc_$$
+}
+typeset -a precmd_functions
+precmd_functions+=(kc_export)
+
+# kc cleanup
+kc_trap_exit() {
+  [ -e "/tmp/kc_$$" ] && rm /tmp/kc_$$ > /dev/null
+}
+trap kc_trap_exit EXIT
+
 
 # FZF integration
 source "/opt/homebrew/opt/fzf/shell/completion.zsh"
