@@ -49,8 +49,11 @@ function t() {
     fi
 }
 
-source ~/.config/aliases/aliases.zsh
-source ~/.config/aliases/git.zsh
+for f in ~/.config/aliases/*.zsh; do
+    source $f
+done
+
+
 # kc (see aliases)
 function kc_export() {
     [ -e "/tmp/kc_$$" ] && export KUBECONFIG=/tmp/kc_$$
