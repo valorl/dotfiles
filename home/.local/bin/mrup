@@ -1,12 +1,34 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
-set -x
+
+# Wrap raw jira/atlassian link into markdown
+# (uses perl because lookaheads are needed to avoid replacing already-markdown links)
+function prettify_links() {
+    echo "$1" | perl -pe 's,(?<!\]\()(https://centricaenergy.atlassian.net/.*/(.*-.*))(?!\)),\[\2\]\(\1\),g'
+}
+
+function clip() {
+    mr="$(glab api "projects/:fullpath/merge_requests?source_branch=:branch" | jq '.[] | select(.state == "opened")')"
+    title="$(echo "$mr" | jq -r '.title')"
+    desc="$(echo "$mr" | jq -r '.description')"
+    url="$(echo "$mr" | jq -r '.web_url')"
+    {
+        echo $title
+        echo $url
+        echo ""
+        [ -n "$desc" ] && prettify_links $desc
+    } | pbcopy
+}
 
 args=()
 browse="false"
 
 while [[ $# -gt 0 ]]; do
   case $1 in
+    clip)
+      clip
+      exit 0
+      ;;  
     -b|--browse)
       browse="true"
       shift
@@ -45,15 +67,7 @@ fi
 
 git push --set-upstream origin "$(git branch --show-current)"
 lab mr create -d origin "$target"
-
-mr="$(glab api "projects/:fullpath/merge_requests?source_branch=:branch" | jq '.[] | select(.state == "opened")')"
-title="$(echo "$mr" | jq -r '.title')"
-url="$(echo "$mr" | jq -r '.web_url')"
-
-{
-    echo $title
-    echo $url
-} | pbcopy
+clip
 
 if [ "$browse" = "true" ]; then
     open $url
