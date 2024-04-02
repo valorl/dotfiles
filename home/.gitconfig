@@ -38,6 +38,9 @@
 [rebase]
     autoStash = true
 
+[push]
+    autoSetupRemote = true
+
 [includeIf "gitdir:~/repos/gitlab.neasenergy.com/"]
     path = ~/.gitconfig_ce
 
@@ -46,3 +49,7 @@
 [includeIf "gitdir:~/go/src/github.com/"]
     path = ~/.gitconfig_gh
 
+[alias]
+	co = checkout
+	cob = checkout -b
+	com = checkout master

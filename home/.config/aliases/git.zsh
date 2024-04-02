@@ -21,8 +21,6 @@ alias gsp='git stash pop'
 
 alias gst='git status -s'
 
-alias gpsu='git push --set-upstream origin $(git branch --show-current)'
-
 alias grim='git rebase -i master'
 alias gri2='git rebase -i HEAD~2'
 alias gri3='git rebase -i HEAD~3'

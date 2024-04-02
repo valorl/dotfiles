@@ -65,7 +65,7 @@ else
     target="$branch"
 fi
 
-git push --set-upstream origin "$(git branch --show-current)"
+git push
 lab mr create -d origin "$target"
 clip
 
