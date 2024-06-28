@@ -51,4 +51,44 @@ function kc() {
     base="$HOME/.kube/config"
     choice=$(yq '.contexts[] | .name' $base | fzf "${fzf_args[@]}")
     yq ".current-context = \"$choice\"" $base > /tmp/kc_$$
+
+    // if first argument is not --no-profile
+    if [ "$1" != "--no-profile" ]; then
+        case $choice in
+            *"dev"*)
+                export AWS_PROFILE=dev-admin
+                ;;
+            *"stag"*)
+                export AWS_PROFILE=stag-admin
+                ;;
+            *"prod"*)
+                export AWS_PROFILE=prod-admin
+                ;;
+            *"shrd"*)
+                export AWS_PROFILE=shrd-admin
+                ;;
+        esac
+    fi
 }
+
+
+# derive_aws_profile sets and exports the AWS_PROFILE variable
+# based on current directory
+function derive_dir_aws_profile() {
+    case $(pwd) in
+        *"dev")
+            export AWS_PROFILE=dev-admin
+            ;;
+        *"stag")
+            export AWS_PROFILE=stag-admin
+            ;;
+        *"prod")
+            export AWS_PROFILE=prod-admin
+            ;;
+        *"shrd")
+            export AWS_PROFILE=shrd-admin
+            ;;
+    esac
+}
+# execute derive_dir_aws_profile on cd
+chpwd_functions+=(derive_dir_aws_profile)

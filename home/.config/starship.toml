@@ -51,6 +51,7 @@ format = "[$context(\\([$namespace](bold white)\\))](bold #03a9f4) "
 
 "arn:aws:eks:eu-central-1:470547881147:cluster/eks_stag_sun" = "stag(🌞)"
 "arn:aws:eks:eu-central-1:470547881147:cluster/eks_stag_moon" = "stag(🌚)"
+"arn:aws:eks:eu-central-1:470547881147:cluster/eks-stag-feb-geodude" = "eks-stag-feb-geodude"
 
 [cmd_duration]
 style = "bold red"

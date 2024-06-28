@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 # plugins
 source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
 antidote load
@@ -68,6 +70,7 @@ kc_trap_exit() {
 trap kc_trap_exit EXIT
 
 
+
 # FZF integration
 source "/opt/homebrew/opt/fzf/shell/completion.zsh"
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
@@ -80,3 +83,4 @@ source <(carapace _carapace)
 # prompt
 (($+commands[starship])) && eval "$(starship init zsh)"
 
+zprof > ~/zprof.log

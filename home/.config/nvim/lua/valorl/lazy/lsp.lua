@@ -45,6 +45,7 @@ return {
     "saadparwaiz1/cmp_luasnip",
 
     "j-hui/fidget.nvim",
+    "aznhe21/actions-preview.nvim",
   },
 
   config = function()
@@ -66,7 +67,8 @@ return {
         vim.keymap.set("n", "<leader>grr", vim.lsp.buf.references, opts)
         vim.keymap.set("n", "<leader>grn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>gh", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "<leader>gca", vim.lsp.buf.code_action, opts)
+        -- vim.keymap.set("n", "<leader>gca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<leader>gca", require("actions-preview").code_actions, opts)
         vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
         vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
         vim.keymap.set("n", "<leader>dh", vim.diagnostic.open_float, opts)
@@ -119,9 +121,10 @@ return {
                 staticcheck = true,
               }
             },
-            init_options = {
-              usePlaceholders = true
-            }
+            -- TODO: How to navigate these when they appear ?
+            -- init_options = {
+            --   usePlaceholders = true
+            -- }
           }
         end,
 
@@ -157,6 +160,13 @@ return {
             }
           }
         end,
+
+        ["tflint"] = function()
+          require("lspconfig").tflint.setup {
+            capabilities = capabilities,
+            cmd = { "tflint", "--langserver", "--disable-rule=terraform_required_providers" }
+          }
+        end
       }
     })
 

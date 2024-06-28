@@ -1,7 +1,7 @@
 alias tf=_terraform
 alias tfi="tf init"
 alias tfp="_terraform plan"
-alias tfp="_terraform plan"
+alias tfa="_terraform_apply"
 alias tfpa="_terraform_plan && _terraform_apply"
 alias tfip="tf init && _terraform plan"
 alias tfia="tf init && _terraform_apply"
