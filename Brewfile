@@ -13,6 +13,8 @@ brew "grep"
 brew "gnu-tar"
 brew "gawk"
 
+brew "watch"
+
 brew "awscli"
 brew "kubectl"
 brew "k9s"
