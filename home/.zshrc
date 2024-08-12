@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 # plugins
 source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
 antidote load
@@ -80,3 +82,4 @@ source <(carapace _carapace)
 # prompt
 (($+commands[starship])) && eval "$(starship init zsh)"
 
+zprof > ~/zprof.log
