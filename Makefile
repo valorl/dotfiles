@@ -1,9 +1,9 @@
 default: brew stow
 
 brew:
-	brew bundle
+	/opt/homebrew/bin/brew bundle
 
 stow:
-	stow --dir home --target ~ .
+	/opt/homebrew/bin/stow --dir home --target ~ .
 unstow:
-	stow --dir home --target ~ -D .
+	/opt/homebrew/bin/stow --dir home --target ~ -D .
