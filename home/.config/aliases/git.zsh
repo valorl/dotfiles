@@ -61,6 +61,18 @@ function _gclone_parse_remote() {
 # replicating the git host and path in the filesystem
 function gclone() {
     local remote_url="$1"
+
+    # if no arg, fuzzy find work and own repos
+    if [ -z "$remote_url" ]; then
+        local repo="$(gh search repos --owner quantumgas --owner valorl --json fullName,description --limit 1000 \
+            | jq -r '.[] | "\(.fullName) \(.description)"' \
+            | fzf --ansi --with-nth 1 --preview 'echo {} | cut -d" " -f2-' \
+            --preview-window=up:10% --layout reverse --height 15 \
+            | cut -d' ' -f1)"
+
+        remote_url="git@github.com:${repo}.git"
+    fi
+
     local name="$(_gclone_parse_remote $remote_url)"
 
     local dest="$REPOS/$name"
@@ -70,13 +82,13 @@ function gclone() {
     _cd_rename_window $dest
 }
 
-function gclone_gh() {
-    if [ -z "$1" ]; then
-        echo "error: missing query"
-        return 1
+function ggclone() {
+    input="$@"
+    if [ -z "$input" ]; then
+        read "input?query: "
     fi
 
-    local repo="$(gh search repos $@ --json fullName,description \
+    local repo="$(gh search repos $input --json fullName,description \
         | jq -r '.[] | "\(.fullName) \(.description)"' \
         | fzf --ansi --with-nth 1 --preview 'echo {} | cut -d" " -f2-' \
         --preview-window=up:10% --layout reverse --height 15 \
@@ -104,11 +116,18 @@ function _git_log_default() {
 }
 alias glog="_git_log_default"
 
+function _git_log_picker() {
+    _git_log_default \
+        | fzf --ansi --layout reverse --preview 'git show --name-status {+2} | diff-so-fancy' --preview-window top
+}
+
 function gri {
-    n=$(_git_log_default \
-        | fzf --ansi --layout reverse --preview 'git show --name-status {+2} | diff-so-fancy' --preview-window top \
-        | cut -d' ' -f2)
+    n=$(_git_log_picker | cut -d' ' -f2)
     git rebase -i "HEAD~$n"
+}
+
+function gcommitbrowse() {
+    _git_log_picker | cut -d' ' -f3 | xargs -I{} sh -c 'open $(gh repo view --json url --jq ".url")/commit/{}'
 }
 
 
@@ -118,16 +137,12 @@ function :G() {
     git status -s
 }
 
-function rp() {
+function _fzf_repos() {
     (($+commands[fd])) || {
         echo "'fd' not installed"
         return
     }
     
-    # TODO?
-    # local icon_gl=" "
-    # local icon_gh=" "
-
     local xargs_cmd="$(printf 'in="{}"; pretty="${in#%s/}"; echo "$in $pretty"' $REPOS)"
 
     # find all git repos in $REPOS
@@ -139,9 +154,19 @@ function rp() {
         | fzf --with-nth 2 --layout=reverse --height 10 --select-1 --query "$1" \
         | cut -d' ' -f1)
 
-    echo $selected | {
+    echo $selected
+}
+
+function rp() {
+    _fzf_repos | {
         read first _
         [[ "$first" == "" ]] && return 1
         _cd_rename_window "$first"
     }
+}
+
+function cprp() {
+    repo=$(_fzf_repos)
+    find "$repo" | fzf --layout=reverse --height=20 --multi \
+        | xargs -I{} sh -c 'cp -iv {} . && echo '
 }

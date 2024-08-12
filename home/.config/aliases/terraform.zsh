@@ -1,39 +1,54 @@
-alias tf=_terraform
+alias tf=_tofu
 alias tfi="tf init"
-alias tfp="_terraform plan"
-alias tfp="_terraform plan"
-alias tfpa="_terraform_plan && _terraform_apply"
-alias tfip="tf init && _terraform plan"
-alias tfia="tf init && _terraform_apply"
+alias tfp="_tofu plan"
+alias tfa="_tofu_apply"
+alias tfpa="tfp && tfa"
+alias tfip="tf init && _tofu plan"
+alias tfia="tf init && _tofu_apply"
 
 PLANFILE="plan.tfplan"
 
-# _terraform is a wrapper around the terraform binary that:
-#   runs tfswitch prior, ensuring correct TF version
-#   generates a plan file
-function _terraform() {
-  binPath="$HOME/.local/bin/terraform"
-  if command -v tfswitch &> /dev/null; then
-    tfswitch -b "$binPath" 1>&2 > /dev/null
-  fi
-
+# _tofu is a wrapper around the tofu binary that always generates a plan file 
+function _tofu() {
   if [ "$1" = "plan" ]; then
       shift
-      terraform plan -out $PLANFILE $@
+      tofu plan -out $PLANFILE $@
   elif [ "$1" = "show" ]; then
       >&2 echo "----------------------------------------------------------"
       >&2 echo " PLAN FROM: $(stat --format '%w' $PLANFILE)"
       >&2 echo "----------------------------------------------------------"
-      terraform $@
+      tofu $@
   else
-      terraform $@
+      tofu $@
   fi
 }
 
-function _terraform_apply() {
+function _tofu_apply() {
     if [ -e "$PLANFILE" ]; then
-        terraform apply $@ $PLANFILE
+        tofu apply $@ $PLANFILE
     else
-        terraform apply $@
+        tofu apply $@
     fi
 }
+
+function _tofu_project_picker() {
+    # find all terraform roots (excl. modules/) in current git repo
+    fd --type d \
+        --exclude .terraform \
+        --exclude modules \
+        --exec sh -c 'test -f {}/main.tf && echo {}' \; \
+        . "$(git rev-parse --show-toplevel)" \
+        | sed "s|$(git rev-parse --show-toplevel)/||" \
+        | fzf --layout=reverse \
+            --preview 'bat --color=always "$(git rev-parse --show-toplevel)/"{1}"/main.tf"' \
+            --preview-window=top:60% \
+            --select-1 \
+            --query "$1"
+}
+
+
+function tp() {
+    cd $(git rev-parse --show-toplevel)/$(_tofu_project_picker "$1")
+}
+
+
