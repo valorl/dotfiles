@@ -5,6 +5,7 @@ format = """\
   $git_status\
   $git_state\
   ${custom.aws}\
+  ${custom.gcp}\
   $kubernetes\
   $cmd_duration\
   $line_break\
@@ -36,21 +37,14 @@ command = "echo $AWS_PROFILE"
 when='[ "\\$AWS_PROFILE" ] && exit 0 || exit 1'
 format = "(| [$output](bold yellow) )"
 
+[custom.gcp]
+command = "echo $CLOUDSDK_CORE_PROJECT"
+when='[ "\\$CLOUDSDK_CORE_PROJECT" ] && exit 0 || exit 1'
+format = "(| [$output](bold yellow) )"
+
 [kubernetes]
 disabled = false
 format = "[$context(\\([$namespace](bold white)\\))](bold #03a9f4) "
-[kubernetes.context_aliases]
-"arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev_sun"  = "dev(🌞)"
-"arn:aws:eks:eu-central-1:355619140320:cluster/eks_dev_moon"  = "dev(🌚)"
-
-"arn:aws:eks:eu-central-1:403980573539:cluster/eks_shrd_sun" = "shrd(🌞)"
-"arn:aws:eks:eu-central-1:403980573539:cluster/eks_shrd_moon" = "shrd(🌚)"
-
-"arn:aws:eks:eu-central-1:461308380791:cluster/eks_prod_sun" = "prod(🌞)"
-"arn:aws:eks:eu-central-1:461308380791:cluster/eks_prod_moon" = "prod(🌚)"
-
-"arn:aws:eks:eu-central-1:470547881147:cluster/eks_stag_sun" = "stag(🌞)"
-"arn:aws:eks:eu-central-1:470547881147:cluster/eks_stag_moon" = "stag(🌚)"
 
 [cmd_duration]
 style = "bold red"
