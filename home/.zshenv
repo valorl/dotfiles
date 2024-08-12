@@ -20,6 +20,9 @@ function set_path() {
         "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
         "/opt/homebrew/opt/gawk/libexec/gnubin"
 
+        # psql via libpq (to avoid installing full postgres)
+        "/opt/homebrew/opt/libpq/bin"
+
         "$HOME/.local/bin"
         "$GOPATH/bin"
         "$HOME/.krew/bin"
@@ -33,6 +36,4 @@ function set_path() {
 }
 set_path
 
-# secret env vars
-eval "$(ring get globals.sh)"
-
+source ~/.secretenv
