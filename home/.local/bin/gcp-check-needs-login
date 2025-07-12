@@ -1,0 +1,5 @@
+#!/bin/sh
+
+file="/Users/vao/.cache/gcloud/needs-login.txt"
+msg="gcloud needs login"
+/opt/homebrew/bin/gcloud auth print-access-token > /dev/null  && echo "" > $file || echo "$msg" > $file

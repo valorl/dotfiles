@@ -2,9 +2,21 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
+    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    -- parser_config.kcl = {
+    --   install_info = {
+    --     -- url = "https://github.com/kcl-lang/tree-sitter-kcl",
+    --     url = "~/repos/github.com/kcl-lang/tree-sitter-kcl",
+    --     files = { "src/parser.c", "src/scanner.c" },
+    --     branch = "main",
+    --   },
+    --   filetype = "kcl",
+    -- }
+
     require("nvim-treesitter.configs").setup({
       -- A list of parser names, or "all"
       ensure_installed = "all",
+      ignore_install = { "kcl" },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
@@ -33,3 +45,24 @@ return {
     vim.treesitter.language.register("bash", "zsh")
   end
 }
+-- return {
+--   { "kcl-lang/kcl.nvim" },
+--   {
+--     "luckasRanarison/tree-sitter-hyprlang",
+--     build = ":TSUpdate kcl",
+--     dependencies = {
+--       "nvim-treesitter/nvim-treesitter",
+--       opts = function(_, opts)
+--         require("nvim-treesitter.parsers").get_parser_configs().kcl = {
+--           install_info = {
+--             url = "https://github.com/kcl-lang/tree-sitter-kcl",
+--             files = { "src/parser.c" },
+--             branch = "main",
+--           },
+--           filetype = "kcl",
+--         }
+--       end,
+--     },
+--   },
+-- }
+--

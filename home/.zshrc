@@ -69,10 +69,12 @@ kc_trap_exit() {
 }
 trap kc_trap_exit EXIT
 
+# SSH Agent
+eval $(ssh-agent)
 
-# FZF integration
-source "/opt/homebrew/opt/fzf/shell/completion.zsh"
-source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+# direnv
+eval "$(direnv hook zsh)"
+
 
 # ~/.zshrc
 # export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
@@ -82,4 +84,11 @@ source <(carapace _carapace)
 # prompt
 (($+commands[starship])) && eval "$(starship init zsh)"
 
+# zsh-vi-mode seems overrides CTRL+R
+# https://github.com/jeffreytse/zsh-vi-mode
+zvm_after_init() {
+  source <(fzf --zsh)
+}
+
 zprof > ~/zprof.log
+

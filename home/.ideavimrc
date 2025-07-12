@@ -1,0 +1,6 @@
+set relativenumber
+
+map <leader>gd :action GotoDeclaration<CR>
+map <leader>grr :action FindUsages<CR>
+map <leader>grn :action RenameElement<CR>
+" map <C-p> :action GotoFile<CR>

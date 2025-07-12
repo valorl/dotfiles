@@ -1,7 +1,6 @@
 return {
   "nvim-lua/plenary.nvim",
   "gpanders/editorconfig.nvim",
-  "tpope/vim-fugitive",
   "rhysd/git-messenger.vim",
 
   {
@@ -45,7 +44,7 @@ return {
   -- fun
   -- "github/copilot.vim",
   -- "eandrju/cellular-automaton.nvim",
-  "github/copilot.vim",
+  -- "github/copilot.vim",
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -70,4 +69,16 @@ return {
     end,
   },
 
+
+  { "grafana/vim-alloy", },
+
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup()
+    end
+  },
+
+  { "kcl-lang/kcl.nvim" },
+  { "rest-nvim/rest.nvim" },
 }

@@ -12,7 +12,7 @@ PLANFILE="plan.tfplan"
 function _tofu() {
   if [ "$1" = "plan" ]; then
       shift
-      tofu plan -out $PLANFILE $@
+      tofu plan -parallelism=16 -out $PLANFILE $@
   elif [ "$1" = "show" ]; then
       >&2 echo "----------------------------------------------------------"
       >&2 echo " PLAN FROM: $(stat --format '%w' $PLANFILE)"
@@ -50,5 +50,3 @@ function _tofu_project_picker() {
 function tp() {
     cd $(git rev-parse --show-toplevel)/$(_tofu_project_picker "$1")
 }
-
-

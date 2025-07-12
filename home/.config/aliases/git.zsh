@@ -1,4 +1,6 @@
 REPOS="$HOME/repos"
+QREPOS="$HOME/repos/github.com/quantumgas"
+QREPOS="$HOME/repos/github.com/quantumgas"
 
 alias gc='git commit -v'
 alias gc!='git commit -v --amend'
@@ -11,7 +13,11 @@ alias gcam='git commit -a -m'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
-alias gcom='git checkout master'
+
+function gcom() {
+    default_branch="$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'/' '{print $NF}')"
+    git checkout "$default_branch"
+}
 
 alias gd='git diff'
 alias gds='git diff --staged'
@@ -32,6 +38,8 @@ alias gri8='git rebase -i HEAD~8'
 alias gri9='git rebase -i HEAD~9'
 alias gri10='git rebase -i HEAD~10'
 
+
+alias mg="multi-gitter"
 # _cd_rename_window changes directory and renames tmux window
 # assumes a repository absolute path
 function _cd_rename_window() {
@@ -169,4 +177,42 @@ function cprp() {
     repo=$(_fzf_repos)
     find "$repo" | fzf --layout=reverse --height=20 --multi \
         | xargs -I{} sh -c 'cp -iv {} . && echo '
+}
+
+function reponame() {
+    gh repo view --json 'name' -q '.name'
+}
+
+function mkpr() {
+    git push
+
+    # temp file
+    file=$(mktemp /tmp/mkpr.XXX.txt)
+
+    # prefill
+    git log -1 --pretty=%s >> $file
+    echo -e "\n" >> $t
+    git log -1 --pretty=%b >> $file
+
+    mod_time_before=$(stat -c %Y "$file")
+    # 
+    # # spawn editor with stdio connected
+    nvim -c 'set filetype=gitcommit' $file
+
+    mod_time_after=$(stat -c %Y "$file")
+
+    if [[ ! "$mod_time_after" -gt "$mod_time_before" ]]; then
+        echo "abort due to no write"
+        return
+    fi
+
+    title=$(head -n 1 $file)
+    body=$(tail -n +2 $file)
+
+    /bin/rm $t
+
+    head=$(git rev-parse --abbrev-ref HEAD)
+    base="main"
+
+    gh pr create --title "$title" --body "$body" -w
 }

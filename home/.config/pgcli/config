@@ -1,0 +1,3 @@
+[main]
+vi = True
+keyword_casing = lower

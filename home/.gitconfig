@@ -6,6 +6,8 @@
 [interactive]
     diffFilter=diff-so-fancy --patch
 [user]
+    name = valorl
+    email = 11498571+valorl@users.noreply.github.com
     useConfigOnly = true
     signingKey = ~/.ssh/id_ed25519.pub
     [credential]
@@ -41,13 +43,12 @@
 [push]
     autoSetupRemote = true
 
-[includeIf "gitdir:~/repos/gitlab.neasenergy.com/"]
-    path = ~/.gitconfig_ce
+[url "git@github.com:"]
+    insteadOf = https://github.com/
 
-[includeIf "gitdir:~/repos/github.com/"]
-    path = ~/.gitconfig_gh
-[includeIf "gitdir:~/go/src/github.com/"]
-    path = ~/.gitconfig_gh
+[includeIf "gitdir:~/repos/github.com/quantumgas/"]
+    path = ~/.gitconfig_quantum
+
 
 [alias]
 	co = checkout

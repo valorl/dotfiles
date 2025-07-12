@@ -1,5 +1,6 @@
 alias k="kubectl"
 alias kaf="kubectl apply -f"
+alias kafdr="kubectl apply --dry-run=server -f"
 alias kafs="kubectl apply --server-side -f"
 
 # kc is a per shell-scoped kubernetes context switcher
@@ -48,4 +49,34 @@ function kc() {
                 ;;
         esac
     fi
+}
+
+function qdiff() {
+    source_bundle="$1"
+    name="$2"
+
+    state="$QREPOS/kube-state-mvp"
+    release="$state/releases/applications/$name"
+    kustomization="$state/kustomizations/applications/$name"
+
+    tmpdir=$(mktemp -d)
+    mkdir -p "$tmpdir/releases"
+    mkdir -p "$tmpdir/kustomizations"
+
+    for file in $source_bundle/*; do
+      if [[ "$(basename $file)" == flux_kustomize.toolkit.fluxcd.io_kustomization.yaml ]]; then
+        /bin/cp "$file" "$tmpdir/kustomizations/flux_kustomization.yaml" > /dev/null
+      elif [[ -f "$file" ]]; then
+        /bin/cp "$file" "$tmpdir/releases/"
+      fi
+    done
+
+    dyff between -b  \
+        --exclude-regexp '.*/metadata/labels/qgt.dk/template.*' \
+        --ignore-order-changes \
+        "$release" "$tmpdir/releases" \
+        -o github
+        
+    dyff between -b --exclude 'spec.images' "$kustomization" "$tmpdir/kustomizations" \
+        -o github
 }

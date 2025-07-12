@@ -48,6 +48,7 @@ return {
     "aznhe21/actions-preview.nvim",
 
     "seblj/roslyn.nvim",
+    "towolf/vim-helm",
   },
 
   config = function()
@@ -94,83 +95,111 @@ return {
       vim.lsp.protocol.make_client_capabilities(),
       cmp_lsp.default_capabilities())
 
+    local default_handler = function(server_name)
+      return function()
+        require("lspconfig")[server_name].setup {
+          capabilities = capabilities
+        }
+      end
+    end
+
+
+    local handlers = {
+      ["terraformls"] = default_handler("terraformls"),
+      ["pyright"] = default_handler("pyright"),
+      ["yamlls"] = default_handler("yamlls"),
+      ["rust_analyzer"] = default_handler("rust_analyzer"),
+      ["ts_ls"] = default_handler("ts_ls"),
+
+      ["kcl"] = function()
+        require("lspconfig").kcl.setup({
+          cmd = { "kcl-language-server" },
+          filetypes = { "kcl" },
+          root_dit = require("lspconfig.util").root_pattern(".git")
+        })
+      end,
+
+      ["gopls"] = function()
+        require("lspconfig").gopls.setup {
+          capabilities = capabilities,
+          settings = {
+            gopls = {
+              gofumpt = true,
+              experimentalPostfixCompletions = true,
+              staticcheck = true,
+            }
+          },
+          -- TODO: How to navigate these when they appear ?
+          -- init_options = {
+          --   usePlaceholders = true
+          -- }
+        }
+      end,
+
+      -- ["golangci_lint_ls"] = function()
+      --   require("lspconfig").golangci_lint_ls.setup {
+      --     -- exclude "typecheck" double noise
+      --     handlers = {
+      --       ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+      --         local filtered = {}
+      --         for _, d in ipairs(result["diagnostics"]) do
+      --           if d["source"] ~= "typecheck" then
+      --             table.insert(filtered, d)
+      --           end
+      --         end
+      --
+      --         result["diagnostics"] = filtered
+      --         vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx, config)
+      --       end
+      --     }
+      --   }
+      -- end,
+
+      ["lua_ls"] = function()
+        require("lspconfig").lua_ls.setup {
+          capabilities = capabilities,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim", "it", "describe", "before_each", "after_each" },
+                disable = { "missing-fields" }
+              }
+            }
+          }
+        }
+      end,
+
+      ["tflint"] = function()
+        require("lspconfig").tflint.setup {
+          capabilities = capabilities,
+          cmd = { "tflint", "--langserver", "--disable-rule=terraform_required_providers" }
+        }
+      end,
+
+      ["helm_ls"] = function()
+        require("lspconfig").helm_ls.setup {
+          capabilities = capabilities,
+          settings = {
+            ["helm-ls"] = {
+              yamlls = {
+                enable = false
+                -- path = "/Users/vao/.local/share/nvim/mason/bin/yaml-language-server"
+              }
+            }
+          }
+        }
+      end
+    }
+
+    for _, f in pairs(handlers) do
+      f()
+    end
+
+
+
     require("fidget").setup({})
     require("mason").setup()
-    require("mason-lspconfig").setup({
-      ensure_installed = {
-        "terraformls", "tflint",
-        "gopls", "golangci_lint_ls",
-        "pyright",
-        "yamlls",
-        "lua_ls",
-        "rust_analyzer",
-        "tsserver",
-      },
-      handlers = {
-        function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup {
-            capabilities = capabilities
-          }
-        end,
-
-        ["gopls"] = function()
-          require("lspconfig").gopls.setup {
-            capabilities = capabilities,
-            settings = {
-              gopls = {
-                gofumpt = true,
-                experimentalPostfixCompletions = true,
-                staticcheck = true,
-              }
-            },
-            -- TODO: How to navigate these when they appear ?
-            -- init_options = {
-            --   usePlaceholders = true
-            -- }
-          }
-        end,
-
-        ["golangci_lint_ls"] = function()
-          require("lspconfig").golangci_lint_ls.setup {
-            -- exclude "typecheck" double noise
-            handlers = {
-              ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-                local filtered = {}
-                for _, d in ipairs(result["diagnostics"]) do
-                  if d["source"] ~= "typecheck" then
-                    table.insert(filtered, d)
-                  end
-                end
-
-                result["diagnostics"] = filtered
-                vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx, config)
-              end
-            }
-          }
-        end,
-
-        ["lua_ls"] = function()
-          require("lspconfig").lua_ls.setup {
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim", "it", "describe", "before_each", "after_each" },
-                  disable = { "missing-fields" }
-                }
-              }
-            }
-          }
-        end,
-
-        ["tflint"] = function()
-          require("lspconfig").tflint.setup {
-            capabilities = capabilities,
-            cmd = { "tflint", "--langserver", "--disable-rule=terraform_required_providers" }
-          }
-        end
-      }
-    })
+    -- require("mason-lspconfig").setup()
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -237,10 +266,6 @@ return {
             dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
           },
         },
-      },
-      exe = {
-        "dotnet",
-        vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
       },
       -- NOTE: Set `filewatching` to false if you experience performance problems.
       -- Defaults to true, since turning it off is a hack.

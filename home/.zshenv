@@ -1,4 +1,9 @@
 export EDITOR=nvim
+export DAGGERVERSE=~/repos/github.com/quantumgas/daggerverse
+export UV_KEYRING_PROVIDER=subprocess
+export PGCLIRC=~/.pgclirc.ini
+
+export XDG_CONFIG_HOME=~/.config
 
 typeset -U PATH path
 
@@ -10,6 +15,8 @@ typeset -U PATH path
 function set_path() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
     path=(
+        # python
+        "/opt/homebrew/opt/python@3.13/libexec/bin"
         # Use GNU utils on mac
         "/opt/homebrew/opt/coreutils/libexec/gnubin"
         "/opt/homebrew/opt/findutils/libexec/gnubin"
@@ -24,7 +31,9 @@ function set_path() {
         "/opt/homebrew/opt/libpq/bin"
 
         "$HOME/.local/bin"
-        "$GOPATH/bin"
+        # dunno when this changed but I have no $GOPATH by default anymore
+        # "$GOPATH/bin"
+        "$HOME/go/bin"
         "$HOME/.krew/bin"
         "$HOME/.dotnet/tools"
         "$HOME/.cargo/bin"
@@ -37,3 +46,4 @@ function set_path() {
 set_path
 
 source ~/.secretenv
+. "$HOME/.cargo/env"

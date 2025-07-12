@@ -51,5 +51,5 @@ function groledes() {
 }
 
 function glogin() {
-    gcloud auth login --update-adc
+    gcloud auth login --update-adc && echo false > ~/.cache/gcloud/needs-login.txt
 }

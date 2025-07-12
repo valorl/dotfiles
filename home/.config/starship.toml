@@ -4,7 +4,7 @@ format = """\
   $git_branch\
   $git_status\
   $git_state\
-  ${custom.aws}\
+  ${custom.gcp_login}\
   ${custom.gcp}\
   $kubernetes\
   $cmd_duration\
@@ -32,10 +32,10 @@ format="([\\[[$output](bold purple)\\]](bold white) )"
 # prefix = "["
 # suffix = "] "
 
-[custom.aws]
-command = "echo $AWS_PROFILE"
-when='[ "\\$AWS_PROFILE" ] && exit 0 || exit 1'
-format = "(| [$output](bold yellow) )"
+[custom.gcp_login]
+command = 'cat ~/.cache/gcloud/needs-login.txt'
+when = "true"
+format = "(| [$output](bold red) )"
 
 [custom.gcp]
 command = "echo $CLOUDSDK_CORE_PROJECT"

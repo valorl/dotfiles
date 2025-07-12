@@ -1,0 +1,15 @@
+plugins:
+  sync:
+    shortCut: s
+    description: Sync
+    scopes:
+      - kustomization
+    command: flux
+    background: true
+    args:
+      - reconcile
+      - kustomization
+      - $NAME
+      - -n
+      - $NAMESPACE
+

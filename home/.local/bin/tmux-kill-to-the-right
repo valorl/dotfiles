@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+current=$(tmux display-message -p "#{window_index}")
+n=$(tmux list-windows -F '#I' | awk "\$1 > $current" | wc -l)
+for i in {1..$n}
+do 
+    tmux kill-window -t +1
+done

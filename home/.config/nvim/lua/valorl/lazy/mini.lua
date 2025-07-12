@@ -17,5 +17,7 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup()
 
     require('mini.statusline').setup()
+
+    require('mini.files').setup()
   end,
 }
