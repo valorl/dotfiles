@@ -13,3 +13,42 @@ plugins:
       - -n
       - $NAMESPACE
 
+  go-to-commit:
+    shortCut: Ctrl-O
+    description: Open Commit
+    scopes:
+      - pod
+      - deployment
+      - cronjob
+    command: sh
+    background: true
+    args:
+      - -c
+      - >
+        kubectl get $RESOURCE_NAME -n $NAMESPACE $NAME -o json
+        | jq '"https://api.github.com/repositories/\(.metadata.annotations["qgt.dk/repository_id"])/commits/\(.metadata.labels["qgt.dk/version"]
+        | split("-")[0])"' -r
+        | xargs curl -s -H "Authorization: Bearer $(gh auth token)"
+        | jq '.html_url' -r
+        | xargs open
+
+  image-tags:
+    shortCut: Ctrl-T
+    description: Find image tags
+    scopes:
+      - pod
+    background: false
+    command: sh
+    args:
+      - -c
+      - |
+        image_id=$(kubectl get pod $NAME -n $NAMESPACE -o json | jq '.status.containerStatuses[0].imageID' -r)
+        image=$(echo $image_id | cut -d '@' -f1)
+        sha=$(echo $image_id | cut -d '@' -f2)
+
+        gcloud artifacts docker tags list "$image" --project qgt-artifacts --format json 2>/dev/null \
+            | jq -r --arg sha "$sha" '
+                map(select((.version | split("/") | last) == $sha))
+                # | map(select((.tag | split("/") | last) != "latest"))
+                | map(.tag | split("/") | last)
+              ' | less

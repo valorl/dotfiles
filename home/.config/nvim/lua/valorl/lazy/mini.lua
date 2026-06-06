@@ -18,6 +18,6 @@ return { -- Collection of various small independent plugins/modules
 
     require('mini.statusline').setup()
 
-    require('mini.files').setup()
+    -- require('mini.files').setup()
   end,
 }

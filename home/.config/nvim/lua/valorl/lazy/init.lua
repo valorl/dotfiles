@@ -10,8 +10,23 @@ return {
     },
     opts = {
       highlight = {
-        -- TODO: test
-        pattern = [[.*<(KEYWORDS).*:]]
+        -- TODO: todo
+        -- TODO(vao): todo(vao)
+        -- HACK: todo
+        -- HACK(vao): todo(vao)
+        -- WARN: todo
+        -- WARN(vao): todo(vao)
+        -- PERF: todo
+        -- PERF(vao): todo(vao)
+        -- NOTE: todo
+        -- NOTE(vao): todo(vao)
+        -- TEST: todo
+        -- TEST(vao): todo(vao)
+        -- BUG: todo
+        -- BUG(vao): todo(vao)
+        keyword = "bg",
+        -- vimgrep regex, supporting the pattern TODO(name):
+        pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
       }
     }
   },
@@ -22,11 +37,7 @@ return {
       "nvim-lua/plenary.nvim"
     },
     config = function()
-      require("gitlinker").setup({
-        callbacks = {
-          ["gitlab.neasenergy.com"] = require "gitlinker.hosts".get_gitlab_type_url
-        }
-      })
+      require("gitlinker").setup()
     end
   },
 
@@ -41,10 +52,6 @@ return {
     }
 
   },
-  -- fun
-  -- "github/copilot.vim",
-  -- "eandrju/cellular-automaton.nvim",
-  -- "github/copilot.vim",
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -58,18 +65,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
-  {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("refactoring").setup()
-    end,
-  },
-
-
   { "grafana/vim-alloy", },
 
   {
@@ -81,4 +76,8 @@ return {
 
   { "kcl-lang/kcl.nvim" },
   { "rest-nvim/rest.nvim" },
+  { 'fabridamicelli/cronex.nvim', opts = {} },
+  { "tpope/vim-eunuch" },
+  { 'akinsho/git-conflict.nvim',  version = "*", config = true },
+  { url = 'https://codeberg.org/trevorhauter/gitportal.nvim' }
 }

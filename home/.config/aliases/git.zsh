@@ -13,6 +13,7 @@ alias gcam='git commit -a -m'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
+alias gcop='git checkout $1 && git pull'
 
 function gcom() {
     default_branch="$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'/' '{print $NF}')"
@@ -38,6 +39,9 @@ alias gri8='git rebase -i HEAD~8'
 alias gri9='git rebase -i HEAD~9'
 alias gri10='git rebase -i HEAD~10'
 
+alias wts="wt switch"
+
+alias ghw='gh repo view -w'
 
 alias mg="multi-gitter"
 # _cd_rename_window changes directory and renames tmux window
@@ -157,7 +161,7 @@ function _fzf_repos() {
     # append pretty representation for fuzzy finding
     # fuzzy find
     # output selected as original full path
-    local selected=$(fd '\.git$' --full-path $REPOS --prune -u -t d -x echo {//} \
+    local selected=$(fd '\.git$' --full-path $REPOS --prune -u -x echo {//} \
         | xargs -P4 -I {} bash -c "$xargs_cmd" \
         | fzf --with-nth 2 --layout=reverse --height 10 --select-1 --query "$1" \
         | cut -d' ' -f1)
@@ -184,6 +188,13 @@ function reponame() {
 }
 
 function mkpr() {
+    default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | cut -d'/' -f4)
+    git fetch origin $default_branch --quiet
+    if [ "$(git merge-base HEAD origin/$default_branch)" != "$(git rev-parse origin/$default_branch)" ]; then
+      echo "branch is not up to date with origin/$default_branch"
+      return 1
+    fi
+
     git push
 
     # temp file
@@ -210,9 +221,6 @@ function mkpr() {
     body=$(tail -n +2 $file)
 
     /bin/rm $t
-
-    head=$(git rev-parse --abbrev-ref HEAD)
-    base="main"
 
     gh pr create --title "$title" --body "$body" -w
 }

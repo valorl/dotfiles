@@ -7,3 +7,14 @@ aliases:
   ro: roles
   rb: rolebindings
   np: networkpolicies
+
+  xprojiam: projectiammembers.cloudplatform.gcp.m.upbound.io
+  xgsa: serviceaccounts.cloudplatform.gcp.m.upbound.io
+  xgsaiam: serviceaccountiammembers.cloudplatform.gcp.m.upbound.io
+  xgrant: grants.postgresql.sql.m.crossplane.io
+  xuser: users.sql.gcp.m.upbound.io
+
+  xconfiggcp: providerconfigs.gcp.m.upbound.io
+  xconfigpg: clusterproviderconfigs.postgresql.sql.m.crossplane.io
+
+  strategies: rs strategies

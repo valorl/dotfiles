@@ -38,6 +38,11 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 autoload -U compinit && compinit
 
+# Case-insensitive-ish + match after separators like . _ -
+zstyle ':completion:*' matcher-list \
+  'm:{a-z}={A-Z}' \
+  'r:|[._-]=* r:|=*'
+
 
 function set_win_title(){
   echo -ne "\033]0; $(pwd) \007"
@@ -92,3 +97,11 @@ zvm_after_init() {
 
 zprof > ~/zprof.log
 
+# bun completions
+[ -s "/Users/vao/.bun/_bun" ] && source "/Users/vao/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

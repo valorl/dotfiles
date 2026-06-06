@@ -11,6 +11,8 @@ alias vimj="vim -c 'set ft=json' -c '%!jq'"
 alias vimx="vim -c 'set ft=xml'"
 alias oil="nvim -c 'Oil'"
 
+alias oc="opencode"
+
 # Colors
 alias ls="ls -ahN --color=auto --group-directories-first"
 alias grep="grep --color=auto"
@@ -19,6 +21,15 @@ alias diff="diff --color=auto"
 alias l1="ls -1"
 alias ll="ls -alh"
 
+
+# re-canonicalize $PWD (e.g. macOS insensitive case preservation)
+set CHASE_LINKS
+function _canonicalize_pwd() {
+  local phys
+  phys="$(command pwd -P 2>/dev/null)" || return
+  [[ "$PWD" != "$phys" ]] && PWD="$phys"
+}
+chpwd_functions+=(_canonicalize_pwd)
 
 function cdg() {
     cd "$(git rev-parse --show-toplevel)"
@@ -78,3 +89,45 @@ function pg() {
     PGPASSWORD=$(gcloud sql generate-login-token) /opt/homebrew/bin/pgcli -D "$db" $@
 }
 
+function .env() {
+    usage=".env <file> <command> [<arg> ...]"
+    if (( $# < 2 )); then
+        print -u2 "error: invalid args"
+        print -u2 $usage
+        return 1
+    fi
+
+    envfile="$1"
+    if [[ -z "$envfile" ]]; then
+        print -u2 "error: '$envfile' does not exist"
+        return 1
+    fi
+
+    shift
+
+    ( set -a; source $envfile ; set +a; $@ )
+}
+
+_.env() {
+    if (( CURRENT == 2 )); then
+        _files
+    else
+        shift words
+        (( CURRENT-- ))
+        _normal
+    fi
+}
+compdef _.env .env
+
+function envfile() {
+    if [[ -z "$ENVFILE" ]]; then
+        echo "error: ENVFILE not set" >&2
+        return 1
+    fi
+
+    if [[ ! -f "$ENVFILE" ]]; then
+        echo "error: ENVFILE not found at $ENVFILE" >&2
+        return 1
+    fi
+    ( set -a; source $ENVFILE; set +a; $@ )
+}

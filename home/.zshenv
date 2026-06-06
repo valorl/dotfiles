@@ -2,6 +2,7 @@ export EDITOR=nvim
 export DAGGERVERSE=~/repos/github.com/quantumgas/daggerverse
 export UV_KEYRING_PROVIDER=subprocess
 export PGCLIRC=~/.pgclirc.ini
+export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
 export XDG_CONFIG_HOME=~/.config
 
@@ -15,6 +16,7 @@ typeset -U PATH path
 function set_path() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
     path=(
+        "$HOME/.local/bin"
         # python
         "/opt/homebrew/opt/python@3.13/libexec/bin"
         # Use GNU utils on mac
@@ -30,7 +32,6 @@ function set_path() {
         # psql via libpq (to avoid installing full postgres)
         "/opt/homebrew/opt/libpq/bin"
 
-        "$HOME/.local/bin"
         # dunno when this changed but I have no $GOPATH by default anymore
         # "$GOPATH/bin"
         "$HOME/go/bin"

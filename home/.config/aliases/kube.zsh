@@ -1,6 +1,6 @@
 alias k="kubectl"
 alias kaf="kubectl apply -f"
-alias kafdr="kubectl apply --dry-run=server -f"
+alias kafdr="kubectl apply --server-side --dry-run=server -f"
 alias kafs="kubectl apply --server-side -f"
 
 # kc is a per shell-scoped kubernetes context switcher

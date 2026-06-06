@@ -4,10 +4,14 @@ local function create_autocmd_format(group, bufnr, client)
     buffer = bufnr,
     callback = function()
       -- goimports
-      -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#imports-and-formatting
+      -- https://github.com/golang/tools/blob/master/gopls/doc/editor/vim.md#neovim-imports
       if client.name == 'gopls' then
-        local params = vim.lsp.util.make_range_params()
-        params.context = { only = { "source.organizeImports" } }
+        local rp = vim.lsp.util.make_range_params(0, client.offset_encoding)
+        local params = {
+          textDocument = rp.textDocument,
+          range = rp.range,
+          context = { only = { "source.organizeImports" } }
+        }
         -- buf_request_sync defaults to a 1000ms timeout. Depending on your
         -- machine and codebase, you may want longer. Add an additional
         -- argument after params if you find that you have to write the file
@@ -23,10 +27,49 @@ local function create_autocmd_format(group, bufnr, client)
           end
         end
       end
-      vim.lsp.buf.format { async = false }
+
+      if client.name == 'roslyn' then
+        return
+      end
     end,
   })
 end
+
+local function create_autocmd_attach()
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = require("valorl.autocmd").group,
+    callback = function(args)
+      local bufnr = args.buf
+
+      local opts = {
+        buffer = bufnr,
+        noremap = true
+      }
+      vim.keymap.set("n", "<leader>gg", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, opts)
+      vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, opts)
+
+      vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, opts)
+
+      vim.keymap.set("n", "<leader>grr", function() vim.lsp.buf.references({ includeDeclaration = false }) end, opts)
+      vim.keymap.set("n", "<leader>grn", vim.lsp.buf.rename, opts)
+      vim.keymap.set("n", "<leader>gh", vim.lsp.buf.hover, opts)
+      -- vim.keymap.set("n", "<leader>gca", vim.lsp.buf.code_action, opts)
+      vim.keymap.set("n", "<leader>gca", require("actions-preview").code_actions, opts)
+      vim.keymap.set("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+      vim.keymap.set("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
+      vim.keymap.set("n", "<leader>dh", vim.diagnostic.open_float, opts)
+
+
+      local client_id = args.data.client_id
+      local client = vim.lsp.get_client_by_id(client_id)
+
+      local group = vim.api.nvim_create_augroup("valorl-lsp-attach-format", {})
+      create_autocmd_format(group, bufnr, client)
+    end
+  })
+end
+
 
 return {
   "neovim/nvim-lspconfig",
@@ -52,40 +95,7 @@ return {
   },
 
   config = function()
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = require("valorl.autocmd").group,
-      callback = function(args)
-        local bufnr = args.buf
-
-        local opts = {
-          buffer = bufnr,
-          noremap = true
-        }
-        vim.keymap.set("n", "<leader>gg", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, opts)
-        vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, opts)
-
-        vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, opts)
-
-        vim.keymap.set("n", "<leader>grr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "<leader>grn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("n", "<leader>gh", vim.lsp.buf.hover, opts)
-        -- vim.keymap.set("n", "<leader>gca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>gca", require("actions-preview").code_actions, opts)
-        vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
-        vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
-        vim.keymap.set("n", "<leader>dh", vim.diagnostic.open_float, opts)
-
-
-        local client_id = args.data.client_id
-        local client = vim.lsp.get_client_by_id(client_id)
-
-        local group = vim.api.nvim_create_augroup("valorl-lsp-attach-format", {})
-        create_autocmd_format(group, bufnr, client)
-      end
-
-    })
-
+    create_autocmd_attach()
 
     local cmp = require('cmp')
     local cmp_lsp = require("cmp_nvim_lsp")
@@ -110,6 +120,7 @@ return {
       ["yamlls"] = default_handler("yamlls"),
       ["rust_analyzer"] = default_handler("rust_analyzer"),
       ["ts_ls"] = default_handler("ts_ls"),
+      ["jqls"] = default_handler("jqls"),
 
       ["kcl"] = function()
         require("lspconfig").kcl.setup({
@@ -198,7 +209,12 @@ return {
 
 
     require("fidget").setup({})
-    require("mason").setup()
+    require("mason").setup({
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      }
+    })
     -- require("mason-lspconfig").setup()
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }

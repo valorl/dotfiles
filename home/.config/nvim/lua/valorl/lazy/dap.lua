@@ -37,7 +37,6 @@ local function get_dll_path()
   end
 end
 
-
 return {
   {
     "mfussenegger/nvim-dap",
@@ -60,6 +59,36 @@ return {
           program = function()
             return get_dll_path()
           end,
+          env = function()
+            local files = vim.fn.glob(".*.env", false, true)
+            local inputs = {}
+            for i, file in ipairs(files) do
+              table.insert(inputs, i .. " | " .. file)
+            end
+            local idx = vim.fn.inputlist(inputs)
+            if idx < 1 then
+              return nil
+            end
+
+            return require("nvim-dap-envfile").load_env_file(files[idx])
+          end
+        },
+        {
+          type = "coreclr",
+          name = "Attach to testhost",
+          request = "attach",
+          processId = function()
+            return require("dap.utils").pick_process(
+              {
+                  filter = function(proc)
+                    return (proc.name or ""):match("dotnet")
+                  end,
+                  label = function(proc)
+                    return string.format("%d | %s", proc.pid, proc.name or "?")
+                  end,
+              }
+            )
+          end
         },
       }
     end
@@ -103,5 +132,13 @@ return {
         },
       })
     end
+  },
+  {
+    "ravsii/nvim-dap-envfile",
+    version = "*", -- use latest stable release
+    dependencies = { "mfussenegger/nvim-dap" },
+    opts = {
+      add_dap_listener = true
+    },
   }
 }

@@ -1,3 +1,4 @@
 [main]
 vi = True
 keyword_casing = lower
+table_format = fancy_grid
