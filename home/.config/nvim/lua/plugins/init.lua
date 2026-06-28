@@ -61,7 +61,7 @@ vim.pack.add({
   gh("rhysd/git-messenger.vim"),
   cb("trevorhauter/gitportal.nvim"),
 
-  { src = gh("nvim-telescope/telescope.nvim"), version = "0.1.x" },
+  gh("folke/snacks.nvim"),
   gh("nvim-lualine/lualine.nvim"),
   gh("stevearc/oil.nvim"),
 
@@ -107,7 +107,7 @@ require("plugins.colors")
 require("plugins.blink")
 require("plugins.mason")
 require("plugins.treesitter")
-require("plugins.telescope")
+require("plugins.snacks")
 require("plugins.conform")
 require("plugins.dap")
 require("plugins.fugitive")

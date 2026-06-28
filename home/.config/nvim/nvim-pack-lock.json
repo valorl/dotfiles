@@ -140,15 +140,14 @@
       "rev": "c4ef25973bcc30a2c8c8766711fbbdb3d02b70a3",
       "src": "https://github.com/seblj/roslyn.nvim"
     },
+    "snacks.nvim": {
+      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "src": "https://github.com/folke/snacks.nvim"
+    },
     "sqlua.nvim": {
       "rev": "45f5502d5ad42fe3074a2d62ed04bb044cfeb3b2",
       "src": "https://github.com/xemptuous/sqlua.nvim",
       "version": "'v0.1.1'"
-    },
-    "telescope.nvim": {
-      "rev": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026",
-      "src": "https://github.com/nvim-telescope/telescope.nvim",
-      "version": "'0.1.x'"
     },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
