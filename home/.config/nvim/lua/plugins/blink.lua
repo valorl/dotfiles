@@ -1,5 +1,6 @@
 local blink = prequire("blink.cmp")
 if blink then
+  blink.build():pwait()
   blink.setup({
     keymap = {
       preset = "default",

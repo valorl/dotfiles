@@ -32,6 +32,7 @@ vim.opt.cmdheight = 2
 
 vim.opt.wildmode = { "longest", "full" }
 vim.opt.wildoptions:append("pum")
+vim.opt.completeopt:append("popup")
 
 vim.opt.colorcolumn = "100"
 
@@ -51,3 +52,7 @@ if vim.loop.os_uname().sysname == "Darwin" then
 end
 
 vim.opt.background = background
+
+require("vim._core.ui2").enable({
+  enable = true
+})
