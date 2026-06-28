@@ -1,18 +1,12 @@
-return {
-  "olimorris/codecompanion.nvim",
-  opts = {},
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-  },
-  opts = {
+local codecompanion = prequire("codecompanion")
+if codecompanion then
+  codecompanion.setup({
     opts = {
-      log_level = "DEBUG"
+      log_level = "DEBUG",
     },
     strategies = {
       chat = { adapter = "anthropic" },
       inline = { adapter = "anthropic" },
-      -- cmd = { adapter = "ollama_deepseek" },
       cmd = { adapter = "anthropic" },
     },
 
@@ -24,9 +18,9 @@ return {
             model = {
               default = "deepseek-coder:6.7b-instruct",
             },
-          }
+          },
         })
-      end
-    }
-  }
-}
+      end,
+    },
+  })
+end

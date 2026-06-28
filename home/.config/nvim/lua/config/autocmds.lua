@@ -1,6 +1,7 @@
-local group = vim.api.nvim_create_augroup("valorl", {})
+local M = {}
 
--- Auto-create directories on save
+M.group = vim.api.nvim_create_augroup("valorl", {})
+
 vim.api.nvim_create_augroup("MkdirOnWrite", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = "MkdirOnWrite",
@@ -13,6 +14,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-local M = {}
-M.group = group
 return M

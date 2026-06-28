@@ -1,11 +1,8 @@
-require("valorl")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
+require("config.commands")
+require("plugins")
+require("config.lsp").setup()
 
-local function change_cwd(path)
-  local is_valid = vim.fn.isdirectory(path) == 1
-  if is_valid then
-    vim.cmd("cd " .. path)
-    print("Changed current working directory to: " .. path)
-  else
-    print("Invalid directory: " .. path)
-  end
-end
+vim.cmd([[highlight clear SignColumn]])

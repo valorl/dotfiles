@@ -17,7 +17,7 @@ local function should_csharpier(bufnr)
   end
 
   for line in f:lines() do
-    local allowed_name = line:match("^%s*(.-)%s*$"):lower() -- Trim whitespace
+    local allowed_name = line:match("^%s*(.-)%s*$"):lower()
     if repo_name == allowed_name then
       csharpier_cache[repo_name] = true
       f:close()
@@ -30,9 +30,9 @@ local function should_csharpier(bufnr)
   return false
 end
 
-return {
-  "stevearc/conform.nvim",
-  opts = {
+local conform = prequire("conform")
+if conform then
+  conform.setup({
     log_level = vim.log.levels.TRACE,
     format_on_save = {
       timeout_ms = 500,
@@ -42,8 +42,8 @@ return {
         if should_csharpier(bufnr) then
           return { "csharpier", lsp_format = "never" }
         end
-        return { "csharpier", lsp_format = "prefer"}
+        return { "csharpier", lsp_format = "prefer" }
       end,
     },
-  }
-}
+  })
+end
