@@ -31,6 +31,7 @@
     }
   },
   "plugin": [
+      "opencode-ralph-loop"
       // "superpowers@git+https://github.com/obra/superpowers.git"
   ]
 }
