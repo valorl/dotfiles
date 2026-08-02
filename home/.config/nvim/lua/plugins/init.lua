@@ -43,7 +43,6 @@ vim.pack.add({
   gh("saghen/blink.lib"),
   gh("j-hui/fidget.nvim"),
   gh("aznhe21/actions-preview.nvim"),
-  gh("seblj/roslyn.nvim"),
 
   gh("nvim-treesitter/nvim-treesitter"),
 
@@ -68,7 +67,6 @@ vim.pack.add({
   gh("grafana/vim-alloy"),
   gh("towolf/vim-helm"),
   gh("kcl-lang/kcl.nvim"),
-  gh("rest-nvim/rest.nvim"),
   gh("folke/todo-comments.nvim"),
   gh("fabridamicelli/cronex.nvim"),
 
@@ -79,7 +77,6 @@ vim.pack.add({
   gh("miroshQa/debugmaster.nvim"),
   gh("jbyuki/one-small-step-for-vimkind"),
   gh("leoluz/nvim-dap-go"),
-  gh("ravsii/nvim-dap-envfile"),
 
   { src = gh("xemptuous/sqlua.nvim"), version = "v0.1.1" },
   gh("kristijanhusak/vim-dadbod-ui"),
@@ -113,7 +110,6 @@ require("plugins.dap")
 require("plugins.fugitive")
 require("plugins.lualine")
 require("plugins.mini")
-require("plugins.roslyn")
 require("plugins.sqlua")
 require("plugins.venv-selector")
 require("plugins.ninetynine")
