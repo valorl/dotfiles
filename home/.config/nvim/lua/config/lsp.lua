@@ -11,8 +11,11 @@ local enabled_servers = {
   "tflint",
   "helm_ls",
   "jqls",
-  "kcl",
 }
+
+if vim.fn.executable("kcl-language-server") == 1 then
+  table.insert(enabled_servers, "kcl")
+end
 
 function M.setup()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
