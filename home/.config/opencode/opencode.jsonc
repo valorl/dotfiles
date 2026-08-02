@@ -29,9 +29,5 @@
             "GRAFANA_SERVICE_ACCOUNT_TOKEN": "{env:GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN}"
         }
     }
-  },
-  "plugin": [
-      "opencode-ralph-loop"
-      // "superpowers@git+https://github.com/obra/superpowers.git"
-  ]
+  }
 }
