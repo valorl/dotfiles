@@ -1,7 +1,7 @@
 local snacks = prequire("snacks")
 if snacks then
   snacks.setup({
-    picker = { enabled = true },
+    picker = { enabled = true, ui_select = true },
   })
 
   local opts = { noremap = true }
