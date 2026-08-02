@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/folke/snacks.nvim",
+}, { confirm = false, load = true })
+
 local snacks = prequire("snacks")
 if snacks then
   snacks.setup({

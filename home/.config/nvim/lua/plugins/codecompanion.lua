@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/olimorris/codecompanion.nvim",
+}, { confirm = false, load = true })
+
 local codecompanion = prequire("codecompanion")
 if codecompanion then
   codecompanion.setup({

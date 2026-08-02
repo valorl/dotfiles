@@ -36,6 +36,10 @@
       "rev": "505d9a269d657ce8e0fa5601e0530f0d8798038c",
       "src": "https://github.com/miroshQa/debugmaster.nvim"
     },
+    "diffs.nvim": {
+      "rev": "70882fe6364dfe7f46463b712c6e0e0c0712b408",
+      "src": "https://github.com/barrettruth/diffs.nvim"
+    },
     "editorconfig.nvim": {
       "rev": "67758c3e8a2f79019322a60013e4ce0aad09dafa",
       "src": "https://github.com/gpanders/editorconfig.nvim"

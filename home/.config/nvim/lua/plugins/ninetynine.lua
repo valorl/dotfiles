@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/ThePrimeagen/99",
+}, { confirm = false, load = true })
+
 local _99 = prequire("99")
 if _99 then
   local cwd = vim.uv.cwd()

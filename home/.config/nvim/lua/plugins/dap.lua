@@ -1,3 +1,10 @@
+vim.pack.add({
+  "https://github.com/mfussenegger/nvim-dap",
+  "https://github.com/miroshQa/debugmaster.nvim",
+  "https://github.com/jbyuki/one-small-step-for-vimkind",
+  "https://github.com/leoluz/nvim-dap-go",
+}, { confirm = false, load = true })
+
 local dap = prequire("dap")
 if dap then
   dap.set_log_level("DEBUG")

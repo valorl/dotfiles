@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/tpope/vim-fugitive",
+}, { confirm = false, load = true })
+
 local function trim_trailing_blank_lines(buf)
   while true do
     local n = vim.api.nvim_buf_line_count(buf)

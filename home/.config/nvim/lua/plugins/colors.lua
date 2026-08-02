@@ -1,3 +1,8 @@
+vim.pack.add({
+  "https://github.com/ellisonleao/gruvbox.nvim",
+  { src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
+}, { confirm = false, load = true })
+
 local gruvbox = prequire("gruvbox")
 if gruvbox then
   gruvbox.setup({

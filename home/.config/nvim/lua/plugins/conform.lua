@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/stevearc/conform.nvim",
+}, { confirm = false, load = true })
+
 local conform = prequire("conform")
 if conform then
   conform.setup({

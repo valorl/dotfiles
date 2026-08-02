@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/nvim-lualine/lualine.nvim",
+}, { confirm = false, load = true })
+
 local dmode_enabled = false
 vim.api.nvim_create_autocmd("User", {
   pattern = "DebugModeChanged",

@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/echasnovski/mini.nvim",
+}, { confirm = false, load = true })
+
 local mini = prequire("mini.ai")
 if mini then
   mini.setup({ n_lines = 500 })

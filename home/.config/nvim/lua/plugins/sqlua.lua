@@ -1,3 +1,7 @@
+vim.pack.add({
+  { src = "https://github.com/xemptuous/sqlua.nvim", version = "v0.1.1" },
+}, { confirm = false, load = false })
+
 vim.api.nvim_create_user_command("SQLua", function(args)
   pcall(vim.api.nvim_del_user_command, "SQLua")
   vim.cmd.packadd("sqlua.nvim")

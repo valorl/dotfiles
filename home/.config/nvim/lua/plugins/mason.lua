@@ -1,3 +1,8 @@
+vim.pack.add({
+  "https://github.com/williamboman/mason.nvim",
+  "https://github.com/williamboman/mason-lspconfig.nvim",
+}, { confirm = false, load = true })
+
 local mason = prequire("mason")
 if mason then
   mason.setup({

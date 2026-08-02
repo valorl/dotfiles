@@ -1,3 +1,8 @@
+vim.pack.add({
+  "https://github.com/saghen/blink.lib",
+  "https://github.com/saghen/blink.cmp",
+}, { confirm = false, load = true })
+
 local blink = prequire("blink.cmp")
 if blink then
   blink.build():pwait()

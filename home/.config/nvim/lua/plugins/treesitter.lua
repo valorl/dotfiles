@@ -1,3 +1,7 @@
+vim.pack.add({
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+}, { confirm = false, load = true })
+
 local treesitter = prequire("nvim-treesitter.configs")
 if treesitter then
   treesitter.setup({

@@ -37,31 +37,17 @@ vim.pack.add({
   gh("gpanders/editorconfig.nvim"),
 
   gh("neovim/nvim-lspconfig"),
-  gh("williamboman/mason.nvim"),
-  gh("williamboman/mason-lspconfig.nvim"),
-  gh("saghen/blink.cmp"),
-  gh("saghen/blink.lib"),
   gh("j-hui/fidget.nvim"),
   gh("aznhe21/actions-preview.nvim"),
 
-  gh("nvim-treesitter/nvim-treesitter"),
-
-  gh("ellisonleao/gruvbox.nvim"),
-  { src = gh("rose-pine/neovim"), name = "rose-pine" },
-
   gh("numToStr/Comment.nvim"),
-  gh("echasnovski/mini.nvim"),
-  gh("stevearc/conform.nvim"),
 
-  gh("tpope/vim-fugitive"),
   gh("lewis6991/gitsigns.nvim"),
   gh("akinsho/git-conflict.nvim"),
   gh("ruifm/gitlinker.nvim"),
   gh("rhysd/git-messenger.vim"),
   cb("trevorhauter/gitportal.nvim"),
 
-  gh("folke/snacks.nvim"),
-  gh("nvim-lualine/lualine.nvim"),
   gh("stevearc/oil.nvim"),
 
   gh("grafana/vim-alloy"),
@@ -72,33 +58,7 @@ vim.pack.add({
 
   gh("iamcco/markdown-preview.nvim"),
   gh("tpope/vim-eunuch"),
-
-  gh("mfussenegger/nvim-dap"),
-  gh("miroshQa/debugmaster.nvim"),
-  gh("jbyuki/one-small-step-for-vimkind"),
-  gh("leoluz/nvim-dap-go"),
-
-  { src = gh("xemptuous/sqlua.nvim"), version = "v0.1.1" },
-  gh("kristijanhusak/vim-dadbod-ui"),
-  gh("tpope/vim-dadbod"),
-  gh("kristijanhusak/vim-dadbod-completion"),
-
-  gh("linux-cultist/venv-selector.nvim"),
-
-  gh("ThePrimeagen/99"),
-  gh("olimorris/codecompanion.nvim"),
-}, { confirm = false })
-
-local lazy_plugins = {
-  ["sqlua.nvim"] = true,
-  ["venv-selector.nvim"] = true,
-}
-
-for _, plug in ipairs(vim.pack.get()) do
-  if not lazy_plugins[plug.spec.name] then
-    pcall(vim.cmd.packadd, plug.spec.name)
-  end
-end
+}, { confirm = false, load = true })
 
 require("plugins.colors")
 require("plugins.blink")
@@ -108,6 +68,7 @@ require("plugins.snacks")
 require("plugins.conform")
 require("plugins.dap")
 require("plugins.fugitive")
+require("plugins.diffs")
 require("plugins.lualine")
 require("plugins.mini")
 require("plugins.sqlua")
