@@ -1,7 +1,12 @@
 zmodload zsh/zprof
 
 # plugins
-source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
+if (( $+commands[brew] )); then
+  source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
+elif [[ -e /etc/nixos ]]; then
+  source $ANTIDOTE_PATH/antidote.zsh
+fi
+
 antidote load
 
 # set PATH again
