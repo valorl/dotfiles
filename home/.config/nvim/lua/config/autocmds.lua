@@ -7,6 +7,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = "MkdirOnWrite",
   callback = function(event)
     local file = event.match
+    if vim.bo[event.buf].buftype ~= "" or file:match("^%a[%w+.-]*:") then
+      return
+    end
+
     local dir = vim.fn.fnamemodify(file, ":h")
     if dir ~= "" and vim.fn.isdirectory(dir) == 0 then
       vim.fn.mkdir(dir, "p")
