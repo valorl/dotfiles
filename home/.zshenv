@@ -14,26 +14,36 @@ typeset -U PATH path
 # that runs after .zshenv and re-orders PATH
 # https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
 function set_path() {
-    eval "$(/opt/homebrew/bin/brew shellenv)"
     path=(
         "$HOME/.local/bin"
-        # python
-        "/opt/homebrew/opt/python@3.13/libexec/bin"
-        # Use GNU utils on mac
-        "/opt/homebrew/opt/coreutils/libexec/gnubin"
-        "/opt/homebrew/opt/findutils/libexec/gnubin"
-        "/opt/homebrew/opt/gnu-indent/libexec/gnubin"
-        "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
-        "/opt/homebrew/opt/gnutls/libexec/gnubin"
-        "/opt/homebrew/opt/grep/libexec/gnubin"
-        "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
-        "/opt/homebrew/opt/gawk/libexec/gnubin"
+        $path
+    )
 
-        # psql via libpq (to avoid installing full postgres)
-        "/opt/homebrew/opt/libpq/bin"
 
-        # dunno when this changed but I have no $GOPATH by default anymore
-        # "$GOPATH/bin"
+
+    if (( $+commands[brew] )); then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        path=(
+            # python
+            "/opt/homebrew/opt/python@3.13/libexec/bin"
+            # Use GNU utils on mac
+            "/opt/homebrew/opt/coreutils/libexec/gnubin"
+            "/opt/homebrew/opt/findutils/libexec/gnubin"
+            "/opt/homebrew/opt/gnu-indent/libexec/gnubin"
+            "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+            "/opt/homebrew/opt/gnutls/libexec/gnubin"
+            "/opt/homebrew/opt/grep/libexec/gnubin"
+            "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
+            "/opt/homebrew/opt/gawk/libexec/gnubin"
+
+            # psql via libpq (to avoid installing full postgres)
+            "/opt/homebrew/opt/libpq/bin"
+
+            $path
+        )
+    fi
+
+    path=(
         "$HOME/go/bin"
         "$HOME/.krew/bin"
         "$HOME/.dotnet/tools"
@@ -46,5 +56,5 @@ function set_path() {
 }
 set_path
 
-source ~/.secretenv
-. "$HOME/.cargo/env"
+[[ -r ~/.secretenv ]] && source ~/.secretenv
+[[ -r "$HOME/.cargo/env" ]] && source ~/.secretenv "$HOME/.cargo/env"
