@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "skills": {
+    "rust-best-practices": {
+      "source": "apollographql/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/apollographql/skills.git",
+      "skillPath": "skills/rust-best-practices/SKILL.md",
+      "skillFolderHash": "6ef87177d5674b39adc1e58a46149299feefe43a",
+      "installedAt": "2026-08-02T19:22:56.852Z",
+      "updatedAt": "2026-08-02T19:24:35.676Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  }
+}
