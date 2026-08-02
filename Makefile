@@ -1,9 +1,13 @@
 default: brew stow
 
 brew:
-	/opt/homebrew/bin/brew bundle
+ifeq ($(shell uname -s), Darwin)
+	brew bundle
+endif
 
 stow:
-	/opt/homebrew/bin/stow --dir home --target ~ .
+	mkdir -p ~/.config
+	mkdir -p ~/.local
+	stow --dir home --target ~ .
 unstow:
-	/opt/homebrew/bin/stow --dir home --target ~ -D .
+	stow --dir home --target ~ -D .
