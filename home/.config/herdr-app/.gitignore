@@ -1,0 +1,40 @@
+# Herdr app home. Stowed as ONE link (~/.config/herdr-app -> here), because
+# Herdr writes into this folder constantly (AGENTS.md, *.d.ts, icons/, frame/,
+# shipped mods/layouts, state, its socket) and atomically replaces files it
+# saves (settings.json). Per-file links would silently turn back into copies.
+#
+# So: ignore everything, then re-list what's mine.
+# New Mac: `make stow` BEFORE Herdr's first launch. If Herdr already made
+# ~/.config/herdr-app, move it aside first, or stow can't place the link.
+# Never `git clean -X` here: it deletes Herdr's live state.
+
+/*
+!/.gitignore
+!/keys.json
+!/settings.json
+!/programs.json
+
+!/layouts/
+/layouts/*
+!/layouts/my-main.json
+# layouts/.state/ stays ignored: click state (sidebar px, split weights).
+
+!/mods/
+/mods/*
+# Mine; everything else in mods/ is shipped (see installed.json). Add new ones here.
+!/mods/bootstrap/
+!/mods/my-agents/
+!/mods/my-palette/
+!/mods/my-spaces/
+!/mods/my-tabs/
+!/mods/popup-test/
+!/mods/reorganize/
+!/mods/space-menu/
+!/mods/tab-menu/
+
+# Inside tracked mods: editor support gpui-shell writes, old copies, and
+# machine-local values (e.g. bootstrap/orgs.local: work orgs stay out of git).
+/mods/*/gpui-kit.d.ts
+/mods/*/jsconfig.json
+/mods/*/*.local
+*.bak-*
