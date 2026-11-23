@@ -149,6 +149,10 @@
       "src": "https://github.com/xemptuous/sqlua.nvim",
       "version": "'v0.1.1'"
     },
+    "telescope.nvim": {
+      "rev": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026",
+      "src": "git@github.com:nvim-telescope/telescope.nvim"
+    },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"

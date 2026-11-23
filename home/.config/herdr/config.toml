@@ -1,0 +1,14 @@
+onboarding = false
+
+[ui.toast]
+delivery = "system"
+
+[ui]
+status_indicators = "symbols"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[keys]
+prefix = "ctrl+a"

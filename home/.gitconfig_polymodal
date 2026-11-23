@@ -1,0 +1,6 @@
+[user]
+  name = valerpolymodal
+  email = valer@polymodal.live
+  signingKey = ~/.ssh/id_ed25519_polymodal.pub
+[core]
+  sshCommand = ssh -i ~/.ssh/id_ed25519_polymodal -o IdentitiesOnly=yes

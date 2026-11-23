@@ -13,11 +13,19 @@
         "Authorization": "Bearer {env:GITHUB_TOKEN}"
       }
     },
-    "gcp": {
+    "gcp-knowledge": {
         "type": "remote",
         "url": "https://developerknowledge.googleapis.com/mcp",
         "headers": {
             "X-Goog-Api-Key": "{env:GCP_MCP_API_KEY}"
+        }
+    },
+    "qgt-buckets-prod": {
+        "type": "remote",
+        "url": "https://storage.googleapis.com/storage/mcp",
+        "headers": {
+            "Authorization": "{env:GOOLE_TOKEN}",
+            "x-goog-user-project": "qgt-buckets-prod"
         }
     },
     "grafana-quantumgas": {
@@ -28,10 +36,11 @@
             "GRAFANA_URL": "https://quantumgas.grafana.net",
             "GRAFANA_SERVICE_ACCOUNT_TOKEN": "{env:GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN}"
         }
+    },
+    "fastmail": {
+        "enabled": true,
+        "type": "remote",
+        "url": "https://api.fastmail.com/mcp"
     }
-  },
-  "plugin": [
-      "opencode-ralph-loop"
-      // "superpowers@git+https://github.com/obra/superpowers.git"
-  ]
+  }
 }

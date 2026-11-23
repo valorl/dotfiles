@@ -12,6 +12,7 @@ local enabled_servers = {
   "helm_ls",
   "jqls",
   "kcl",
+  "svelte"
 }
 
 function M.setup()

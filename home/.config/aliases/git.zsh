@@ -76,7 +76,7 @@ function gclone() {
 
     # if no arg, fuzzy find work and own repos
     if [ -z "$remote_url" ]; then
-        local repo="$(gh search repos --owner quantumgas --owner valorl --json fullName,description --limit 1000 \
+        local repo="$(gh search repos --owner polymodal-live --owner valorl --json fullName,description --limit 1000 \
             | jq -r '.[] | "\(.fullName) \(.description)"' \
             | fzf --ansi --with-nth 1 --preview 'echo {} | cut -d" " -f2-' \
             --preview-window=up:10% --layout reverse --height 15 \

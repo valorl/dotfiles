@@ -48,6 +48,8 @@
 
 [includeIf "gitdir:~/repos/github.com/quantumgas/"]
     path = ~/.gitconfig_quantum
+[includeIf "gitdir:~/repos/github.com/polymodal-live/"]
+    path = ~/.gitconfig_polymodal
 
 
 [alias]

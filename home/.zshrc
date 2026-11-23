@@ -105,3 +105,27 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# >>> canvas o0 PATH >>>
+# Managed by apps/canvas/app/install.sh.
+case ":${PATH:-}:" in
+  *:'/Users/vao/.local/bin':*) ;;
+  *) export PATH='/Users/vao/.local/bin'"${PATH:+:$PATH}" ;;
+esac
+export POLYMODAL_DEFAULT_CANVAS='/Users/vao/repos/github.com/polymodal-live/polyverse/apps/canvas/app/runners/canvas'
+# <<< canvas o0 PATH <<<
+
+# >>> canvas completion >>>
+# Managed by apps/canvas/app/install.sh.
+if [ -r '/Users/vao/repos/github.com/polymodal-live/polyverse/apps/canvas/app/runners/completions/canvas.bash' ]; then
+  if [ -n "${ZSH_VERSION:-}" ]; then
+    autoload -Uz bashcompinit 2>/dev/null
+    bashcompinit 2>/dev/null || true
+  fi
+  . '/Users/vao/repos/github.com/polymodal-live/polyverse/apps/canvas/app/runners/completions/canvas.bash'
+fi
+# <<< canvas completion <<<
+
+# >>> cc-intelligent-ui: Claude Code pictures in iTerm2 >>>
+if { [ "$TERM_PROGRAM" = "iTerm.app" ] || [ "$TERM_PROGRAM" = "herdr" ]; } && [ -z "$TMUX" ] && [ -z "$STY" ]; then export CLAUDE_CODE_FORCE_TERMINAL_IMAGES=1; fi
+# <<< cc-intelligent-ui <<<

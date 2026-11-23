@@ -22,6 +22,7 @@ if mason_lspconfig then
       "tflint",
       "helm_ls",
       "jqls",
+      "svelte"
     },
     automatic_enable = false,
   })

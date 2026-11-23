@@ -50,6 +50,7 @@ automatically-unhide-macos-hidden-apps = false
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
 persistent-workspaces = [
+    "R",
     "1", "2", "3", "4", "5", # "6"
     "7", "8", "9", "0"
 ]
@@ -136,6 +137,7 @@ on-mode-changed = []
     alt-equal = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+    alt-backtick = 'workspace R'
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
@@ -148,6 +150,7 @@ on-mode-changed = []
     alt-0 = 'workspace 0'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+    alt-shift-backtick = 'move-node-to-workspace R'
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
     alt-shift-3 = 'move-node-to-workspace 3'
